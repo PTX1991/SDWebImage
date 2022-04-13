@@ -16,50 +16,50 @@
 #define kPlaceholderTestURLTemplate @"https://via.placeholder.com/10000x%d.png"
 
 /**
- *  Category for SDWebImageDownloader so we can access the operationClass
+ *  Category for TXWebImageDownloader so we can access the operationClass
  */
 @interface SDWebImageDownloadToken ()
-@property (nonatomic, weak, nullable) NSOperation<SDWebImageDownloaderOperation> *downloadOperation;
+@property (nonatomic, weak, nullable) NSOperation<TXWebImageDownloaderOperation> *downloadOperation;
 @end
 
-@interface SDWebImageDownloader ()
+@interface TXWebImageDownloader ()
 @property (strong, nonatomic, nonnull) NSOperationQueue *downloadQueue;
 @end
 
 
-@interface SDWebImageDownloaderTests : SDTestCase
+@interface TXWebImageDownloaderTests : SDTestCase
 
 @property (nonatomic, strong) NSMutableArray<NSURL *> *executionOrderURLs;
 
 @end
 
-@implementation SDWebImageDownloaderTests
+@implementation TXWebImageDownloaderTests
 
 - (void)test01ThatSharedDownloaderIsNotEqualToInitDownloader {
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] init];
-    expect(downloader).toNot.equal([SDWebImageDownloader sharedDownloader]);
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] init];
+    expect(downloader).toNot.equal([TXWebImageDownloader sharedDownloader]);
     [downloader invalidateSessionAndCancel:YES];
 }
 
 - (void)test02ThatByDefaultDownloaderSetsTheAcceptHTTPHeader {
-    expect([[SDWebImageDownloader sharedDownloader] valueForHTTPHeaderField:@"Accept"]).to.match(@"image/\\*,\\*/\\*;q=0.8");
+    expect([[TXWebImageDownloader sharedDownloader] valueForHTTPHeaderField:@"Accept"]).to.match(@"image/\\*,\\*/\\*;q=0.8");
 }
 
 - (void)test03ThatSetAndGetValueForHTTPHeaderFieldWork {
     NSString *headerValue = @"Tests";
     NSString *headerName = @"AppName";
     // set it
-    [[SDWebImageDownloader sharedDownloader] setValue:headerValue forHTTPHeaderField:headerName];
-    expect([[SDWebImageDownloader sharedDownloader] valueForHTTPHeaderField:headerName]).to.equal(headerValue);
+    [[TXWebImageDownloader sharedDownloader] setValue:headerValue forHTTPHeaderField:headerName];
+    expect([[TXWebImageDownloader sharedDownloader] valueForHTTPHeaderField:headerName]).to.equal(headerValue);
     // clear it
-    [[SDWebImageDownloader sharedDownloader] setValue:nil forHTTPHeaderField:headerName];
-    expect([[SDWebImageDownloader sharedDownloader] valueForHTTPHeaderField:headerName]).to.beNil();
+    [[TXWebImageDownloader sharedDownloader] setValue:nil forHTTPHeaderField:headerName];
+    expect([[TXWebImageDownloader sharedDownloader] valueForHTTPHeaderField:headerName]).to.beNil();
 }
 
 - (void)test04ThatASimpleDownloadWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Simple download"];
     NSURL *imageURL = [NSURL URLWithString:kTestJPEGURL];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    [[TXWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         if (image && data && !error && finished) {
             [expectation fulfill];
         } else {
@@ -70,50 +70,50 @@
 }
 
 - (void)test05ThatSetAndGetMaxConcurrentDownloadsWorks {
-    NSInteger initialValue = SDWebImageDownloader.sharedDownloader.config.maxConcurrentDownloads;
+    NSInteger initialValue = TXWebImageDownloader.sharedDownloader.config.maxConcurrentDownloads;
     
-    SDWebImageDownloader.sharedDownloader.config.maxConcurrentDownloads = 3;
-    expect(SDWebImageDownloader.sharedDownloader.config.maxConcurrentDownloads).to.equal(3);
+    TXWebImageDownloader.sharedDownloader.config.maxConcurrentDownloads = 3;
+    expect(TXWebImageDownloader.sharedDownloader.config.maxConcurrentDownloads).to.equal(3);
     
-    SDWebImageDownloader.sharedDownloader.config.maxConcurrentDownloads = initialValue;
+    TXWebImageDownloader.sharedDownloader.config.maxConcurrentDownloads = initialValue;
 }
 
 - (void)test06ThatUsingACustomDownloaderOperationWorks {
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] initWithConfig:nil];
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] initWithConfig:nil];
     NSURL *imageURL1 = [NSURL URLWithString:kTestJPEGURL];
     NSURL *imageURL2 = [NSURL URLWithString:kTestPNGURL];
     NSURL *imageURL3 = [NSURL URLWithString:kTestGIFURL];
     // we try to set a usual NSOperation as operation class. Should not work
     downloader.config.operationClass = [NSOperation class];
     SDWebImageDownloadToken *token = [downloader downloadImageWithURL:imageURL1 options:0 progress:nil completed:nil];
-    NSOperation<SDWebImageDownloaderOperation> *operation = token.downloadOperation;
-    expect([operation class]).to.equal([SDWebImageDownloaderOperation class]);
+    NSOperation<TXWebImageDownloaderOperation> *operation = token.downloadOperation;
+    expect([operation class]).to.equal([TXWebImageDownloaderOperation class]);
     
-    // setting an NSOperation subclass that conforms to SDWebImageDownloaderOperation - should work
+    // setting an NSOperation subclass that conforms to TXWebImageDownloaderOperation - should work
     downloader.config.operationClass = [SDWebImageTestDownloadOperation class];
     token = [downloader downloadImageWithURL:imageURL2 options:0 progress:nil completed:nil];
     operation = token.downloadOperation;
     expect([operation class]).to.equal([SDWebImageTestDownloadOperation class]);
     
-    // Assert the NSOperation conforms to `SDWebImageOperation`
-    expect([NSOperation.class conformsToProtocol:@protocol(SDWebImageOperation)]).beTruthy();
-    expect([operation conformsToProtocol:@protocol(SDWebImageOperation)]).beTruthy();
+    // Assert the NSOperation conforms to `TXWebImageOperation`
+    expect([NSOperation.class conformsToProtocol:@protocol(TXWebImageOperation)]).beTruthy();
+    expect([operation conformsToProtocol:@protocol(TXWebImageOperation)]).beTruthy();
     
     // back to the original value
     downloader.config.operationClass = nil;
     token = [downloader downloadImageWithURL:imageURL3 options:0 progress:nil completed:nil];
     operation = token.downloadOperation;
-    expect([operation class]).to.equal([SDWebImageDownloaderOperation class]);
+    expect([operation class]).to.equal([TXWebImageDownloaderOperation class]);
     
     [downloader invalidateSessionAndCancel:YES];
 }
 
 - (void)test07ThatDownloadImageWithNilURLCallsCompletionWithNils {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Completion is called with nils"];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:nil options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    [[TXWebImageDownloader sharedDownloader] downloadImageWithURL:nil options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(image).to.beNil();
         expect(data).to.beNil();
-        expect(error.code).equal(SDWebImageErrorInvalidURL);
+        expect(error.code).equal(TXWebImageErrorInvalidURL);
         [expectation fulfill];
     }];
     [self waitForExpectationsWithCommonTimeout];
@@ -121,10 +121,10 @@
 
 - (void)test08ThatAHTTPAuthDownloadWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"HTTP Auth download"];
-    SDWebImageDownloaderConfig *config = SDWebImageDownloaderConfig.defaultDownloaderConfig;
+    TXWebImageDownloaderConfig *config = TXWebImageDownloaderConfig.defaultDownloaderConfig;
     config.username = @"httpwatch";
     config.password = @"httpwatch01";
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] initWithConfig:config];
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] initWithConfig:config];
     NSURL *imageURL = [NSURL URLWithString:@"http://www.httpwatch.com/httpgallery/authentication/authenticatedimage/default.aspx?0.35786508303135633"];
     [downloader downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         if (image && data && !error && finished) {
@@ -141,7 +141,7 @@
 - (void)test09ThatProgressiveJPEGWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Progressive JPEG download"];
     NSURL *imageURL = [NSURL URLWithString:kTestProgressiveJPEGURL];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:SDWebImageDownloaderProgressiveLoad progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    [[TXWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:TXWebImageDownloaderProgressiveLoad progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         if (image && data && !error && finished) {
             [expectation fulfill];
         } else if (finished) {
@@ -157,7 +157,7 @@
     NSURL *imageURL = [NSURL URLWithString:@"http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120509154705"];
     
     XCTestExpectation *expectation = [self expectationWithDescription:@"404"];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    [[TXWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         if (!image && !data && error && finished) {
             [expectation fulfill];
         } else {
@@ -171,19 +171,19 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Cancel"];
     
     NSURL *imageURL = [NSURL URLWithString:@"http://via.placeholder.com/1000x1000.png"];
-    SDWebImageDownloadToken *token = [[SDWebImageDownloader sharedDownloader]
+    SDWebImageDownloadToken *token = [[TXWebImageDownloader sharedDownloader]
                                       downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
                                           expect(error).notTo.beNil();
-                                          expect(error.domain).equal(SDWebImageErrorDomain);
-                                          expect(error.code).equal(SDWebImageErrorCancelled);
+                                          expect(error.domain).equal(TXWebImageErrorDomain);
+                                          expect(error.code).equal(TXWebImageErrorCancelled);
                                       }];
-    expect([SDWebImageDownloader sharedDownloader].currentDownloadCount).to.equal(1);
+    expect([TXWebImageDownloader sharedDownloader].currentDownloadCount).to.equal(1);
     
     [token cancel];
     
     // doesn't cancel immediately - since it uses dispatch async
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, kMinDelayNanosecond), dispatch_get_main_queue(), ^{
-        expect([SDWebImageDownloader sharedDownloader].currentDownloadCount).to.equal(0);
+        expect([TXWebImageDownloader sharedDownloader].currentDownloadCount).to.equal(0);
         [expectation fulfill];
     });
     
@@ -193,18 +193,18 @@
 - (void)test11ThatCancelAllDownloadWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"CancelAllDownloads"];
     // Previous test case download may not finished, so we just check the download count should + 1 after new request
-    NSUInteger currentDownloadCount = [SDWebImageDownloader sharedDownloader].currentDownloadCount;
+    NSUInteger currentDownloadCount = [TXWebImageDownloader sharedDownloader].currentDownloadCount;
     
     // Choose a large image to avoid download too fast
     NSURL *imageURL = [NSURL URLWithString:@"https://www.sample-videos.com/img/Sample-png-image-1mb.png"];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL completed:nil];
-    expect([SDWebImageDownloader sharedDownloader].currentDownloadCount).to.equal(currentDownloadCount + 1);
+    [[TXWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL completed:nil];
+    expect([TXWebImageDownloader sharedDownloader].currentDownloadCount).to.equal(currentDownloadCount + 1);
     
-    [[SDWebImageDownloader sharedDownloader] cancelAllDownloads];
+    [[TXWebImageDownloader sharedDownloader] cancelAllDownloads];
     
     // doesn't cancel immediately - since it uses dispatch async
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, kMinDelayNanosecond), dispatch_get_main_queue(), ^{
-        expect([SDWebImageDownloader sharedDownloader].currentDownloadCount).to.equal(0);
+        expect([TXWebImageDownloader sharedDownloader].currentDownloadCount).to.equal(0);
         [expectation fulfill];
     });
     
@@ -219,7 +219,7 @@
     request.HTTPShouldUsePipelining = YES;
     request.allHTTPHeaderFields = @{@"Accept": @"image/*;q=0.8"};
     
-    SDWebImageDownloaderOperation *operation = [[SDWebImageDownloaderOperation alloc] initWithRequest:request
+    TXWebImageDownloaderOperation *operation = [[TXWebImageDownloaderOperation alloc] initWithRequest:request
                                                                                             inSession:nil
                                                                                               options:0];
     [operation addHandlersForProgress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *imageURL) {
@@ -240,7 +240,7 @@
 - (void)test13ThatDownloadCanContinueWhenTheAppEntersBackground {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Simple download"];
     NSURL *imageURL = [NSURL URLWithString:kTestJPEGURL];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:SDWebImageDownloaderContinueInBackground progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    [[TXWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:TXWebImageDownloaderContinueInBackground progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         if (image && data && !error && finished) {
             [expectation fulfill];
         } else {
@@ -253,7 +253,7 @@
 - (void)test14ThatPNGWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"PNG"];
     NSURL *imageURL = [NSURL URLWithString:kTestPNGURL];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    [[TXWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         if (image && data && !error && finished) {
             [expectation fulfill];
         } else {
@@ -264,10 +264,10 @@
 }
 
 - (void)test15DownloaderLIFOExecutionOrder {
-    SDWebImageDownloaderConfig *config = [[SDWebImageDownloaderConfig alloc] init];
-    config.executionOrder = SDWebImageDownloaderLIFOExecutionOrder; // Last In First Out
+    TXWebImageDownloaderConfig *config = [[TXWebImageDownloaderConfig alloc] init];
+    config.executionOrder = TXWebImageDownloaderLIFOExecutionOrder; // Last In First Out
     config.maxConcurrentDownloads = 1; // 1
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] initWithConfig:config];
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] initWithConfig:config];
     self.executionOrderURLs = [NSMutableArray array];
     
     // Input order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 (wait for 7 started and immediately) -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14
@@ -284,7 +284,7 @@
         [self createLIFOOperationWithDownloader:downloader expectation:expectations[i-1] index:i];
     }
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWebImageDownloadStartNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        SDWebImageDownloaderOperation *operation = note.object;
+        TXWebImageDownloaderOperation *operation = note.object;
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kPlaceholderTestURLTemplate, waitIndex]];
         if (![operation.request.URL isEqual:url]) {
             return;
@@ -299,7 +299,7 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wshadow"
-- (void)createLIFOOperationWithDownloader:(SDWebImageDownloader *)downloader expectation:(XCTestExpectation *)expectation index:(int)index {
+- (void)createLIFOOperationWithDownloader:(TXWebImageDownloader *)downloader expectation:(XCTestExpectation *)expectation index:(int)index {
     int waitIndex = 7;
     int maxIndex = 14;
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kPlaceholderTestURLTemplate, index]];
@@ -344,9 +344,9 @@
 
 - (void)test17ThatMinimumProgressIntervalWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Minimum progress interval"];
-    SDWebImageDownloaderConfig *config = SDWebImageDownloaderConfig.defaultDownloaderConfig;
+    TXWebImageDownloaderConfig *config = TXWebImageDownloaderConfig.defaultDownloaderConfig;
     config.minimumProgressInterval = 0.51; // This will make the progress only callback twice (once is 51%, another is 100%)
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] initWithConfig:config];
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] initWithConfig:config];
     NSURL *imageURL = [NSURL URLWithString:@"https://raw.githubusercontent.com/recurser/exif-orientation-examples/master/Landscape_1.jpg"];
     __block NSUInteger allProgressCount = 0; // All progress (including operation start / first HTTP response, etc)
     [downloader downloadImageWithURL:imageURL options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
@@ -369,7 +369,7 @@
 - (void)test18ThatProgressiveGIFWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Progressive GIF download"];
     NSURL *imageURL = [NSURL URLWithString:kTestGIFURL];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:SDWebImageDownloaderProgressiveLoad progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    [[TXWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:TXWebImageDownloaderProgressiveLoad progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         if (image && data && !error && finished) {
             [expectation fulfill];
         } else if (finished) {
@@ -384,7 +384,7 @@
 - (void)test19ThatProgressiveAPNGWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Progressive APNG download"];
     NSURL *imageURL = [NSURL URLWithString:kTestAPNGPURL];
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:SDWebImageDownloaderProgressiveLoad progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    [[TXWebImageDownloader sharedDownloader] downloadImageWithURL:imageURL options:TXWebImageDownloaderProgressiveLoad progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         if (image && data && !error && finished) {
             [expectation fulfill];
         } else if (finished) {
@@ -407,17 +407,17 @@
     
     NSURL *imageURL = [NSURL URLWithString:kTestJPEGURL];
     
-    SDWebImageDownloadToken *token1 = [[SDWebImageDownloader sharedDownloader]
+    SDWebImageDownloadToken *token1 = [[TXWebImageDownloader sharedDownloader]
                                        downloadImageWithURL:imageURL
                                        options:0
                                        progress:nil
                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                                            expect(error).notTo.beNil();
-                                           expect(error.code).equal(SDWebImageErrorCancelled);
+                                           expect(error.code).equal(TXWebImageErrorCancelled);
                                        }];
     expect(token1).toNot.beNil();
     
-    SDWebImageDownloadToken *token2 = [[SDWebImageDownloader sharedDownloader]
+    SDWebImageDownloadToken *token2 = [[TXWebImageDownloader sharedDownloader]
                                        downloadImageWithURL:imageURL
                                        options:0
                                        progress:nil
@@ -446,19 +446,19 @@
     
     NSURL *imageURL = [NSURL URLWithString:kTestJPEGURL];
     
-    SDWebImageDownloadToken *token1 = [[SDWebImageDownloader sharedDownloader]
+    SDWebImageDownloadToken *token1 = [[TXWebImageDownloader sharedDownloader]
                                        downloadImageWithURL:imageURL
                                        options:0
                                        progress:nil
                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                                            expect(error).notTo.beNil();
-                                           expect(error.code).equal(SDWebImageErrorCancelled);
+                                           expect(error.code).equal(TXWebImageErrorCancelled);
                                        }];
     expect(token1).toNot.beNil();
     
     [token1 cancel];
     
-    SDWebImageDownloadToken *token2 = [[SDWebImageDownloader sharedDownloader]
+    SDWebImageDownloadToken *token2 = [[TXWebImageDownloader sharedDownloader]
                                        downloadImageWithURL:imageURL
                                        options:0
                                        progress:nil
@@ -476,10 +476,10 @@
 }
 
 - (void)test22ThatCustomDecoderWorksForImageDownload {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Custom decoder for SDWebImageDownloader not works"];
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] init];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Custom decoder for TXWebImageDownloader not works"];
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] init];
     SDWebImageTestCoder *testDecoder = [[SDWebImageTestCoder alloc] init];
-    [[SDImageCodersManager sharedManager] addCoder:testDecoder];
+    [[TXImageCodersManager sharedManager] addCoder:testDecoder];
     NSURL * testImageURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"png"];
     
     // Decoded result is JPEG
@@ -492,7 +492,7 @@
         if (![data1 isEqualToData:data2]) {
             XCTFail(@"The image data is not equal to cutom decoder, check -[SDWebImageTestDecoder decodedImageWithData:]");
         }
-        [[SDImageCodersManager sharedManager] removeCoder:testDecoder];
+        [[TXImageCodersManager sharedManager] removeCoder:testDecoder];
         [expectation fulfill];
     }];
     
@@ -502,15 +502,15 @@
 
 - (void)test23ThatDownloadRequestModifierWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Download request modifier not works"];
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] init];
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] init];
     
     // Test conveniences modifier
-    SDWebImageDownloaderRequestModifier *requestModifier = [[SDWebImageDownloaderRequestModifier alloc] initWithHeaders:@{@"Biz" : @"Bazz"}];
+    TXWebImageDownloaderRequestModifier *requestModifier = [[TXWebImageDownloaderRequestModifier alloc] initWithHeaders:@{@"Biz" : @"Bazz"}];
     NSURLRequest *testRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kTestJPEGURL]];
     testRequest = [requestModifier modifiedRequestWithRequest:testRequest];
     expect(testRequest.allHTTPHeaderFields).equal(@{@"Biz" : @"Bazz"});
     
-    requestModifier = [SDWebImageDownloaderRequestModifier requestModifierWithBlock:^NSURLRequest * _Nullable(NSURLRequest * _Nonnull request) {
+    requestModifier = [TXWebImageDownloaderRequestModifier requestModifierWithBlock:^NSURLRequest * _Nullable(NSURLRequest * _Nonnull request) {
         if ([request.URL.absoluteString isEqualToString:kTestPNGURL]) {
             // Test that return a modified request
             NSMutableURLRequest *mutableRequest = [request mutableCopy];
@@ -556,17 +556,17 @@
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Download response modifier for webURL"];
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Download response modifier invalid response"];
     
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] init];
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] init];
     
     // Test conveniences modifier
-    SDWebImageDownloaderResponseModifier *responseModifier = [[SDWebImageDownloaderResponseModifier alloc] initWithHeaders:@{@"Biz" : @"Bazz"}];
+    TXWebImageDownloaderResponseModifier *responseModifier = [[TXWebImageDownloaderResponseModifier alloc] initWithHeaders:@{@"Biz" : @"Bazz"}];
     NSURLResponse *testResponse = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:kTestPNGURL] statusCode:404 HTTPVersion:@"HTTP/1.1" headerFields:nil];
     testResponse = [responseModifier modifiedResponseWithResponse:testResponse];
     expect(((NSHTTPURLResponse *)testResponse).allHeaderFields).equal(@{@"Biz" : @"Bazz"});
     expect(((NSHTTPURLResponse *)testResponse).statusCode).equal(200);
     
     // 1. Test webURL to response custom status code and header
-    responseModifier = [SDWebImageDownloaderResponseModifier responseModifierWithBlock:^NSURLResponse * _Nullable(NSURLResponse * _Nonnull response) {
+    responseModifier = [TXWebImageDownloaderResponseModifier responseModifierWithBlock:^NSURLResponse * _Nullable(NSURLResponse * _Nonnull response) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         NSMutableDictionary *mutableHeaderFields = [httpResponse.allHeaderFields mutableCopy];
         mutableHeaderFields[@"Foo"] = @"Bar";
@@ -578,8 +578,8 @@
     __block SDWebImageDownloadToken *token;
     token = [downloader downloadImageWithURL:[NSURL URLWithString:kTestJPEGURL] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).notTo.beNil();
-        expect(error.code).equal(SDWebImageErrorInvalidDownloadStatusCode);
-        expect(error.userInfo[SDWebImageErrorDownloadStatusCodeKey]).equal(404);
+        expect(error.code).equal(TXWebImageErrorInvalidDownloadStatusCode);
+        expect(error.userInfo[TXWebImageErrorDownloadStatusCodeKey]).equal(404);
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)token.response;
         expect(httpResponse).notTo.beNil();
         expect(httpResponse.allHeaderFields[@"Foo"]).equal(@"Bar");
@@ -587,12 +587,12 @@
     }];
     
     // 2. Test nil response will cancel the download
-    responseModifier = [SDWebImageDownloaderResponseModifier responseModifierWithBlock:^NSURLResponse * _Nullable(NSURLResponse * _Nonnull response) {
+    responseModifier = [TXWebImageDownloaderResponseModifier responseModifierWithBlock:^NSURLResponse * _Nullable(NSURLResponse * _Nonnull response) {
         return nil;
     }];
     [downloader downloadImageWithURL:[NSURL URLWithString:kTestPNGURL] options:0 context:@{SDWebImageContextDownloadResponseModifier : responseModifier} progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).notTo.beNil();
-        expect(error.code).equal(SDWebImageErrorInvalidDownloadResponse);
+        expect(error.code).equal(TXWebImageErrorInvalidDownloadResponse);
         [expectation2 fulfill];
     }];
     
@@ -606,8 +606,8 @@
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Download decryptor for webURL"];
     XCTestExpectation *expectation3 = [self expectationWithDescription:@"Download decryptor invalid data"];
     
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] init];
-    downloader.decryptor = SDWebImageDownloaderDecryptor.base64Decryptor;
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] init];
+    downloader.decryptor = TXWebImageDownloaderDecryptor.base64Decryptor;
     
     // 1. Test fileURL with Base64 encoded data works
     NSData *PNGData = [NSData dataWithContentsOfFile:[self testPNGPath]];
@@ -622,7 +622,7 @@
     }];
     
     // 2. Test webURL with Zip encoded data works
-    SDWebImageDownloaderDecryptor *decryptor = [SDWebImageDownloaderDecryptor decryptorWithBlock:^NSData * _Nullable(NSData * _Nonnull data, NSURLResponse * _Nullable response) {
+    TXWebImageDownloaderDecryptor *decryptor = [TXWebImageDownloaderDecryptor decryptorWithBlock:^NSData * _Nullable(NSData * _Nonnull data, NSURLResponse * _Nullable response) {
         if (@available(iOS 13, macOS 10.15, tvOS 13, *)) {
             return [data decompressedDataUsingAlgorithm:NSDataCompressionAlgorithmZlib error:nil];
         } else {
@@ -641,12 +641,12 @@
     }];
     
     // 3. Test nil data will mark download failed
-    decryptor = [SDWebImageDownloaderDecryptor decryptorWithBlock:^NSData * _Nullable(NSData * _Nonnull data, NSURLResponse * _Nullable response) {
+    decryptor = [TXWebImageDownloaderDecryptor decryptorWithBlock:^NSData * _Nullable(NSData * _Nonnull data, NSURLResponse * _Nullable response) {
         return nil;
     }];
     [downloader downloadImageWithURL:[NSURL URLWithString:kTestJPEGURL] options:0 context:@{SDWebImageContextDownloadDecryptor : decryptor} progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).notTo.beNil();
-        expect(error.code).equal(SDWebImageErrorBadImageData);
+        expect(error.code).equal(TXWebImageErrorBadImageData);
         [expectation3 fulfill];
     }];
     
@@ -658,7 +658,7 @@
 - (void)test26DownloadURLSessionMetrics {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Download URLSessionMetrics works"];
     
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] init];
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] init];
     
     __block SDWebImageDownloadToken *token;
     token = [downloader downloadImageWithURL:[NSURL URLWithString:kTestJPEGURL] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
@@ -690,12 +690,12 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Downloader should callback when URLSessionTask running"];
     
     NSURL *url = [NSURL URLWithString: @"https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/SDWebImage_logo.png"];
-    NSString *key = [SDWebImageManager.sharedManager cacheKeyForURL:url];
+    NSString *key = [TXWebImageManager.sharedManager cacheKeyForURL:url];
     
-    [SDImageCache.sharedImageCache removeImageForKey:key withCompletion:^{
-        SDWebImageCombinedOperation *operation = [SDWebImageManager.sharedManager loadImageWithURL:url options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-            expect(error.domain).equal(SDWebImageErrorDomain);
-            expect(error.code).equal(SDWebImageErrorCancelled);
+    [TXImageCache.sharedImageCache removeImageForKey:key withCompletion:^{
+        SDWebImageCombinedOperation *operation = [TXWebImageManager.sharedManager loadImageWithURL:url options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            expect(error.domain).equal(TXWebImageErrorDomain);
+            expect(error.code).equal(TXWebImageErrorCancelled);
             [expectation fulfill];
         }];
         
@@ -709,14 +709,14 @@
 
 - (void)test28ProgressiveDownloadShouldUseSameCoder  {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Progressive download should use the same coder for each animated image"];
-    SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] init];
+    TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] init];
     
     __block SDWebImageDownloadToken *token;
-    __block id<SDImageCoder> progressiveCoder;
-    token = [downloader downloadImageWithURL:[NSURL URLWithString:kTestGIFURL] options:SDWebImageDownloaderProgressiveLoad context:@{SDWebImageContextAnimatedImageClass : SDAnimatedImage.class} progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+    __block id<TXImageCoder> progressiveCoder;
+    token = [downloader downloadImageWithURL:[NSURL URLWithString:kTestGIFURL] options:TXWebImageDownloaderProgressiveLoad context:@{SDWebImageContextAnimatedImageClass : TXAnimatedImage.class} progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).beNil();
-        expect([image isKindOfClass:SDAnimatedImage.class]).beTruthy();
-        id<SDImageCoder> coder = ((SDAnimatedImage *)image).animatedCoder;
+        expect([image isKindOfClass:TXAnimatedImage.class]).beTruthy();
+        id<TXImageCoder> coder = ((TXAnimatedImage *)image).animatedCoder;
         if (!progressiveCoder) {
             progressiveCoder = coder;
         }
@@ -734,20 +734,20 @@
 }
 
 - (void)test29AcceptableStatusCodeAndContentType {
-    SDWebImageDownloaderConfig *config1 = [[SDWebImageDownloaderConfig alloc] init];
+    TXWebImageDownloaderConfig *config1 = [[TXWebImageDownloaderConfig alloc] init];
     config1.acceptableStatusCodes = [NSIndexSet indexSetWithIndex:1];
-    SDWebImageDownloader *downloader1 = [[SDWebImageDownloader alloc] initWithConfig:config1];
+    TXWebImageDownloader *downloader1 = [[TXWebImageDownloader alloc] initWithConfig:config1];
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Acceptable status code should work"];
     
-    SDWebImageDownloaderConfig *config2 = [[SDWebImageDownloaderConfig alloc] init];
+    TXWebImageDownloaderConfig *config2 = [[TXWebImageDownloaderConfig alloc] init];
     config2.acceptableContentTypes = [NSSet setWithArray:@[@"application/json"]];
-    SDWebImageDownloader *downloader2 = [[SDWebImageDownloader alloc] initWithConfig:config2];
+    TXWebImageDownloader *downloader2 = [[TXWebImageDownloader alloc] initWithConfig:config2];
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Acceptable content type should work"];
     
     __block SDWebImageDownloadToken *token1;
     token1 = [downloader1 downloadImageWithURL:[NSURL URLWithString:kTestJPEGURL] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).notTo.beNil();
-        expect(error.code).equal(SDWebImageErrorInvalidDownloadStatusCode);
+        expect(error.code).equal(TXWebImageErrorInvalidDownloadStatusCode);
         NSInteger statusCode = ((NSHTTPURLResponse *)token1.response).statusCode;
         expect(statusCode).equal(200);
         [expectation1 fulfill];
@@ -756,7 +756,7 @@
     __block SDWebImageDownloadToken *token2;
     token2 = [downloader2 downloadImageWithURL:[NSURL URLWithString:kTestJPEGURL] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).notTo.beNil();
-        expect(error.code).equal(SDWebImageErrorInvalidDownloadContentType);
+        expect(error.code).equal(TXWebImageErrorInvalidDownloadContentType);
         NSString *contentType = ((NSHTTPURLResponse *)token2.response).MIMEType;
         expect(contentType).equal(@"image/jpeg");
         [expectation2 fulfill];
@@ -792,10 +792,10 @@
 - (void)test31ThatLoadersManagerWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Loaders manager not works"];
     SDWebImageTestLoader *loader = [[SDWebImageTestLoader alloc] init];
-    SDImageLoadersManager *manager = [[SDImageLoadersManager alloc] init];
+    TXImageLoadersManager *manager = [[TXImageLoadersManager alloc] init];
     [manager addLoader:loader];
     [manager removeLoader:loader];
-    manager.loaders = @[SDWebImageDownloader.sharedDownloader, loader];
+    manager.loaders = @[TXWebImageDownloader.sharedDownloader, loader];
     NSURL *imageURL = [NSURL URLWithString:kTestJPEGURL];
     expect([manager canRequestImageForURL:imageURL]).beTruthy();
     expect([manager canRequestImageForURL:imageURL options:0 context:nil]).beTruthy();

@@ -7,7 +7,7 @@
  */
 
 #import "UIImage+ForceDecode.h"
-#import "SDImageCoderHelper.h"
+#import "TXImageCoderHelper.h"
 #import "objc/runtime.h"
 
 @implementation UIImage (ForceDecode)
@@ -25,7 +25,7 @@
     if (!image) {
         return nil;
     }
-    return [SDImageCoderHelper decodedImageWithImage:image];
+    return [TXImageCoderHelper decodedImageWithImage:image];
 }
 
 + (nullable UIImage *)sd_decodedAndScaledDownImageWithImage:(nullable UIImage *)image {
@@ -36,7 +36,7 @@
     if (!image) {
         return nil;
     }
-    return [SDImageCoderHelper decodedAndScaledDownImageWithImage:image limitBytes:bytes];
+    return [TXImageCoderHelper decodedAndScaledDownImageWithImage:image limitBytes:bytes];
 }
 
 @end

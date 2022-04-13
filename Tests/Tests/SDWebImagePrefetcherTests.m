@@ -9,26 +9,26 @@
 
 #import "SDTestCase.h"
 
-@interface SDWebImagePrefetcher ()
+@interface TXWebImagePrefetcher ()
 
 @property (strong, atomic, nonnull) NSMutableSet<SDWebImagePrefetchToken *> *runningTokens;
 
 @end
 
-@interface SDWebImagePrefetcherTests : SDTestCase <SDWebImagePrefetcherDelegate>
+@interface TXWebImagePrefetcherTests : SDTestCase <TXWebImagePrefetcherDelegate>
 
-@property (nonatomic, strong) SDWebImagePrefetcher *prefetcher;
+@property (nonatomic, strong) TXWebImagePrefetcher *prefetcher;
 @property (atomic, assign) NSUInteger finishedCount;
 @property (atomic, assign) NSUInteger skippedCount;
 @property (atomic, assign) NSUInteger totalCount;
 
 @end
 
-@implementation SDWebImagePrefetcherTests
+@implementation TXWebImagePrefetcherTests
 
 - (void)test01ThatSharedPrefetcherIsNotEqualToInitPrefetcher {
-    SDWebImagePrefetcher *prefetcher = [[SDWebImagePrefetcher alloc] init];
-    expect(prefetcher).toNot.equal([SDWebImagePrefetcher sharedImagePrefetcher]);
+    TXWebImagePrefetcher *prefetcher = [[TXWebImagePrefetcher alloc] init];
+    expect(prefetcher).toNot.equal([TXWebImagePrefetcher sharedImagePrefetcher]);
 }
 
 - (void)test02PrefetchMultipleImages {
@@ -40,8 +40,8 @@
     
     __block NSUInteger numberOfPrefetched = 0;
     
-    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-        [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:imageURLs progress:^(NSUInteger noOfFinishedUrls, NSUInteger noOfTotalUrls) {
+    [[TXImageCache sharedImageCache] clearDiskOnCompletion:^{
+        [[TXWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:imageURLs progress:^(NSUInteger noOfFinishedUrls, NSUInteger noOfTotalUrls) {
             numberOfPrefetched += 1;
             expect(numberOfPrefetched).to.equal(noOfFinishedUrls);
             expect(noOfFinishedUrls).to.beLessThanOrEqualTo(noOfTotalUrls);
@@ -60,7 +60,7 @@
 - (void)test03PrefetchWithEmptyArrayWillCallTheCompletionWithAllZeros {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Prefetch with empty array"];
     
-    [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[] progress:nil completed:^(NSUInteger noOfFinishedUrls, NSUInteger noOfSkippedUrls) {
+    [[TXWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[] progress:nil completed:^(NSUInteger noOfFinishedUrls, NSUInteger noOfSkippedUrls) {
         expect(noOfFinishedUrls).to.equal(0);
         expect(noOfSkippedUrls).to.equal(0);
         [expectation fulfill];
@@ -84,9 +84,9 @@
     __block BOOL prefetchFinished2 = NO;
     
     // Clear the disk cache to make it more realistic for multi-thread environment
-    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+    [[TXImageCache sharedImageCache] clearDiskOnCompletion:^{
         dispatch_async(queue1, ^{
-            [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:imageURLs1 progress:^(NSUInteger noOfFinishedUrls, NSUInteger noOfTotalUrls) {
+            [[TXWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:imageURLs1 progress:^(NSUInteger noOfFinishedUrls, NSUInteger noOfTotalUrls) {
                 numberOfPrefetched1 += 1;
             } completed:^(NSUInteger noOfFinishedUrls, NSUInteger noOfSkippedUrls) {
                 expect(numberOfPrefetched1).to.equal(noOfFinishedUrls);
@@ -98,7 +98,7 @@
             }];
         });
         dispatch_async(queue2, ^{
-            [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:imageURLs2 progress:^(NSUInteger noOfFinishedUrls, NSUInteger noOfTotalUrls) {
+            [[TXWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:imageURLs2 progress:^(NSUInteger noOfFinishedUrls, NSUInteger noOfTotalUrls) {
                 numberOfPrefetched2 += 1;
             } completed:^(NSUInteger noOfFinishedUrls, NSUInteger noOfSkippedUrls) {
                 expect(numberOfPrefetched2).to.equal(noOfFinishedUrls);
@@ -123,10 +123,10 @@
         NSString *url = [NSString stringWithFormat:@"http://via.placeholder.com/%zux%zu.jpg", i, i];
         [imageURLs addObject:[NSURL URLWithString:url]];
     }
-    self.prefetcher = [SDWebImagePrefetcher new];
+    self.prefetcher = [TXWebImagePrefetcher new];
     self.prefetcher.delegate = self;
     // Current implementation, the delegate method called before the progressBlock and completionBlock
-    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+    [[TXImageCache sharedImageCache] clearDiskOnCompletion:^{
         [self.prefetcher prefetchURLs:[imageURLs copy] progress:^(NSUInteger noOfFinishedUrls, NSUInteger noOfTotalUrls) {
             expect(self.finishedCount).to.equal(noOfFinishedUrls);
             expect(self.totalCount).to.equal(noOfTotalUrls);
@@ -144,7 +144,7 @@
     NSArray *imageURLs = @[@"http://via.placeholder.com/20x20.jpg",
                            @"http://via.placeholder.com/30x30.jpg",
                            @"http://via.placeholder.com/40x40.jpg"];
-    SDWebImagePrefetcher *prefetcher = [[SDWebImagePrefetcher alloc] init];
+    TXWebImagePrefetcher *prefetcher = [[TXWebImagePrefetcher alloc] init];
     SDWebImagePrefetchToken *token = [prefetcher prefetchURLs:imageURLs];
     expect(prefetcher.runningTokens.count).equal(1);
     [token cancel];
@@ -158,9 +158,9 @@
                            @"http://via.placeholder.com/6000x6000.jpg",
                            @"http://via.placeholder.com/7000x7000.jpg"];
     for (NSString *url in imageURLs) {
-        [SDImageCache.sharedImageCache removeImageFromDiskForKey:url];
+        [TXImageCache.sharedImageCache removeImageFromDiskForKey:url];
     }
-    SDWebImagePrefetcher *prefetcher = [[SDWebImagePrefetcher alloc] init];
+    TXWebImagePrefetcher *prefetcher = [[TXWebImagePrefetcher alloc] init];
     prefetcher.maxConcurrentPrefetchCount = 3;
     [prefetcher prefetchURLs:imageURLs progress:nil completed:^(NSUInteger noOfFinishedUrls, NSUInteger noOfSkippedUrls) {
         expect(noOfSkippedUrls).equal(3);
@@ -170,19 +170,19 @@
     // Cancel all download, should not effect the prefetcher logic or cause hung up
     // Prefetch is not sync, so using wait for testing
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, kMinDelayNanosecond), dispatch_get_main_queue(), ^{
-        [SDWebImageDownloader.sharedDownloader cancelAllDownloads];
+        [TXWebImageDownloader.sharedDownloader cancelAllDownloads];
     });
     
     [self waitForExpectationsWithCommonTimeout];
 }
 
-- (void)imagePrefetcher:(SDWebImagePrefetcher *)imagePrefetcher didFinishWithTotalCount:(NSUInteger)totalCount skippedCount:(NSUInteger)skippedCount {
+- (void)imagePrefetcher:(TXWebImagePrefetcher *)imagePrefetcher didFinishWithTotalCount:(NSUInteger)totalCount skippedCount:(NSUInteger)skippedCount {
     expect(imagePrefetcher).to.equal(self.prefetcher);
     self.skippedCount = skippedCount;
     self.totalCount = totalCount;
 }
 
-- (void)imagePrefetcher:(SDWebImagePrefetcher *)imagePrefetcher didPrefetchURL:(NSURL *)imageURL finishedCount:(NSUInteger)finishedCount totalCount:(NSUInteger)totalCount {
+- (void)imagePrefetcher:(TXWebImagePrefetcher *)imagePrefetcher didPrefetchURL:(NSURL *)imageURL finishedCount:(NSUInteger)finishedCount totalCount:(NSUInteger)totalCount {
     expect(imagePrefetcher).to.equal(self.prefetcher);
     self.finishedCount = finishedCount;
     self.totalCount = totalCount;

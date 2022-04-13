@@ -13,7 +13,7 @@
 #else
 #import <MobileCoreServices/MobileCoreServices.h>
 #endif
-#import "SDImageIOAnimatedCoderInternal.h"
+#import "TXImageIOAnimatedCoderInternal.h"
 
 #define kSVGTagEnd @"</svg>"
 

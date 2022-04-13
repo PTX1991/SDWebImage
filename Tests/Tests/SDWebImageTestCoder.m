@@ -19,13 +19,13 @@
     return YES;
 }
 
-- (UIImage *)decodedImageWithData:(NSData *)data options:(nullable SDImageCoderOptions *)options {
+- (UIImage *)decodedImageWithData:(NSData *)data options:(nullable TXImageCoderOptions *)options {
     NSString * testImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestImage" ofType:@"jpg"];
     UIImage *image = [[UIImage alloc] initWithContentsOfFile:testImagePath];
     return image;
 }
 
-- (instancetype)initIncrementalWithOptions:(nullable SDImageCoderOptions *)options
+- (instancetype)initIncrementalWithOptions:(nullable TXImageCoderOptions *)options
 {
     self = [super init];
     if (self) {
@@ -37,7 +37,7 @@
     return;
 }
 
-- (UIImage *)incrementalDecodedImageWithOptions:(SDImageCoderOptions *)options {
+- (UIImage *)incrementalDecodedImageWithOptions:(TXImageCoderOptions *)options {
     NSString * testImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestImage" ofType:@"gif"];
     UIImage *image = [[UIImage alloc] initWithContentsOfFile:testImagePath];
     return image;
@@ -47,7 +47,7 @@
     return YES;
 }
 
-- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format options:(nullable SDImageCoderOptions *)options {
+- (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format options:(nullable TXImageCoderOptions *)options {
     NSString *testString = @"TestEncode";
     NSData *data = [testString dataUsingEncoding:NSUTF8StringEncoding];
     return data;

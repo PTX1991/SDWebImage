@@ -8,7 +8,7 @@
 
 #import "UIImage+Metadata.h"
 #import "NSImage+Compatibility.h"
-#import "SDInternalMacros.h"
+#import "TXInternalMacros.h"
 #import "objc/runtime.h"
 
 @implementation UIImage (Metadata)

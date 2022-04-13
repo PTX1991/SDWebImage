@@ -8,12 +8,12 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <SDWebImage/SDWebImageDownloaderOperation.h>
+#import <SDWebImage/TXWebImageDownloaderOperation.h>
 
 /**
- *  A class that fits the NSOperation+SDWebImageDownloaderOperation requirement so we can test
+ *  A class that fits the NSOperation+TXWebImageDownloaderOperation requirement so we can test
  */
-@interface SDWebImageTestDownloadOperation : NSOperation <SDWebImageDownloaderOperation>
+@interface SDWebImageTestDownloadOperation : NSOperation <TXWebImageDownloaderOperation>
 
 @property (nonatomic, strong, nullable) NSURLRequest *request;
 @property (nonatomic, strong, nullable) NSURLResponse *response;

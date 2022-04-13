@@ -13,7 +13,7 @@
 @interface MyCustomTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *customTextLabel;
-@property (nonatomic, strong) SDAnimatedImageView *customImageView;
+@property (nonatomic, strong) TXAnimatedImageView *customImageView;
 
 @end
 
@@ -21,7 +21,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _customImageView = [[SDAnimatedImageView alloc] initWithFrame:CGRectMake(20.0, 2.0, 60.0, 40.0)];
+        _customImageView = [[TXAnimatedImageView alloc] initWithFrame:CGRectMake(20.0, 2.0, 60.0, 40.0)];
         [self.contentView addSubview:_customImageView];
         _customTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 12.0, 200, 20.0)];
         [self.contentView addSubview:_customTextLabel];
@@ -53,10 +53,10 @@
         
         // HTTP NTLM auth example
         // Add your NTLM image url to the array below and replace the credentials
-        [SDWebImageDownloader sharedDownloader].config.username = @"httpwatch";
-        [SDWebImageDownloader sharedDownloader].config.password = @"httpwatch01";
-        [[SDWebImageDownloader sharedDownloader] setValue:@"SDWebImage Demo" forHTTPHeaderField:@"AppName"];
-        [SDWebImageDownloader sharedDownloader].config.executionOrder = SDWebImageDownloaderLIFOExecutionOrder;
+        [TXWebImageDownloader sharedDownloader].config.username = @"httpwatch";
+        [TXWebImageDownloader sharedDownloader].config.password = @"httpwatch01";
+        [[TXWebImageDownloader sharedDownloader] setValue:@"SDWebImage Demo" forHTTPHeaderField:@"AppName"];
+        [TXWebImageDownloader sharedDownloader].config.executionOrder = TXWebImageDownloaderLIFOExecutionOrder;
         
         self.objects = [NSMutableArray arrayWithObjects:
                     @"http://www.httpwatch.com/httpgallery/authentication/authenticatedimage/default.aspx?0.35786508303135633",     // requires HTTP auth, used to demo the NTLM auth
@@ -85,7 +85,7 @@
 }
 
 - (void)flushCache {
-    [SDWebImageManager.sharedManager.imageCache clearWithCacheType:SDImageCacheTypeAll completion:nil];
+    [TXWebImageManager.sharedManager.imageCache clearWithCacheType:TXImageCacheTypeAll completion:nil];
 }
 
 #pragma mark - Table View
@@ -105,18 +105,18 @@
     MyCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[MyCustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.customImageView.sd_imageTransition = SDWebImageTransition.fadeTransition;
+        cell.customImageView.sd_imageTransition = TXWebImageTransition.fadeTransition;
         cell.customImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayIndicator;
     }
     
     cell.customTextLabel.text = [NSString stringWithFormat:@"Image #%ld", (long)indexPath.row];
-    __weak SDAnimatedImageView *imageView = cell.customImageView;
+    __weak TXAnimatedImageView *imageView = cell.customImageView;
     [imageView sd_setImageWithURL:[NSURL URLWithString:self.objects[indexPath.row]]
                  placeholderImage:placeholderImage
                           options:0
                           context:@{SDWebImageContextImageThumbnailPixelSize : @(CGSizeMake(180, 120))}
                          progress:nil
-                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
         SDWebImageCombinedOperation *operation = [imageView sd_imageLoadOperationForKey:imageView.sd_latestOperationKey];
         SDWebImageDownloadToken *token = operation.loaderOperation;
         if (@available(iOS 10.0, *)) {

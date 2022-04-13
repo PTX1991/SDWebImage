@@ -41,7 +41,7 @@
     [self sd_setImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:completedBlock];
 }
 
-- (void)sd_setImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable SDImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
+- (void)sd_setImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable TXImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
     [self sd_setImageWithURL:url placeholderImage:placeholder options:options context:nil progress:progressBlock completed:completedBlock];
 }
 
@@ -49,7 +49,7 @@
           placeholderImage:(nullable UIImage *)placeholder
                    options:(SDWebImageOptions)options
                    context:(nullable SDWebImageContext *)context
-                  progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                  progress:(nullable TXImageLoaderProgressBlock)progressBlock
                  completed:(nullable SDExternalCompletionBlock)completedBlock {
     [self sd_internalSetImageWithURL:url
                     placeholderImage:placeholder
@@ -57,7 +57,7 @@
                              context:context
                        setImageBlock:nil
                             progress:progressBlock
-                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                                if (completedBlock) {
                                    completedBlock(image, error, cacheType, imageURL);
                                }

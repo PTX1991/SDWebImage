@@ -8,8 +8,8 @@
 
 #import "UIImage+Transform.h"
 #import "NSImage+Compatibility.h"
-#import "SDImageGraphics.h"
-#import "SDGraphicsImageRenderer.h"
+#import "TXImageGraphics.h"
+#import "TXGraphicsImageRenderer.h"
 #import "NSBezierPath+SDRoundedCorners.h"
 #import <Accelerate/Accelerate.h>
 #if SD_UIKIT || SD_MAC
@@ -201,9 +201,9 @@ static inline CGImageRef _Nullable SDCreateCGImageFromCIImage(CIImage * _Nonnull
 
 - (nullable UIImage *)sd_resizedImageWithSize:(CGSize)size scaleMode:(SDImageScaleMode)scaleMode {
     if (size.width <= 0 || size.height <= 0) return nil;
-    SDGraphicsImageRendererFormat *format = [[SDGraphicsImageRendererFormat alloc] init];
+    TXGraphicsImageRendererFormat *format = [[TXGraphicsImageRendererFormat alloc] init];
     format.scale = self.scale;
-    SDGraphicsImageRenderer *renderer = [[SDGraphicsImageRenderer alloc] initWithSize:size format:format];
+    TXGraphicsImageRenderer *renderer = [[TXGraphicsImageRenderer alloc] initWithSize:size format:format];
     UIImage *image = [renderer imageWithActions:^(CGContextRef  _Nonnull context) {
         [self sd_drawInRect:CGRectMake(0, 0, size.width, size.height) context:context scaleMode:scaleMode clipsToBounds:NO];
     }];
@@ -250,9 +250,9 @@ static inline CGImageRef _Nullable SDCreateCGImageFromCIImage(CIImage * _Nonnull
 }
 
 - (nullable UIImage *)sd_roundedCornerImageWithRadius:(CGFloat)cornerRadius corners:(SDRectCorner)corners borderWidth:(CGFloat)borderWidth borderColor:(nullable UIColor *)borderColor {
-    SDGraphicsImageRendererFormat *format = [[SDGraphicsImageRendererFormat alloc] init];
+    TXGraphicsImageRendererFormat *format = [[TXGraphicsImageRendererFormat alloc] init];
     format.scale = self.scale;
-    SDGraphicsImageRenderer *renderer = [[SDGraphicsImageRenderer alloc] initWithSize:self.size format:format];
+    TXGraphicsImageRenderer *renderer = [[TXGraphicsImageRenderer alloc] initWithSize:self.size format:format];
     UIImage *image = [renderer imageWithActions:^(CGContextRef  _Nonnull context) {
         CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
         
@@ -318,9 +318,9 @@ static inline CGImageRef _Nullable SDCreateCGImageFromCIImage(CIImage * _Nonnull
     }
 #endif
     
-    SDGraphicsImageRendererFormat *format = [[SDGraphicsImageRendererFormat alloc] init];
+    TXGraphicsImageRendererFormat *format = [[TXGraphicsImageRendererFormat alloc] init];
     format.scale = self.scale;
-    SDGraphicsImageRenderer *renderer = [[SDGraphicsImageRenderer alloc] initWithSize:newRect.size format:format];
+    TXGraphicsImageRenderer *renderer = [[TXGraphicsImageRenderer alloc] initWithSize:newRect.size format:format];
     UIImage *image = [renderer imageWithActions:^(CGContextRef  _Nonnull context) {
         CGContextSetShouldAntialias(context, true);
         CGContextSetAllowsAntialiasing(context, true);
@@ -365,9 +365,9 @@ static inline CGImageRef _Nullable SDCreateCGImageFromCIImage(CIImage * _Nonnull
     }
 #endif
     
-    SDGraphicsImageRendererFormat *format = [[SDGraphicsImageRendererFormat alloc] init];
+    TXGraphicsImageRendererFormat *format = [[TXGraphicsImageRendererFormat alloc] init];
     format.scale = self.scale;
-    SDGraphicsImageRenderer *renderer = [[SDGraphicsImageRenderer alloc] initWithSize:self.size format:format];
+    TXGraphicsImageRenderer *renderer = [[TXGraphicsImageRenderer alloc] initWithSize:self.size format:format];
     UIImage *image = [renderer imageWithActions:^(CGContextRef  _Nonnull context) {
         // Use UIKit coordinate system
         if (horizontal) {
@@ -417,9 +417,9 @@ static inline CGImageRef _Nullable SDCreateCGImageFromCIImage(CIImage * _Nonnull
     // blend mode, see https://en.wikipedia.org/wiki/Alpha_compositing
     CGBlendMode blendMode = kCGBlendModeSourceAtop;
     
-    SDGraphicsImageRendererFormat *format = [[SDGraphicsImageRendererFormat alloc] init];
+    TXGraphicsImageRendererFormat *format = [[TXGraphicsImageRendererFormat alloc] init];
     format.scale = scale;
-    SDGraphicsImageRenderer *renderer = [[SDGraphicsImageRenderer alloc] initWithSize:size format:format];
+    TXGraphicsImageRenderer *renderer = [[TXGraphicsImageRenderer alloc] initWithSize:size format:format];
     UIImage *image = [renderer imageWithActions:^(CGContextRef  _Nonnull context) {
         [self drawInRect:rect];
         CGContextSetBlendMode(context, blendMode);

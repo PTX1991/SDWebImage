@@ -13,8 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView1;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView2;
-@property (weak, nonatomic) IBOutlet SDAnimatedImageView *imageView3;
-@property (weak, nonatomic) IBOutlet SDAnimatedImageView *imageView4;
+@property (weak, nonatomic) IBOutlet TXAnimatedImageView *imageView3;
+@property (weak, nonatomic) IBOutlet TXAnimatedImageView *imageView4;
 
 @end
 

@@ -46,29 +46,29 @@ With blocks, you can be notified about the image download progress and whenever 
 // Here we use the new provided sd_setImageWithURL: method to load the web image
 [cell.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://www.domain.com/path/to/image.jpg"]
                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]
-                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                         completed:^(UIImage *image, NSError *error, TXImageCacheType cacheType, NSURL *imageURL) {
                                 ... completion code here ...
                              }];
 ```
 
 Note: neither your success nor failure block will be call if your image request is canceled before completion.
 
-### Using SDWebImageManager
+### Using TXWebImageManager
 
-The `SDWebImageManager` is the class behind the `UIImageView(WebCache)` category. It ties the asynchronous downloader with the image cache store. You can use this class directly to benefit from web image downloading with caching in another context than a `UIView` (ie: with Cocoa).
+The `TXWebImageManager` is the class behind the `UIImageView(WebCache)` category. It ties the asynchronous downloader with the image cache store. You can use this class directly to benefit from web image downloading with caching in another context than a `UIView` (ie: with Cocoa).
 
 Note: When the image is from memory cache, it will not contain any `NSData` by default. However, if you need image data, you can pass `SDWebImageQueryDataWhenInMemory` in options arg.
 
-Here is a simple example of how to use `SDWebImageManager`:
+Here is a simple example of how to use `TXWebImageManager`:
 
 ```objective-c
-SDWebImageManager *manager = [SDWebImageManager sharedManager];
+TXWebImageManager *manager = [TXWebImageManager sharedManager];
 [manager loadImageWithURL:imageURL
                   options:0
                  progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                         // progression tracking code
                  }
-                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                 completed:^(UIImage *image, NSError *error, TXImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                     if (image) {
                         // do something with image
                     }
@@ -80,7 +80,7 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
 It's also possible to use the async image downloader independently:
 
 ```objective-c
-SDWebImageDownloader *downloader = [SDWebImageDownloader sharedDownloader];
+TXWebImageDownloader *downloader = [TXWebImageDownloader sharedDownloader];
 [downloader downloadImageWithURL:imageURL
                          options:0
                         progress:^(NSInteger receivedSize, NSInteger expectedSize) {
@@ -95,11 +95,11 @@ SDWebImageDownloader *downloader = [SDWebImageDownloader sharedDownloader];
 
 ### Using Asynchronous Image Caching Independently
 
-It is also possible to use the async based image cache store independently. `SDImageCache`
+It is also possible to use the async based image cache store independently. `TXImageCache`
 maintains a memory cache and an optional disk cache. Disk cache write operations are performed
 asynchronous so it doesn't add unnecessary latency to the UI.
 
-The `SDImageCache` class provides a singleton instance for convenience but you can create your own
+The `TXImageCache` class provides a singleton instance for convenience but you can create your own
 instance if you want to create separated cache namespace.
 
 To lookup the cache, you use the `queryDiskCacheForKey:done:` method. If the method returns nil, it means the cache
@@ -108,19 +108,19 @@ key is an application unique identifier for the image to cache. It is generally 
 the image.
 
 ```objective-c
-SDImageCache *imageCache = [[SDImageCache alloc] initWithNamespace:@"myNamespace"];
+TXImageCache *imageCache = [[TXImageCache alloc] initWithNamespace:@"myNamespace"];
 [imageCache queryDiskCacheForKey:myCacheKey done:^(UIImage *image) {
     // image is not nil if image was found
 }];
 ```
 
-By default `SDImageCache` will lookup the disk cache if an image can't be found in the memory cache.
+By default `TXImageCache` will lookup the disk cache if an image can't be found in the memory cache.
 You can prevent this from happening by calling the alternative method `imageFromMemoryCacheForKey:`.
 
 To store an image into the cache, you use the `storeImage:forKey:completion:` method:
 
 ```objective-c
-[[SDImageCache sharedImageCache] storeImage:myImage forKey:myCacheKey completion:^{
+[[TXImageCache sharedImageCache] storeImage:myImage forKey:myCacheKey completion:^{
     // image stored
 }];
 ```
@@ -132,7 +132,7 @@ third argument.
 ### Using cache key filter
 
 Sometime, you may not want to use the image URL as cache key because part of the URL is dynamic
-(i.e.: for access control purpose). `SDWebImageManager` provides a way to set a cache key filter that
+(i.e.: for access control purpose). `TXWebImageManager` provides a way to set a cache key filter that
 takes the `NSURL` as input, and output a cache key `NSString`.
 
 The following example sets a filter in the application delegate that will remove any query-string from
@@ -140,7 +140,7 @@ the URL before to use it as a cache key:
 
 ```objective-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    SDWebImageManager.sharedManager.cacheKeyFilter = ^(NSURL *url) {
+    TXWebImageManager.sharedManager.cacheKeyFilter = ^(NSURL *url) {
         url = [[NSURL alloc] initWithScheme:url.scheme host:url.host path:url.path];
         return [url absoluteString];
     };

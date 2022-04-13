@@ -13,7 +13,7 @@
 #import "objc/runtime.h"
 #import "UIView+WebCacheOperation.h"
 #import "UIView+WebCache.h"
-#import "SDInternalMacros.h"
+#import "TXInternalMacros.h"
 
 static char imageURLStorageKey;
 
@@ -81,7 +81,7 @@ static inline NSString * backgroundImageOperationKeyForState(UIControlState stat
     [self sd_setImageWithURL:url forState:state placeholderImage:placeholder options:options progress:nil completed:completedBlock];
 }
 
-- (void)sd_setImageWithURL:(nullable NSURL *)url forState:(UIControlState)state placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable SDImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
+- (void)sd_setImageWithURL:(nullable NSURL *)url forState:(UIControlState)state placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable TXImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
     [self sd_setImageWithURL:url forState:state placeholderImage:placeholder options:options context:nil progress:progressBlock completed:completedBlock];
 }
 
@@ -90,7 +90,7 @@ static inline NSString * backgroundImageOperationKeyForState(UIControlState stat
           placeholderImage:(nullable UIImage *)placeholder
                    options:(SDWebImageOptions)options
                    context:(nullable SDWebImageContext *)context
-                  progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                  progress:(nullable TXImageLoaderProgressBlock)progressBlock
                  completed:(nullable SDExternalCompletionBlock)completedBlock {
     if (!url) {
         [self.sd_imageURLStorage removeObjectForKey:imageURLKeyForState(state)];
@@ -110,12 +110,12 @@ static inline NSString * backgroundImageOperationKeyForState(UIControlState stat
                     placeholderImage:placeholder
                              options:options
                              context:mutableContext
-                       setImageBlock:^(UIImage * _Nullable image, NSData * _Nullable imageData, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                       setImageBlock:^(UIImage * _Nullable image, NSData * _Nullable imageData, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                            @strongify(self);
                            [self setImage:image forState:state];
                        }
                             progress:progressBlock
-                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                                if (completedBlock) {
                                    completedBlock(image, error, cacheType, imageURL);
                                }
@@ -166,7 +166,7 @@ static inline NSString * backgroundImageOperationKeyForState(UIControlState stat
     [self sd_setBackgroundImageWithURL:url forState:state placeholderImage:placeholder options:options progress:nil completed:completedBlock];
 }
 
-- (void)sd_setBackgroundImageWithURL:(nullable NSURL *)url forState:(UIControlState)state placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable SDImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
+- (void)sd_setBackgroundImageWithURL:(nullable NSURL *)url forState:(UIControlState)state placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable TXImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
     [self sd_setBackgroundImageWithURL:url forState:state placeholderImage:placeholder options:options context:nil progress:progressBlock completed:completedBlock];
 }
 
@@ -175,7 +175,7 @@ static inline NSString * backgroundImageOperationKeyForState(UIControlState stat
                     placeholderImage:(nullable UIImage *)placeholder
                              options:(SDWebImageOptions)options
                              context:(nullable SDWebImageContext *)context
-                            progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                            progress:(nullable TXImageLoaderProgressBlock)progressBlock
                            completed:(nullable SDExternalCompletionBlock)completedBlock {
     if (!url) {
         [self.sd_imageURLStorage removeObjectForKey:backgroundImageURLKeyForState(state)];
@@ -195,12 +195,12 @@ static inline NSString * backgroundImageOperationKeyForState(UIControlState stat
                     placeholderImage:placeholder
                              options:options
                              context:mutableContext
-                       setImageBlock:^(UIImage * _Nullable image, NSData * _Nullable imageData, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                       setImageBlock:^(UIImage * _Nullable image, NSData * _Nullable imageData, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                            @strongify(self);
                            [self setBackgroundImage:image forState:state];
                        }
                             progress:progressBlock
-                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                                if (completedBlock) {
                                    completedBlock(image, error, cacheType, imageURL);
                                }

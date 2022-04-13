@@ -11,7 +11,7 @@
 
 @interface DetailViewController ()
 
-@property (strong, nonatomic) IBOutlet SDAnimatedImageView *imageView;
+@property (strong, nonatomic) IBOutlet TXAnimatedImageView *imageView;
 
 @end
 

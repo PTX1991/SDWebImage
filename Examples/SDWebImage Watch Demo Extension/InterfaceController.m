@@ -14,7 +14,7 @@
 @property (weak) IBOutlet WKInterfaceImage *staticImageInterface;
 @property (weak) IBOutlet WKInterfaceImage *simpleAnimatedImageInterface;
 @property (weak) IBOutlet WKInterfaceImage *animatedImageInterface;
-@property (nonatomic, strong) SDAnimatedImagePlayer *player;
+@property (nonatomic, strong) TXAnimatedImagePlayer *player;
 
 @end
 
@@ -39,21 +39,21 @@
     
     // Simple animated image playback
     NSString *urlString2 = @"http://apng.onevcat.com/assets/elephant.png";
-    [self.simpleAnimatedImageInterface sd_setImageWithURL:[NSURL URLWithString:urlString2] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [self.simpleAnimatedImageInterface sd_setImageWithURL:[NSURL URLWithString:urlString2] completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
         // `WKInterfaceImage` unlike `UIImageView`. Even the image is animated image, you should explicitly call `startAnimating` to play animation.
         [self.simpleAnimatedImageInterface startAnimating];
     }];
     
     // Complicated but the best performance animated image playback
     // If you use the above method to display this GIF (389 frames), Apple Watch will consume 800+MB and cause OOM
-    // This is actualy the same backend like `SDAnimatedImageView` on iOS, recommend to use
+    // This is actualy the same backend like `TXAnimatedImageView` on iOS, recommend to use
     NSString *urlString3 = @"https://raw.githubusercontent.com/liyong03/YLGIFImage/master/YLGIFImageDemo/YLGIFImageDemo/joy.gif";
-    [self.animatedImageInterface sd_setImageWithURL:[NSURL URLWithString:urlString3] placeholderImage:nil options:SDWebImageProgressiveLoad context:@{SDWebImageContextAnimatedImageClass : SDAnimatedImage.class} progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        if (![image isKindOfClass:[SDAnimatedImage class]]) {
+    [self.animatedImageInterface sd_setImageWithURL:[NSURL URLWithString:urlString3] placeholderImage:nil options:SDWebImageProgressiveLoad context:@{SDWebImageContextAnimatedImageClass : TXAnimatedImage.class} progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (![image isKindOfClass:[TXAnimatedImage class]]) {
             return;
         }
         __weak typeof(self) wself = self;
-        self.player = [SDAnimatedImagePlayer playerWithProvider:(SDAnimatedImage *)image];
+        self.player = [TXAnimatedImagePlayer playerWithProvider:(TXAnimatedImage *)image];
         self.player.animationFrameHandler = ^(NSUInteger index, UIImage * _Nonnull frame) {
             [wself.animatedImageInterface setImage:frame];
         };
@@ -62,8 +62,8 @@
 }
 
 - (void)clearCache {
-    [SDImageCache.sharedImageCache clearMemory];
-    [SDImageCache.sharedImageCache clearDiskOnCompletion:nil];
+    [TXImageCache.sharedImageCache clearMemory];
+    [TXImageCache.sharedImageCache clearDiskOnCompletion:nil];
 }
 
 - (void)didDeactivate {

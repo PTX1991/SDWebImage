@@ -24,7 +24,7 @@
     UIImageView *imageView = [[UIImageView alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     [imageView sd_setImageWithURL:originalImageURL
-                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                             expect(image).toNot.beNil();
                             expect(error).to.beNil();
                             expect(originalImageURL).to.equal(imageURL);
@@ -39,9 +39,9 @@
     NSData *imageData = [NSData dataWithContentsOfFile:[self testJPEGPath]];
     
     // Ensure the image is cached in disk but not memory
-    [SDImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
-    [SDImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
-    [SDImageCache.sharedImageCache storeImageDataToDisk:imageData forKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache storeImageDataToDisk:imageData forKey:kTestJPEGURL];
     
     UIImageView *imageView = [[UIImageView alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
@@ -49,7 +49,7 @@
     [imageView sd_setImageWithURL:originalImageURL
                  placeholderImage:nil
                           options:SDWebImageQueryDiskDataSync
-                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                             expect(image).toNot.beNil();
                             expect(error).to.beNil();
                             expect(originalImageURL).to.equal(imageURL);
@@ -66,7 +66,7 @@
     UIImageView *imageView = [[UIImageView alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     [imageView sd_setHighlightedImageWithURL:originalImageURL
-                                   completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                                   completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                                        expect(image).toNot.beNil();
                                        expect(error).to.beNil();
                                        expect(originalImageURL).to.equal(imageURL);
@@ -83,7 +83,7 @@
     MKAnnotationView *annotationView = [[MKAnnotationView alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     [annotationView sd_setImageWithURL:originalImageURL
-                             completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                             completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                                  expect(image).toNot.beNil();
                                  expect(error).to.beNil();
                                  expect(originalImageURL).to.equal(imageURL);
@@ -101,7 +101,7 @@
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     [button sd_setImageWithURL:originalImageURL
                       forState:UIControlStateNormal
-                     completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                     completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                          expect(image).toNot.beNil();
                          expect(error).to.beNil();
                          expect(originalImageURL).to.equal(imageURL);
@@ -118,7 +118,7 @@
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     [button sd_setImageWithURL:originalImageURL
                       forState:UIControlStateHighlighted
-                     completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                     completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                          expect(image).toNot.beNil();
                          expect(error).to.beNil();
                          expect(originalImageURL).to.equal(imageURL);
@@ -135,7 +135,7 @@
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     [button sd_setBackgroundImageWithURL:originalImageURL
                                 forState:UIControlStateNormal
-                               completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                               completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                                    expect(image).toNot.beNil();
                                    expect(error).to.beNil();
                                    expect(originalImageURL).to.equal(imageURL);
@@ -163,7 +163,7 @@
     NSButton *button = [[NSButton alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     [button sd_setImageWithURL:originalImageURL
-                     completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                     completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                          expect(image).toNot.beNil();
                          expect(error).to.beNil();
                          expect(originalImageURL).to.equal(imageURL);
@@ -179,7 +179,7 @@
     NSButton *button = [[NSButton alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     [button sd_setAlternateImageWithURL:originalImageURL
-                              completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                              completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                                   expect(image).toNot.beNil();
                                   expect(error).to.beNil();
                                   expect(originalImageURL).to.equal(imageURL);
@@ -203,8 +203,8 @@
                     placeholderImage:placeholder
                              options:0
                              context:nil
-                       setImageBlock:^(UIImage * _Nullable image, NSData * _Nullable imageData, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                           if (!imageData && cacheType == SDImageCacheTypeNone) {
+                       setImageBlock:^(UIImage * _Nullable image, NSData * _Nullable imageData, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                           if (!imageData && cacheType == TXImageCacheTypeNone) {
                                // placeholder
                                expect(image).to.equal(placeholder);
                            } else {
@@ -214,7 +214,7 @@
                            view.layer.contents = (__bridge id _Nullable)(image.CGImage);
                        }
                             progress:nil
-                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                                expect(image).toNot.beNil();
                                expect(error).to.beNil();
                                expect(originalImageURL).to.equal(imageURL);
@@ -227,8 +227,8 @@
 - (void)testUIViewCancelCurrentImageLoad {
     UIView *imageView = [[UIView alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
-    [SDImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
-    [SDImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
     [imageView sd_internalSetImageWithURL:originalImageURL placeholderImage:nil options:0 context:nil setImageBlock:nil progress:nil completed:nil];
     [imageView sd_cancelCurrentImageLoad];
     NSString *operationKey = NSStringFromClass(UIView.class);
@@ -242,14 +242,14 @@
     NSURL *secondImageUrl = [NSURL URLWithString:kTestPNGURL];
 
     // First, reset our caches
-    [SDImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
-    [SDImageCache.sharedImageCache removeImageFromMemoryForKey:kTestPNGURL];
+    [TXImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache removeImageFromMemoryForKey:kTestPNGURL];
 
     // Next, lets put our second image into memory, so that the next time
     // we load it, it will come from memory, and thus shouldUseTransition will be NO
     XCTestExpectation *firstLoadExpectation = [self expectationWithDescription:@"First image loaded"];
 
-    [imageView sd_internalSetImageWithURL:secondImageUrl placeholderImage:nil options:0 context:nil setImageBlock:nil progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+    [imageView sd_internalSetImageWithURL:secondImageUrl placeholderImage:nil options:0 context:nil setImageBlock:nil progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
         [firstLoadExpectation fulfill];
     }];
 
@@ -266,9 +266,9 @@
     XCTestExpectation *transitionCompletionExpecation = [self expectationWithDescription:@"Transition completed"];
     transitionCompletionExpecation.inverted = YES;
 
-    SDWebImageTransition *customTransition = [SDWebImageTransition new];
+    TXWebImageTransition *customTransition = [TXWebImageTransition new];
     customTransition.duration = 1.0;
-    customTransition.prepares = ^(__kindof UIView * _Nonnull view, UIImage * _Nullable image, NSData * _Nullable imageData, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    customTransition.prepares = ^(__kindof UIView * _Nonnull view, UIImage * _Nullable image, NSData * _Nullable imageData, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
         [transitionPreparesExpectation fulfill];
     };
     customTransition.completion = ^(BOOL finished) {
@@ -294,7 +294,7 @@
     // we are assigning an image URL that is already present in the
     // memory cache
     context[SDWebImageContextSetImageOperationKey] = secondImageUrl.absoluteString;
-    [imageView sd_internalSetImageWithURL:secondImageUrl placeholderImage:nil options:0 context:context setImageBlock:nil progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+    [imageView sd_internalSetImageWithURL:secondImageUrl placeholderImage:nil options:0 context:context setImageBlock:nil progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
 
         [secondLoadExpectation fulfill];
     }];
@@ -310,11 +310,11 @@
     
     UIView *imageView = [[UIView alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
-    [SDImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
-    [SDImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
-    [imageView sd_internalSetImageWithURL:originalImageURL placeholderImage:nil options:0 context:nil setImageBlock:nil progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+    [TXImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
+    [imageView sd_internalSetImageWithURL:originalImageURL placeholderImage:nil options:0 context:nil setImageBlock:nil progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
         expect(error).notTo.beNil();
-        expect(error.code).equal(SDWebImageErrorCancelled);
+        expect(error.code).equal(TXWebImageErrorCancelled);
         [expectation fulfill];
     }];
     [imageView sd_cancelCurrentImageLoad];
@@ -336,8 +336,8 @@
     }];
     
     // Clear the disk cache to force download from network
-    [[SDImageCache sharedImageCache] removeImageForKey:kTestJPEGURL withCompletion:^{
-        [view sd_internalSetImageWithURL:originalImageURL placeholderImage:nil options:0 context:nil setImageBlock:nil progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+    [[TXImageCache sharedImageCache] removeImageForKey:kTestJPEGURL withCompletion:^{
+        [view sd_internalSetImageWithURL:originalImageURL placeholderImage:nil options:0 context:nil setImageBlock:nil progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             expect(view.sd_imageProgress.fractionCompleted).equal(1.0);
             expect([view.sd_imageProgress.userInfo[NSStringFromSelector(_cmd)] boolValue]).equal(YES);
             [expectation fulfill];
@@ -352,13 +352,13 @@
     // Attach a window, or CALayer will not submit drawing
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     // Cover each convenience method
-    imageView.sd_imageTransition = SDWebImageTransition.fadeTransition;
-    imageView.sd_imageTransition = SDWebImageTransition.flipFromTopTransition;
-    imageView.sd_imageTransition = SDWebImageTransition.flipFromLeftTransition;
-    imageView.sd_imageTransition = SDWebImageTransition.flipFromBottomTransition;
-    imageView.sd_imageTransition = SDWebImageTransition.flipFromRightTransition;
-    imageView.sd_imageTransition = SDWebImageTransition.curlUpTransition;
-    imageView.sd_imageTransition = SDWebImageTransition.curlDownTransition;
+    imageView.sd_imageTransition = TXWebImageTransition.fadeTransition;
+    imageView.sd_imageTransition = TXWebImageTransition.flipFromTopTransition;
+    imageView.sd_imageTransition = TXWebImageTransition.flipFromLeftTransition;
+    imageView.sd_imageTransition = TXWebImageTransition.flipFromBottomTransition;
+    imageView.sd_imageTransition = TXWebImageTransition.flipFromRightTransition;
+    imageView.sd_imageTransition = TXWebImageTransition.curlUpTransition;
+    imageView.sd_imageTransition = TXWebImageTransition.curlDownTransition;
     imageView.sd_imageTransition.duration = 1;
     
 #if SD_UIKIT
@@ -375,7 +375,7 @@
     [imageView sd_setImageWithURL:originalImageURL
                  placeholderImage:placeholder
                           options:SDWebImageForceTransition
-                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                             __strong typeof(wimageView) simageView = imageView;
                             // Delay to let CALayer commit the transition in next runloop
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, kMinDelayNanosecond), dispatch_get_main_queue(), ^{
@@ -394,7 +394,7 @@
     
     // Attach a window, or CALayer will not submit drawing
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    imageView.sd_imageTransition = SDWebImageTransition.fadeTransition;
+    imageView.sd_imageTransition = TXWebImageTransition.fadeTransition;
     imageView.sd_imageTransition.duration = 1;
     
 #if SD_UIKIT
@@ -408,18 +408,18 @@
     UIImage *placeholder = [[UIImage alloc] initWithData:imageData];
     
     // Ensure the image is cached in disk but not memory
-    [SDImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
-    [SDImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
-    [SDImageCache.sharedImageCache storeImageDataToDisk:imageData forKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
+    [TXImageCache.sharedImageCache storeImageDataToDisk:imageData forKey:kTestJPEGURL];
     
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     __weak typeof(imageView) wimageView = imageView;
     [imageView sd_setImageWithURL:originalImageURL
                  placeholderImage:placeholder
                           options:SDWebImageFromCacheOnly // Ensure we queired from disk cache
-                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                            [SDImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
-                            [SDImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
+                        completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                            [TXImageCache.sharedImageCache removeImageFromMemoryForKey:kTestJPEGURL];
+                            [TXImageCache.sharedImageCache removeImageFromDiskForKey:kTestJPEGURL];
                             __strong typeof(wimageView) simageView = imageView;
                             // Delay to let CALayer commit the transition in next runloop
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, kMinDelayNanosecond), dispatch_get_main_queue(), ^{
@@ -472,7 +472,7 @@
 #endif
                          expect(progress).equal(imageProgress);
                      });
-                 } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                 } completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                      __strong typeof(wimageView) simageView = imageView;
                      double progress = 0;
 #if SD_UIKIT
@@ -493,8 +493,8 @@
     
     UIView *view = [[UIView alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
-    SDWebImageManager *customManager = [[SDWebImageManager alloc] initWithCache:SDImageCachesManager.sharedManager loader:SDImageLoadersManager.sharedManager];
-    customManager.optionsProcessor = [SDWebImageOptionsProcessor optionsProcessorWithBlock:^SDWebImageOptionsResult * _Nullable(NSURL * _Nullable url, SDWebImageOptions options, SDWebImageContext * _Nullable context) {
+    TXWebImageManager *customManager = [[TXWebImageManager alloc] initWithCache:TXImageCachesManager.sharedManager loader:TXImageLoadersManager.sharedManager];
+    customManager.optionsProcessor = [TXWebImageOptionsProcessor optionsProcessorWithBlock:^SDWebImageOptionsResult * _Nullable(NSURL * _Nullable url, SDWebImageOptions options, SDWebImageContext * _Nullable context) {
         // expect manager does not exist, avoid retain cycle
         expect(context[SDWebImageContextCustomManager]).beNil();
         // expect operation key to be the image view class
@@ -507,7 +507,7 @@
                              context:@{SDWebImageContextCustomManager: customManager}
                        setImageBlock:nil
                             progress:nil
-                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
         [expectation fulfill];
     }];
     

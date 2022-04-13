@@ -8,10 +8,10 @@
  */
 
 #import "SDTestCase.h"
-#import "SDWeakProxy.h"
-#import "SDDisplayLink.h"
-#import "SDInternalMacros.h"
-#import "SDFileAttributeHelper.h"
+#import "TXWeakProxy.h"
+#import "TXDisplayLink.h"
+#import "TXInternalMacros.h"
+#import "TXFileAttributeHelper.h"
 #import "UIColor+SDHexString.h"
 
 @interface SDUtilsTests : SDTestCase
@@ -20,9 +20,9 @@
 
 @implementation SDUtilsTests
 
-- (void)testSDWeakProxy {
+- (void)testTXWeakProxy {
     NSObject *object = [NSObject new];
-    SDWeakProxy *proxy = [SDWeakProxy proxyWithTarget:object];
+    TXWeakProxy *proxy = [TXWeakProxy proxyWithTarget:object];
     SEL sel = @selector(hash);
     NSMethodSignature *signature = [proxy methodSignatureForSelector:sel];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
@@ -44,10 +44,10 @@
     expect([proxy.debugDescription isEqualToString:object.debugDescription]).beTruthy();
 }
 
-- (void)testSDDisplayLink {
+- (void)testTXDisplayLink {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Display Link Stop"];
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Display Link Start"];
-    SDDisplayLink *displayLink = [SDDisplayLink displayLinkWithTarget:self selector:@selector(displayLinkDidRefresh:)];
+    TXDisplayLink *displayLink = [TXDisplayLink displayLinkWithTarget:self selector:@selector(displayLinkDidRefresh:)];
     NSTimeInterval duration = displayLink.duration; // Initial value
     expect(duration).equal(1.0 / 60);
     [displayLink addToRunLoop:NSRunLoop.mainRunLoop forMode:NSRunLoopCommonModes];
@@ -70,13 +70,13 @@
     [self waitForExpectationsWithCommonTimeout];
 }
 
-- (void)displayLinkDidRefresh:(SDDisplayLink *)displayLink {
+- (void)displayLinkDidRefresh:(TXDisplayLink *)displayLink {
     NSTimeInterval duration = displayLink.duration; // Running value
     expect(duration).beGreaterThan(0.001); /// 60Hz ~ 120Hz
     expect(duration).beLessThan(0.02);
 }
 
-- (void)testSDFileAttributeHelper {
+- (void)testTXFileAttributeHelper {
     NSData *fileData = [@"File Data" dataUsingEncoding:NSUTF8StringEncoding];
     NSData *extendedData = [@"Extended Data" dataUsingEncoding:NSUTF8StringEncoding];
     NSString *filePath = @"/tmp/file.dat";
@@ -85,32 +85,32 @@
     BOOL exist = [NSFileManager.defaultManager fileExistsAtPath:filePath];
     expect(exist).beTruthy();
     
-    NSArray *names = [SDFileAttributeHelper extendedAttributeNamesAtPath:filePath traverseLink:NO error:nil];
+    NSArray *names = [TXFileAttributeHelper extendedAttributeNamesAtPath:filePath traverseLink:NO error:nil];
     expect(names.count).equal(0);
     
     NSString *attr = @"com.hackemist.test";
-    [SDFileAttributeHelper setExtendedAttribute:attr value:extendedData atPath:filePath traverseLink:NO overwrite:YES error:nil];
+    [TXFileAttributeHelper setExtendedAttribute:attr value:extendedData atPath:filePath traverseLink:NO overwrite:YES error:nil];
     
-    BOOL hasAttr =[SDFileAttributeHelper hasExtendedAttribute:attr atPath:filePath traverseLink:NO error:nil];
+    BOOL hasAttr =[TXFileAttributeHelper hasExtendedAttribute:attr atPath:filePath traverseLink:NO error:nil];
     expect(hasAttr).beTruthy();
     
-    names = [SDFileAttributeHelper extendedAttributeNamesAtPath:filePath traverseLink:NO error:nil];
+    names = [TXFileAttributeHelper extendedAttributeNamesAtPath:filePath traverseLink:NO error:nil];
     expect(names.count).equal(1);
     expect(names.firstObject).equal(attr);
     
-    NSData *queriedData = [SDFileAttributeHelper extendedAttribute:attr atPath:filePath traverseLink:NO error:nil];
+    NSData *queriedData = [TXFileAttributeHelper extendedAttribute:attr atPath:filePath traverseLink:NO error:nil];
     expect(extendedData).equal(queriedData);
     
-    BOOL removed = [SDFileAttributeHelper removeExtendedAttribute:attr atPath:filePath traverseLink:NO error:nil];
+    BOOL removed = [TXFileAttributeHelper removeExtendedAttribute:attr atPath:filePath traverseLink:NO error:nil];
     expect(removed).beTruthy();
     
-    hasAttr = [SDFileAttributeHelper hasExtendedAttribute:attr atPath:filePath traverseLink:NO error:nil];
+    hasAttr = [TXFileAttributeHelper hasExtendedAttribute:attr atPath:filePath traverseLink:NO error:nil];
     expect(hasAttr).beFalsy();
 }
 
-- (void)testSDGraphicsImageRenderer {
+- (void)testTXGraphicsImageRenderer {
     // Main Screen
-    SDGraphicsImageRendererFormat *format = SDGraphicsImageRendererFormat.preferredFormat;
+    TXGraphicsImageRendererFormat *format = TXGraphicsImageRendererFormat.preferredFormat;
 #if SD_UIKIT
     CGFloat screenScale = [UIScreen mainScreen].scale;
 #elif SD_MAC
@@ -119,12 +119,12 @@
     expect(format.scale).equal(screenScale);
     expect(format.opaque).beFalsy();
 #if SD_UIKIT
-    expect(format.preferredRange).equal(SDGraphicsImageRendererFormatRangeAutomatic);
+    expect(format.preferredRange).equal(TXGraphicsImageRendererFormatRangeAutomatic);
 #elif SD_MAC
-    expect(format.preferredRange).equal(SDGraphicsImageRendererFormatRangeStandard);
+    expect(format.preferredRange).equal(TXGraphicsImageRendererFormatRangeStandard);
 #endif
     CGSize size = CGSizeMake(100, 100);
-    SDGraphicsImageRenderer *renderer = [[SDGraphicsImageRenderer alloc] initWithSize:size format:format];
+    TXGraphicsImageRenderer *renderer = [[TXGraphicsImageRenderer alloc] initWithSize:size format:format];
     UIColor *color = UIColor.redColor;
     UIImage *image = [renderer imageWithActions:^(CGContextRef  _Nonnull context) {
         [color setFill];

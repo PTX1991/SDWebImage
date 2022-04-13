@@ -11,9 +11,9 @@
 
 static char loadOperationKey;
 
-// key is strong, value is weak because operation instance is retained by SDWebImageManager's runningOperations property
+// key is strong, value is weak because operation instance is retained by TXWebImageManager's runningOperations property
 // we should use lock to keep thread-safe because these method may not be accessed from main queue
-typedef NSMapTable<NSString *, id<SDWebImageOperation>> SDOperationsDictionary;
+typedef NSMapTable<NSString *, id<TXWebImageOperation>> SDOperationsDictionary;
 
 @implementation UIView (WebCacheOperation)
 
@@ -29,8 +29,8 @@ typedef NSMapTable<NSString *, id<SDWebImageOperation>> SDOperationsDictionary;
     }
 }
 
-- (nullable id<SDWebImageOperation>)sd_imageLoadOperationForKey:(nullable NSString *)key  {
-    id<SDWebImageOperation> operation;
+- (nullable id<TXWebImageOperation>)sd_imageLoadOperationForKey:(nullable NSString *)key  {
+    id<TXWebImageOperation> operation;
     if (key) {
         SDOperationsDictionary *operationDictionary = [self sd_operationDictionary];
         @synchronized (self) {
@@ -40,7 +40,7 @@ typedef NSMapTable<NSString *, id<SDWebImageOperation>> SDOperationsDictionary;
     return operation;
 }
 
-- (void)sd_setImageLoadOperation:(nullable id<SDWebImageOperation>)operation forKey:(nullable NSString *)key {
+- (void)sd_setImageLoadOperation:(nullable id<TXWebImageOperation>)operation forKey:(nullable NSString *)key {
     if (key) {
         [self sd_cancelImageLoadOperationWithKey:key];
         if (operation) {
@@ -56,13 +56,13 @@ typedef NSMapTable<NSString *, id<SDWebImageOperation>> SDOperationsDictionary;
     if (key) {
         // Cancel in progress downloader from queue
         SDOperationsDictionary *operationDictionary = [self sd_operationDictionary];
-        id<SDWebImageOperation> operation;
+        id<TXWebImageOperation> operation;
         
         @synchronized (self) {
             operation = [operationDictionary objectForKey:key];
         }
         if (operation) {
-            if ([operation conformsToProtocol:@protocol(SDWebImageOperation)]) {
+            if ([operation conformsToProtocol:@protocol(TXWebImageOperation)]) {
                 [operation cancel];
             }
             @synchronized (self) {

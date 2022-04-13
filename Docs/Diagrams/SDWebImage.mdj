@@ -88,7 +88,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImagePrefetcherDelegate",
+											"text": "TXWebImagePrefetcherDelegate",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -436,7 +436,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageManager",
+											"text": "TXWebImageManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -583,7 +583,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+delegate: SDWebImageManagerDelegate",
+											"text": "+delegate: TXWebImageManagerDelegate",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -612,7 +612,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+imageCache: SDImageCache",
+											"text": "+imageCache: TXImageCache",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -641,7 +641,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+imageLoader: SDImageLoader",
+											"text": "+imageLoader: TXImageLoader",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -670,7 +670,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+transformer: SDImageTransformer",
+											"text": "+transformer: TXImageTransformer",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -699,7 +699,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+cacheKeyFilter: SDWebImageCacheKeyFilter",
+											"text": "+cacheKeyFilter: TXWebImageCacheKeyFilter",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -728,7 +728,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+cacheSerializer: SDWebImageCacheSerializer",
+											"text": "+cacheSerializer: TXWebImageCacheSerializer",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -786,7 +786,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+defaultImageCache: SDImageCache",
+											"text": "+defaultImageCache: TXImageCache",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -815,7 +815,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+defaultImageLoader: SDImageLoader",
+											"text": "+defaultImageLoader: TXImageLoader",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -1134,7 +1134,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImagePrefetcher",
+											"text": "TXWebImagePrefetcher",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -1281,7 +1281,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+delegate: SDWebImagePrefetcherDelegate",
+											"text": "+delegate: TXWebImagePrefetcherDelegate",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2416,7 +2416,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageManagerDelegate",
+											"text": "TXWebImageManagerDelegate",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -3187,7 +3187,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageOperation",
+											"text": "TXWebImageOperation",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -3506,7 +3506,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCache",
+											"text": "TXImageCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -3653,7 +3653,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+config: SDImageCacheConfig",
+											"text": "+config: TXImageCacheConfig",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -4523,7 +4523,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloader",
+											"text": "TXWebImageDownloader",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -4670,7 +4670,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+config: SDWebImageDownloaderConfig",
+											"text": "+config: TXWebImageDownloaderConfig",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -4699,7 +4699,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+requestModifier: SDWebImageDownloaderRequestModifier",
+											"text": "+requestModifier: TXWebImageDownloaderRequestModifier",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -5703,7 +5703,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+cacheOperation: SDWebImageOperation",
+											"text": "+cacheOperation: TXWebImageOperation",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -5732,7 +5732,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+loaderOperation: SDWebImageOperation",
+											"text": "+loaderOperation: TXWebImageOperation",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -6076,7 +6076,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderOperation",
+											"text": "TXWebImageDownloaderOperation",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -6194,7 +6194,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+options: SDWebImageDownloaderOptions",
+											"text": "+options: TXWebImageDownloaderOptions",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -8649,7 +8649,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCacheConfig",
+											"text": "TXImageCacheConfig",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9507,7 +9507,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderOperation",
+											"text": "TXWebImageDownloaderOperation",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -10173,7 +10173,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCoder",
+											"text": "TXImageCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -10986,7 +10986,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCodersManager",
+											"text": "TXImageCodersManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -11133,7 +11133,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+coders: Array <SDImageCoder>",
+											"text": "+coders: Array <TXImageCoder>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -11394,7 +11394,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageIOCoder",
+											"text": "TXImageIOCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -11682,7 +11682,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageGIFCoder",
+											"text": "TXImageGIFCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -13260,7 +13260,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCoderOptions",
+											"text": "TXImageCoderOptions",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -14217,7 +14217,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDAnimatedImageProvider",
+											"text": "TXAnimatedImageProvider",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -14653,7 +14653,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDAnimatedImageCoder",
+											"text": "TXAnimatedImageCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -15544,7 +15544,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageAPNGCoder",
+											"text": "TXImageAPNGCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -16118,7 +16118,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageFrame",
+											"text": "TXImageFrame",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -16497,7 +16497,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCoderHelper",
+											"text": "TXImageCoderHelper",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -16668,7 +16668,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "+frames(animatedImage): Array <SDImageFrame>",
+											"text": "+frames(animatedImage): Array <TXImageFrame>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -17078,7 +17078,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderOptions",
+											"text": "TXWebImageDownloaderOptions",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -17888,7 +17888,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageLoader",
+											"text": "TXImageLoader",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18059,7 +18059,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+loadImage(url, options, context, progressBlock, completedBlock): SDWebImageOperation",
+											"text": "+loadImage(url, options, context, progressBlock, completedBlock): TXWebImageOperation",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18379,7 +18379,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderConfig",
+											"text": "TXWebImageDownloaderConfig",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18931,7 +18931,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderRequestModifier",
+											"text": "TXWebImageDownloaderRequestModifier",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -19250,7 +19250,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderRequestModifier",
+											"text": "TXWebImageDownloaderRequestModifier",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -19713,7 +19713,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCache",
+											"text": "TXImageCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -19855,7 +19855,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+queryImage(key, options, context, completionBlock): SDWebImageOperation",
+											"text": "+queryImage(key, options, context, completionBlock): TXWebImageOperation",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -21381,7 +21381,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCacheOptions",
+											"text": "TXImageCacheOptions",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -22611,7 +22611,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDMemoryCache",
+											"text": "TXMemoryCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -23046,7 +23046,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDMemoryCache",
+											"text": "TXMemoryCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -23623,7 +23623,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDDiskCache",
+											"text": "TXDiskCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -24203,7 +24203,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDDiskCache",
+											"text": "TXDiskCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -26622,7 +26622,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageLoadersManager",
+											"text": "TXImageLoadersManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -26769,7 +26769,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+loaders: Array <SDImageLoader>",
+											"text": "+loaders: Array <TXImageLoader>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -27173,7 +27173,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCachesManager",
+											"text": "TXImageCachesManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -27320,7 +27320,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+caches: Array <SDImageCache>",
+											"text": "+caches: Array <TXImageCache>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -27870,7 +27870,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageCacheKeyFilter",
+											"text": "TXWebImageCacheKeyFilter",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -28189,7 +28189,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageCacheKeyFilter",
+											"text": "TXWebImageCacheKeyFilter",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -28652,7 +28652,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageCacheSerializer",
+											"text": "TXWebImageCacheSerializer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -28971,7 +28971,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageCacheSerializer",
+											"text": "TXWebImageCacheSerializer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -29434,7 +29434,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageTransformer",
+											"text": "TXImageTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -29900,7 +29900,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+transformers: Array <SDImageTransformer>",
+											"text": "+transformers: Array <TXImageTransformer>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -33723,7 +33723,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDAnimatedImageView (WebCache)",
+											"text": "TXAnimatedImageView (WebCache)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -34186,7 +34186,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDAnimatedImage",
+											"text": "TXAnimatedImage",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -34735,7 +34735,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDAnimatedImage",
+											"text": "TXAnimatedImage",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -36092,7 +36092,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDAnimatedImageView",
+											"text": "TXAnimatedImageView",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -36757,7 +36757,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageTransition",
+											"text": "TXWebImageTransition",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -37846,7 +37846,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageIndicator",
+											"text": "TXWebImageIndicator",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -42447,7 +42447,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDAnimatedImage",
+							"name": "TXAnimatedImage",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -42585,7 +42585,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDAnimatedImageCoder",
+							"name": "TXAnimatedImageCoder",
 							"ownedElements": [
 								{
 									"_type": "UMLGeneralization",
@@ -42677,7 +42677,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDAnimatedImageProvider",
+							"name": "TXAnimatedImageProvider",
 							"ownedElements": [
 								{
 									"_type": "UMLGeneralization",
@@ -42899,7 +42899,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDDiskCache",
+							"name": "TXDiskCache",
 							"visibility": "public",
 							"operations": [
 								{
@@ -43277,7 +43277,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCache",
+							"name": "TXImageCache",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -43691,7 +43691,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCoder",
+							"name": "TXImageCoder",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -43975,7 +43975,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageLoader",
+							"name": "TXImageLoader",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -44195,7 +44195,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDMemoryCache",
+							"name": "TXMemoryCache",
 							"ownedElements": [
 								{
 									"_type": "UMLAssociation",
@@ -44678,7 +44678,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageCacheKeyFilter",
+							"name": "TXWebImageCacheKeyFilter",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -44801,7 +44801,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageCacheSerializer",
+							"name": "TXWebImageCacheSerializer",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -44956,7 +44956,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageDownloaderOperation",
+							"name": "TXWebImageDownloaderOperation",
 							"visibility": "public",
 							"operations": [
 								{
@@ -45270,7 +45270,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageDownloaderRequestModifier",
+							"name": "TXWebImageDownloaderRequestModifier",
 							"ownedElements": [
 								{
 									"_type": "UMLAssociation",
@@ -45379,7 +45379,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageIndicator",
+							"name": "TXWebImageIndicator",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -45479,7 +45479,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageManagerDelegate",
+							"name": "TXWebImageManagerDelegate",
 							"visibility": "public",
 							"operations": [
 								{
@@ -45521,7 +45521,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageOperation",
+							"name": "TXWebImageOperation",
 							"visibility": "public",
 							"operations": [
 								{
@@ -45549,7 +45549,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImagePrefetcherDelegate",
+							"name": "TXWebImagePrefetcherDelegate",
 							"visibility": "public",
 							"operations": [
 								{
@@ -45591,7 +45591,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCacheType",
+							"name": "TXImageCacheType",
 							"visibility": "public",
 							"isAbstract": false,
 							"isFinalSpecialization": false,
@@ -45603,7 +45603,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFUkiDjJo5QvT4="
 									},
-									"name": "SDImageCacheTypeNone",
+									"name": "TXImageCacheTypeNone",
 									"visibility": "public"
 								},
 								{
@@ -45612,7 +45612,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFUkiDjJo5QvT4="
 									},
-									"name": "SDImageCacheTypeDisk",
+									"name": "TXImageCacheTypeDisk",
 									"visibility": "public"
 								},
 								{
@@ -45621,7 +45621,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFUkiDjJo5QvT4="
 									},
-									"name": "SDImageCacheTypeMemory",
+									"name": "TXImageCacheTypeMemory",
 									"visibility": "public"
 								}
 							]
@@ -45632,7 +45632,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCacheOptions",
+							"name": "TXImageCacheOptions",
 							"visibility": "public",
 							"isAbstract": false,
 							"isFinalSpecialization": false,
@@ -45709,7 +45709,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCachesManagerOperationPolicy",
+							"name": "TXImageCachesManagerOperationPolicy",
 							"visibility": "public",
 							"isAbstract": false,
 							"isFinalSpecialization": false,
@@ -45759,7 +45759,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCoderOptions",
+							"name": "TXImageCoderOptions",
 							"visibility": "public",
 							"isAbstract": false,
 							"isFinalSpecialization": false,
@@ -45886,7 +45886,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageDownloaderOptions",
+							"name": "TXWebImageDownloaderOptions",
 							"visibility": "public",
 							"isAbstract": false,
 							"isFinalSpecialization": false,
@@ -46151,7 +46151,7 @@
 											"visibility": "public",
 											"isStatic": false,
 											"isLeaf": false,
-											"type": "Array <SDImageTransformer>",
+											"type": "Array <TXImageTransformer>",
 											"isReadOnly": false,
 											"isOrdered": false,
 											"isUnique": false,
@@ -46244,7 +46244,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImageTransformer",
+									"name": "TXImageTransformer",
 									"ownedElements": [
 										{
 											"_type": "UMLInterfaceRealization",
@@ -46640,7 +46640,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDAnimatedImage",
+							"name": "TXAnimatedImage",
 							"visibility": "public",
 							"attributes": [
 								{
@@ -46905,7 +46905,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDAnimatedImageView",
+							"name": "TXAnimatedImageView",
 							"ownedElements": [
 								{
 									"_type": "UMLAssociation",
@@ -47111,7 +47111,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDAnimatedImageView (WebCache)",
+							"name": "TXAnimatedImageView (WebCache)",
 							"visibility": "public",
 							"operations": [
 								{
@@ -47140,7 +47140,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDDiskCache",
+							"name": "TXDiskCache",
 							"visibility": "public",
 							"isAbstract": false,
 							"isFinalSpecialization": false,
@@ -47153,7 +47153,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageAPNGCoder",
+							"name": "TXImageAPNGCoder",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -47182,7 +47182,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCache",
+							"name": "TXImageCache",
 							"ownedElements": [
 								{
 									"_type": "UMLDependency",
@@ -48279,7 +48279,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCacheConfig",
+							"name": "TXImageCacheConfig",
 							"ownedElements": [
 								{
 									"_type": "UMLAssociation",
@@ -48476,7 +48476,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCachesManager",
+							"name": "TXImageCachesManager",
 							"ownedElements": [
 								{
 									"_type": "UMLDependency",
@@ -48523,7 +48523,7 @@
 									"visibility": "public",
 									"isStatic": false,
 									"isLeaf": false,
-									"type": "Array <SDImageCache>",
+									"type": "Array <TXImageCache>",
 									"isReadOnly": false,
 									"isOrdered": false,
 									"isUnique": false,
@@ -48663,7 +48663,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCoderHelper",
+							"name": "TXImageCoderHelper",
 							"visibility": "public",
 							"operations": [
 								{
@@ -48751,7 +48751,7 @@
 											"visibility": "public",
 											"isStatic": false,
 											"isLeaf": false,
-											"type": "Array <SDImageFrame>",
+											"type": "Array <TXImageFrame>",
 											"isReadOnly": false,
 											"isOrdered": false,
 											"isUnique": false,
@@ -49174,7 +49174,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageCodersManager",
+							"name": "TXImageCodersManager",
 							"visibility": "public",
 							"attributes": [
 								{
@@ -49205,7 +49205,7 @@
 									"visibility": "public",
 									"isStatic": false,
 									"isLeaf": false,
-									"type": "Array <SDImageCoder>",
+									"type": "Array <TXImageCoder>",
 									"isReadOnly": false,
 									"isOrdered": false,
 									"isUnique": false,
@@ -49291,7 +49291,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageFrame",
+							"name": "TXImageFrame",
 							"visibility": "public",
 							"attributes": [
 								{
@@ -49392,7 +49392,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageGIFCoder",
+							"name": "TXImageGIFCoder",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -49421,7 +49421,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageIOCoder",
+							"name": "TXImageIOCoder",
 							"visibility": "public",
 							"isAbstract": false,
 							"isFinalSpecialization": false,
@@ -49434,7 +49434,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDImageLoadersManager",
+							"name": "TXImageLoadersManager",
 							"visibility": "public",
 							"attributes": [
 								{
@@ -49465,7 +49465,7 @@
 									"visibility": "public",
 									"isStatic": false,
 									"isLeaf": false,
-									"type": "Array <SDImageLoader>",
+									"type": "Array <TXImageLoader>",
 									"isReadOnly": false,
 									"isOrdered": false,
 									"isUnique": false,
@@ -49558,7 +49558,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDMemoryCache",
+							"name": "TXMemoryCache",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -49674,7 +49674,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageCacheKeyFilter",
+							"name": "TXWebImageCacheKeyFilter",
 							"visibility": "public",
 							"operations": [
 								{
@@ -49721,7 +49721,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageCacheSerializer",
+							"name": "TXWebImageCacheSerializer",
 							"visibility": "public",
 							"operations": [
 								{
@@ -49839,7 +49839,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageDownloader",
+							"name": "TXWebImageDownloader",
 							"ownedElements": [
 								{
 									"_type": "UMLDependency",
@@ -50293,7 +50293,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageDownloaderConfig",
+							"name": "TXWebImageDownloaderConfig",
 							"visibility": "public",
 							"attributes": [
 								{
@@ -50470,7 +50470,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageDownloaderRequestModifier",
+							"name": "TXWebImageDownloaderRequestModifier",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -50533,7 +50533,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageDownloaderOperation",
+							"name": "TXWebImageDownloaderOperation",
 							"ownedElements": [
 								{
 									"_type": "UMLInterfaceRealization",
@@ -50743,7 +50743,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageManager",
+							"name": "TXWebImageManager",
 							"ownedElements": [
 								{
 									"_type": "UMLAssociation",
@@ -51329,7 +51329,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImagePrefetcher",
+							"name": "TXWebImagePrefetcher",
 							"ownedElements": [
 								{
 									"_type": "UMLAssociation",
@@ -51576,7 +51576,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageTransition",
+							"name": "TXWebImageTransition",
 							"visibility": "public",
 							"attributes": [
 								{
@@ -53606,7 +53606,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDAnimatedImageView (WebCache)",
+											"text": "TXAnimatedImageView (WebCache)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -54992,7 +54992,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImagePrefetcher",
+											"text": "TXWebImagePrefetcher",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55139,7 +55139,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+delegate: SDWebImagePrefetcherDelegate",
+											"text": "+delegate: TXWebImagePrefetcherDelegate",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55429,7 +55429,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageManager",
+											"text": "TXWebImageManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55576,7 +55576,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+delegate: SDWebImageManagerDelegate",
+											"text": "+delegate: TXWebImageManagerDelegate",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55605,7 +55605,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+imageCache: SDImageCache",
+											"text": "+imageCache: TXImageCache",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55634,7 +55634,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+imageLoader: SDImageLoader",
+											"text": "+imageLoader: TXImageLoader",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55663,7 +55663,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+transformer: SDImageTransformer",
+											"text": "+transformer: TXImageTransformer",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55692,7 +55692,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+cacheKeyFilter: SDWebImageCacheKeyFilter",
+											"text": "+cacheKeyFilter: TXWebImageCacheKeyFilter",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55721,7 +55721,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+cacheSerializer: SDWebImageCacheSerializer",
+											"text": "+cacheSerializer: TXWebImageCacheSerializer",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55779,7 +55779,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+defaultImageCache: SDImageCache",
+											"text": "+defaultImageCache: TXImageCache",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -55808,7 +55808,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+defaultImageLoader: SDImageLoader",
+											"text": "+defaultImageLoader: TXImageLoader",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -56692,7 +56692,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageManagerDelegate",
+											"text": "TXWebImageManagerDelegate",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -57462,7 +57462,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImagePrefetcherDelegate",
+											"text": "TXWebImagePrefetcherDelegate",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59196,7 +59196,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageManager",
+											"text": "TXWebImageManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59343,7 +59343,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+delegate: SDWebImageManagerDelegate",
+											"text": "+delegate: TXWebImageManagerDelegate",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59372,7 +59372,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+imageCache: SDImageCache",
+											"text": "+imageCache: TXImageCache",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59401,7 +59401,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+imageLoader: SDImageLoader",
+											"text": "+imageLoader: TXImageLoader",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59430,7 +59430,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+transformer: SDImageTransformer",
+											"text": "+transformer: TXImageTransformer",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59459,7 +59459,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+cacheKeyFilter: SDWebImageCacheKeyFilter",
+											"text": "+cacheKeyFilter: TXWebImageCacheKeyFilter",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59488,7 +59488,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+cacheSerializer: SDWebImageCacheSerializer",
+											"text": "+cacheSerializer: TXWebImageCacheSerializer",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59546,7 +59546,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+defaultImageCache: SDImageCache",
+											"text": "+defaultImageCache: TXImageCache",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59575,7 +59575,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+defaultImageLoader: SDImageLoader",
+											"text": "+defaultImageLoader: TXImageLoader",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -59895,7 +59895,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageManagerDelegate",
+											"text": "TXWebImageManagerDelegate",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -60665,7 +60665,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCache",
+											"text": "TXImageCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -60807,7 +60807,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+queryImage(key, options, context, completionBlock): SDWebImageOperation",
+											"text": "+queryImage(key, options, context, completionBlock): TXWebImageOperation",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -61101,7 +61101,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageLoader",
+											"text": "TXImageLoader",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -61272,7 +61272,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+loadImage(url, options, context, progressBlock, completedBlock): SDWebImageOperation",
+											"text": "+loadImage(url, options, context, progressBlock, completedBlock): TXWebImageOperation",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -62291,7 +62291,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCachesManager",
+											"text": "TXImageCachesManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -62438,7 +62438,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+caches: Array <SDImageCache>",
+											"text": "+caches: Array <TXImageCache>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -62987,7 +62987,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCache",
+											"text": "TXImageCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -63134,7 +63134,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+config: SDImageCacheConfig",
+											"text": "+config: TXImageCacheConfig",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -64147,7 +64147,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloader",
+											"text": "TXWebImageDownloader",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -64294,7 +64294,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+config: SDWebImageDownloaderConfig",
+											"text": "+config: TXWebImageDownloaderConfig",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -64323,7 +64323,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+requestModifier: SDWebImageDownloaderRequestModifier",
+											"text": "+requestModifier: TXWebImageDownloaderRequestModifier",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -64930,7 +64930,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageLoadersManager",
+											"text": "TXImageLoadersManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -65077,7 +65077,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+loaders: Array <SDImageLoader>",
+											"text": "+loaders: Array <TXImageLoader>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -65482,7 +65482,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageTransformer",
+											"text": "TXImageTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -65948,7 +65948,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+transformers: Array <SDImageTransformer>",
+											"text": "+transformers: Array <TXImageTransformer>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -66745,7 +66745,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageCacheKeyFilter",
+											"text": "TXWebImageCacheKeyFilter",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -67065,7 +67065,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageCacheSerializer",
+											"text": "TXWebImageCacheSerializer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -68226,7 +68226,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageCacheKeyFilter",
+											"text": "TXWebImageCacheKeyFilter",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -68688,7 +68688,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageCacheSerializer",
+											"text": "TXWebImageCacheSerializer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -69972,7 +69972,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCodersManager",
+											"text": "TXImageCodersManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -70119,7 +70119,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+coders: Array <SDImageCoder>",
+											"text": "+coders: Array <TXImageCoder>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -70381,7 +70381,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCoder",
+											"text": "TXImageCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -70931,7 +70931,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCoderOptions",
+											"text": "TXImageCoderOptions",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -71773,7 +71773,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDAnimatedImageCoder",
+											"text": "TXAnimatedImageCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -72093,7 +72093,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDAnimatedImageProvider",
+											"text": "TXAnimatedImageProvider",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -72528,7 +72528,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageIOCoder",
+											"text": "TXImageIOCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -73247,7 +73247,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageGIFCoder",
+											"text": "TXImageGIFCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -73678,7 +73678,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageAPNGCoder",
+											"text": "TXImageAPNGCoder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -75110,7 +75110,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCoderHelper",
+											"text": "TXImageCoderHelper",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -75281,7 +75281,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "+frames(animatedImage): Array <SDImageFrame>",
+											"text": "+frames(animatedImage): Array <TXImageFrame>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -77570,7 +77570,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCache",
+											"text": "TXImageCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -77712,7 +77712,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+queryImage(key, options, context, completionBlock): SDWebImageOperation",
+											"text": "+queryImage(key, options, context, completionBlock): TXWebImageOperation",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -78005,7 +78005,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCache",
+											"text": "TXImageCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -78152,7 +78152,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+config: SDImageCacheConfig",
+											"text": "+config: TXImageCacheConfig",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -79165,7 +79165,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCacheConfig",
+											"text": "TXImageCacheConfig",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -79600,7 +79600,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCachesManager",
+											"text": "TXImageCachesManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -79747,7 +79747,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+caches: Array <SDImageCache>",
+											"text": "+caches: Array <TXImageCache>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -80297,7 +80297,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCacheOptions",
+											"text": "TXImageCacheOptions",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -80819,7 +80819,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDDiskCache",
+											"text": "TXDiskCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -81821,7 +81821,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDMemoryCache",
+											"text": "TXMemoryCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -82256,7 +82256,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDDiskCache",
+											"text": "TXDiskCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -82687,7 +82687,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDMemoryCache",
+											"text": "TXMemoryCache",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -84114,7 +84114,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCachesManagerOperationPolicy",
+											"text": "TXImageCachesManagerOperationPolicy",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -85268,7 +85268,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageLoader",
+											"text": "TXImageLoader",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -85439,7 +85439,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+loadImage(url, options, context, progressBlock, completedBlock): SDWebImageOperation",
+											"text": "+loadImage(url, options, context, progressBlock, completedBlock): TXWebImageOperation",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -85616,7 +85616,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageLoadersManager",
+											"text": "TXImageLoadersManager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -85763,7 +85763,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+loaders: Array <SDImageLoader>",
+											"text": "+loaders: Array <TXImageLoader>",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -86167,7 +86167,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloader",
+											"text": "TXWebImageDownloader",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -86314,7 +86314,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+config: SDWebImageDownloaderConfig",
+											"text": "+config: TXWebImageDownloaderConfig",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -86343,7 +86343,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+requestModifier: SDWebImageDownloaderRequestModifier",
+											"text": "+requestModifier: TXWebImageDownloaderRequestModifier",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -86950,7 +86950,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderConfig",
+											"text": "TXWebImageDownloaderConfig",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -87644,7 +87644,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderRequestModifier",
+											"text": "TXWebImageDownloaderRequestModifier",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -87964,7 +87964,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderRequestModifier",
+											"text": "TXWebImageDownloaderRequestModifier",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -88284,7 +88284,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderOperation",
+											"text": "TXWebImageDownloaderOperation",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -89183,7 +89183,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderOperation",
+											"text": "TXWebImageDownloaderOperation",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -89301,7 +89301,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+options: SDWebImageDownloaderOptions",
+											"text": "+options: TXWebImageDownloaderOptions",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -89532,7 +89532,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageOperation",
+											"text": "TXWebImageOperation",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -89852,7 +89852,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloaderOptions",
+											"text": "TXWebImageDownloaderOptions",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false

@@ -11,7 +11,7 @@
 
 @interface SDWebImageTestDownloadOperation ()
 
-@property (nonatomic, strong) NSMutableArray<SDWebImageDownloaderCompletedBlock> *completedBlocks;
+@property (nonatomic, strong) NSMutableArray<TXWebImageDownloaderCompletedBlock> *completedBlocks;
 
 @end
 
@@ -31,7 +31,7 @@
     [super cancel];
     
     NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCancelled userInfo:nil];
-    for (SDWebImageDownloaderCompletedBlock completedBlock in self.completedBlocks) {
+    for (TXWebImageDownloaderCompletedBlock completedBlock in self.completedBlocks) {
         completedBlock(nil, nil, error, YES);
     }
 }
@@ -52,11 +52,11 @@
     [self didChangeValueForKey:@"isExecuting"];
 }
 
-- (instancetype)initWithRequest:(NSURLRequest *)request inSession:(NSURLSession *)session options:(SDWebImageDownloaderOptions)options {
+- (instancetype)initWithRequest:(NSURLRequest *)request inSession:(NSURLSession *)session options:(TXWebImageDownloaderOptions)options {
     return [self initWithRequest:request inSession:session options:options context:nil];
 }
 
-- (instancetype)initWithRequest:(NSURLRequest *)request inSession:(NSURLSession *)session options:(SDWebImageDownloaderOptions)options context:(SDWebImageContext *)context {
+- (instancetype)initWithRequest:(NSURLRequest *)request inSession:(NSURLSession *)session options:(TXWebImageDownloaderOptions)options context:(SDWebImageContext *)context {
     self = [super init];
     if (self) {
         self.request = request;
@@ -65,8 +65,8 @@
     return self;
 }
 
-- (nullable id)addHandlersForProgress:(nullable SDWebImageDownloaderProgressBlock)progressBlock
-                            completed:(nullable SDWebImageDownloaderCompletedBlock)completedBlock {
+- (nullable id)addHandlersForProgress:(nullable TXWebImageDownloaderProgressBlock)progressBlock
+                            completed:(nullable TXWebImageDownloaderCompletedBlock)completedBlock {
     if (completedBlock) {
         [self.completedBlocks addObject:completedBlock];
     }

@@ -9,13 +9,13 @@
 
 #import "SDWebImageTestCache.h"
 #import <SDWebImage/SDWebImage.h>
-#import "SDFileAttributeHelper.h"
+#import "TXFileAttributeHelper.h"
 
 static NSString * const SDWebImageTestDiskCacheExtendedAttributeName = @"com.hackemist.SDWebImageTestDiskCache";
 
 @implementation SDWebImageTestMemoryCache
 
-- (nonnull instancetype)initWithConfig:(nonnull SDImageCacheConfig *)config {
+- (nonnull instancetype)initWithConfig:(nonnull TXImageCacheConfig *)config {
     self = [super init];
     if (self) {
         self.config = config;
@@ -60,7 +60,7 @@ static NSString * const SDWebImageTestDiskCacheExtendedAttributeName = @"com.hac
     return [self.fileManager contentsAtPath:[self cachePathForKey:key]];
 }
 
-- (nullable instancetype)initWithCachePath:(nonnull NSString *)cachePath config:(nonnull SDImageCacheConfig *)config {
+- (nullable instancetype)initWithCachePath:(nonnull NSString *)cachePath config:(nonnull TXImageCacheConfig *)config {
     self = [super init];
     if (self) {
         self.cachePath = cachePath;
@@ -112,15 +112,15 @@ static NSString * const SDWebImageTestDiskCacheExtendedAttributeName = @"com.hac
 
 - (nullable NSData *)extendedDataForKey:(nonnull NSString *)key {
     NSString *cachePathForKey = [self cachePathForKey:key];
-    return [SDFileAttributeHelper extendedAttribute:SDWebImageTestDiskCacheExtendedAttributeName atPath:cachePathForKey traverseLink:NO error:nil];
+    return [TXFileAttributeHelper extendedAttribute:SDWebImageTestDiskCacheExtendedAttributeName atPath:cachePathForKey traverseLink:NO error:nil];
 }
 
 - (void)setExtendedData:(nullable NSData *)extendedData forKey:(nonnull NSString *)key {
     NSString *cachePathForKey = [self cachePathForKey:key];
     if (!extendedData) {
-        [SDFileAttributeHelper removeExtendedAttribute:SDWebImageTestDiskCacheExtendedAttributeName atPath:cachePathForKey traverseLink:NO error:nil];
+        [TXFileAttributeHelper removeExtendedAttribute:SDWebImageTestDiskCacheExtendedAttributeName atPath:cachePathForKey traverseLink:NO error:nil];
     } else {
-        [SDFileAttributeHelper setExtendedAttribute:SDWebImageTestDiskCacheExtendedAttributeName value:extendedData atPath:cachePathForKey traverseLink:NO overwrite:YES error:nil];
+        [TXFileAttributeHelper setExtendedAttribute:SDWebImageTestDiskCacheExtendedAttributeName value:extendedData atPath:cachePathForKey traverseLink:NO overwrite:YES error:nil];
     }
 }
 
@@ -133,13 +133,13 @@ static NSString * const SDWebImageTestDiskCacheExtendedAttributeName = @"com.hac
     static SDWebImageTestCache *cache;
     dispatch_once(&onceToken, ^{
         NSString *cachePath = [[self userCacheDirectory] stringByAppendingPathComponent:@"SDWebImageTestCache"];
-        SDImageCacheConfig *config = SDImageCacheConfig.defaultCacheConfig;
+        TXImageCacheConfig *config = TXImageCacheConfig.defaultCacheConfig;
         cache = [[SDWebImageTestCache alloc] initWithCachePath:cachePath config:config];
     });
     return cache;
 }
 
-- (instancetype)initWithCachePath:(NSString *)cachePath config:(SDImageCacheConfig *)config {
+- (instancetype)initWithCachePath:(NSString *)cachePath config:(TXImageCacheConfig *)config {
     self = [super init];
     if (self) {
         self.config = config;
@@ -149,17 +149,17 @@ static NSString * const SDWebImageTestDiskCacheExtendedAttributeName = @"com.hac
     return self;
 }
 
-- (void)clearWithCacheType:(SDImageCacheType)cacheType completion:(nullable SDWebImageNoParamsBlock)completionBlock {
+- (void)clearWithCacheType:(TXImageCacheType)cacheType completion:(nullable SDWebImageNoParamsBlock)completionBlock {
     switch (cacheType) {
-        case SDImageCacheTypeNone:
+        case TXImageCacheTypeNone:
             break;
-        case SDImageCacheTypeMemory:
+        case TXImageCacheTypeMemory:
             [self.memoryCache removeAllObjects];
             break;
-        case SDImageCacheTypeDisk:
+        case TXImageCacheTypeDisk:
             [self.diskCache removeAllData];
             break;
-        case SDImageCacheTypeAll:
+        case TXImageCacheTypeAll:
             [self.memoryCache removeAllObjects];
             [self.diskCache removeAllData];
             break;
@@ -171,22 +171,22 @@ static NSString * const SDWebImageTestDiskCacheExtendedAttributeName = @"com.hac
     }
 }
 
-- (void)containsImageForKey:(nullable NSString *)key cacheType:(SDImageCacheType)cacheType completion:(nullable SDImageCacheContainsCompletionBlock)completionBlock {
-    SDImageCacheType containsCacheType = SDImageCacheTypeNone;
+- (void)containsImageForKey:(nullable NSString *)key cacheType:(TXImageCacheType)cacheType completion:(nullable TXImageCacheContainsCompletionBlock)completionBlock {
+    TXImageCacheType containsCacheType = TXImageCacheTypeNone;
     switch (cacheType) {
-        case SDImageCacheTypeNone:
+        case TXImageCacheTypeNone:
             break;
-        case SDImageCacheTypeMemory:
-            containsCacheType = [self.memoryCache objectForKey:key] ? SDImageCacheTypeMemory : SDImageCacheTypeNone;
+        case TXImageCacheTypeMemory:
+            containsCacheType = [self.memoryCache objectForKey:key] ? TXImageCacheTypeMemory : TXImageCacheTypeNone;
             break;
-        case SDImageCacheTypeDisk:
-            containsCacheType = [self.diskCache containsDataForKey:key] ? SDImageCacheTypeDisk : SDImageCacheTypeNone;
+        case TXImageCacheTypeDisk:
+            containsCacheType = [self.diskCache containsDataForKey:key] ? TXImageCacheTypeDisk : TXImageCacheTypeNone;
             break;
-        case SDImageCacheTypeAll:
+        case TXImageCacheTypeAll:
             if ([self.memoryCache objectForKey:key]) {
-                containsCacheType = SDImageCacheTypeMemory;
+                containsCacheType = TXImageCacheTypeMemory;
             } else if ([self.diskCache containsDataForKey:key]) {
-                containsCacheType = SDImageCacheTypeDisk;
+                containsCacheType = TXImageCacheTypeDisk;
             }
             break;
         default:
@@ -197,39 +197,39 @@ static NSString * const SDWebImageTestDiskCacheExtendedAttributeName = @"com.hac
     }
 }
 
-- (nullable id<SDWebImageOperation>)queryImageForKey:(nullable NSString *)key options:(SDWebImageOptions)options context:(nullable SDWebImageContext *)context completion:(nullable SDImageCacheQueryCompletionBlock)completionBlock {
-    return [self queryImageForKey:key options:options context:context cacheType:SDImageCacheTypeAll completion:completionBlock];
+- (nullable id<TXWebImageOperation>)queryImageForKey:(nullable NSString *)key options:(SDWebImageOptions)options context:(nullable SDWebImageContext *)context completion:(nullable TXImageCacheQueryCompletionBlock)completionBlock {
+    return [self queryImageForKey:key options:options context:context cacheType:TXImageCacheTypeAll completion:completionBlock];
 }
 
-- (nullable id<SDWebImageOperation>)queryImageForKey:(nullable NSString *)key options:(SDWebImageOptions)options context:(nullable SDWebImageContext *)context cacheType:(SDImageCacheType)cacheType completion:(nullable SDImageCacheQueryCompletionBlock)completionBlock {
+- (nullable id<TXWebImageOperation>)queryImageForKey:(nullable NSString *)key options:(SDWebImageOptions)options context:(nullable SDWebImageContext *)context cacheType:(TXImageCacheType)cacheType completion:(nullable TXImageCacheQueryCompletionBlock)completionBlock {
     UIImage *image;
     NSData *data;
-    SDImageCacheType resultCacheType = SDImageCacheTypeNone;
+    TXImageCacheType resultCacheType = TXImageCacheTypeNone;
     switch (cacheType) {
-        case SDImageCacheTypeNone:
+        case TXImageCacheTypeNone:
             break;
-        case SDImageCacheTypeMemory:
+        case TXImageCacheTypeMemory:
             image = [self.memoryCache objectForKey:key];
             if (image) {
-                resultCacheType = SDImageCacheTypeMemory;
+                resultCacheType = TXImageCacheTypeMemory;
             }
             break;
-        case SDImageCacheTypeDisk:
+        case TXImageCacheTypeDisk:
             data = [self.diskCache dataForKey:key];
             image = [UIImage sd_imageWithData:data];
             if (data) {
-                resultCacheType = SDImageCacheTypeDisk;
+                resultCacheType = TXImageCacheTypeDisk;
             }
             break;
-        case SDImageCacheTypeAll:
+        case TXImageCacheTypeAll:
             image = [self.memoryCache objectForKey:key];
             if (image) {
-                resultCacheType = SDImageCacheTypeMemory;
+                resultCacheType = TXImageCacheTypeMemory;
             } else {
                 data = [self.diskCache dataForKey:key];
                 image = [UIImage sd_imageWithData:data];
                 if (data) {
-                    resultCacheType = SDImageCacheTypeDisk;
+                    resultCacheType = TXImageCacheTypeDisk;
                 }
             }
             break;
@@ -242,17 +242,17 @@ static NSString * const SDWebImageTestDiskCacheExtendedAttributeName = @"com.hac
     return nil;
 }
 
-- (void)removeImageForKey:(nullable NSString *)key cacheType:(SDImageCacheType)cacheType completion:(nullable SDWebImageNoParamsBlock)completionBlock {
+- (void)removeImageForKey:(nullable NSString *)key cacheType:(TXImageCacheType)cacheType completion:(nullable SDWebImageNoParamsBlock)completionBlock {
     switch (cacheType) {
-        case SDImageCacheTypeNone:
+        case TXImageCacheTypeNone:
             break;
-        case SDImageCacheTypeMemory:
+        case TXImageCacheTypeMemory:
             [self.memoryCache removeObjectForKey:key];
             break;
-        case SDImageCacheTypeDisk:
+        case TXImageCacheTypeDisk:
             [self.diskCache removeDataForKey:key];
             break;
-        case SDImageCacheTypeAll:
+        case TXImageCacheTypeAll:
             [self.memoryCache removeObjectForKey:key];
             [self.diskCache removeDataForKey:key];
             break;
@@ -264,17 +264,17 @@ static NSString * const SDWebImageTestDiskCacheExtendedAttributeName = @"com.hac
     }
 }
 
-- (void)storeImage:(nullable UIImage *)image imageData:(nullable NSData *)imageData forKey:(nullable NSString *)key cacheType:(SDImageCacheType)cacheType completion:(nullable SDWebImageNoParamsBlock)completionBlock {
+- (void)storeImage:(nullable UIImage *)image imageData:(nullable NSData *)imageData forKey:(nullable NSString *)key cacheType:(TXImageCacheType)cacheType completion:(nullable SDWebImageNoParamsBlock)completionBlock {
     switch (cacheType) {
-        case SDImageCacheTypeNone:
+        case TXImageCacheTypeNone:
             break;
-        case SDImageCacheTypeMemory:
+        case TXImageCacheTypeMemory:
             [self.memoryCache setObject:image forKey:key];
             break;
-        case SDImageCacheTypeDisk:
+        case TXImageCacheTypeDisk:
             [self.diskCache setData:imageData forKey:key];
             break;
-        case SDImageCacheTypeAll:
+        case TXImageCacheTypeAll:
             [self.memoryCache setObject:image forKey:key];
             [self.diskCache setData:imageData forKey:key];
             break;

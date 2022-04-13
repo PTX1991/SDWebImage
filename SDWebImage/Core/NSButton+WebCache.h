@@ -6,11 +6,11 @@
  * file that was distributed with this source code.
  */
 
-#import "SDWebImageCompat.h"
+#import "TXWebImageCompat.h"
 
 #if SD_MAC
 
-#import "SDWebImageManager.h"
+#import "TXWebImageManager.h"
 
 /**
  * Integrates SDWebImage async downloading and caching of remote images with NSButton.
@@ -143,7 +143,7 @@
 - (void)sd_setImageWithURL:(nullable NSURL *)url
           placeholderImage:(nullable UIImage *)placeholder
                    options:(SDWebImageOptions)options
-                  progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                  progress:(nullable TXImageLoaderProgressBlock)progressBlock
                  completed:(nullable SDExternalCompletionBlock)completedBlock;
 
 /**
@@ -167,7 +167,7 @@
           placeholderImage:(nullable UIImage *)placeholder
                    options:(SDWebImageOptions)options
                    context:(nullable SDWebImageContext *)context
-                  progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                  progress:(nullable TXImageLoaderProgressBlock)progressBlock
                  completed:(nullable SDExternalCompletionBlock)completedBlock;
 
 #pragma mark - Alternate Image
@@ -296,7 +296,7 @@
 - (void)sd_setAlternateImageWithURL:(nullable NSURL *)url
                    placeholderImage:(nullable UIImage *)placeholder
                             options:(SDWebImageOptions)options
-                           progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                           progress:(nullable TXImageLoaderProgressBlock)progressBlock
                           completed:(nullable SDExternalCompletionBlock)completedBlock;
 
 /**
@@ -320,7 +320,7 @@
                    placeholderImage:(nullable UIImage *)placeholder
                             options:(SDWebImageOptions)options
                             context:(nullable SDWebImageContext *)context
-                           progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                           progress:(nullable TXImageLoaderProgressBlock)progressBlock
                           completed:(nullable SDExternalCompletionBlock)completedBlock;
 
 #pragma mark - Cancel

@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-#import "SDWebImageCompat.h"
+#import "TXWebImageCompat.h"
 #import "NSData+ImageContentType.h"
 
 /**
@@ -20,7 +20,7 @@
  * For animated image format, 0 means infinite looping.
  * Note that because of the limitations of categories this property can get out of sync if you create another instance with CGImage or other methods.
  * AppKit:
- * NSImage currently only support animated via `NSBitmapImageRep`(GIF) or `SDAnimatedImageRep`(APNG/GIF/WebP) unlike UIImage.
+ * NSImage currently only support animated via `NSBitmapImageRep`(GIF) or `TXAnimatedImageRep`(APNG/GIF/WebP) unlike UIImage.
  * The getter of this property will get the loop count from animated imageRep
  * The setter of this property will set the loop count from animated imageRep
  */
@@ -29,10 +29,10 @@
 /**
  * UIKit:
  * Returns the `images`'s count by unapply the patch for the different frame durations. Which matches the real visible frame count when displaying on UIImageView.
- * See more in `SDImageCoderHelper.animatedImageWithFrames`.
+ * See more in `TXImageCoderHelper.animatedImageWithFrames`.
  * Returns 1 for static image.
  * AppKit:
- * Returns the underlaying `NSBitmapImageRep` or `SDAnimatedImageRep` frame count.
+ * Returns the underlaying `NSBitmapImageRep` or `TXAnimatedImageRep` frame count.
  * Returns 1 for static image.
  */
 @property (nonatomic, assign, readonly) NSUInteger sd_imageFrameCount;

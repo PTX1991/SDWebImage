@@ -11,7 +11,7 @@
 #if SD_UIKIT
 #import <MobileCoreServices/MobileCoreServices.h>
 #endif
-#import "SDImageIOAnimatedCoderInternal.h"
+#import "TXImageIOAnimatedCoderInternal.h"
 
 @interface SDCategoriesTests : SDTestCase
 

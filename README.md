@@ -162,9 +162,9 @@ imageView.sd_setImage(with: URL(string: "http://www.domain.com/path/to/image.jpg
 
 In 5.0, we introduced a brand new mechanism for supporting animated images. This includes animated image loading, rendering, decoding, and also supports customizations (for advanced users).
 
-This animated image solution is available for `iOS`/`tvOS`/`macOS`. The `SDAnimatedImage` is subclass of `UIImage/NSImage`, and `SDAnimatedImageView` is subclass of `UIImageView/NSImageView`, to make them compatible with the common frameworks APIs.
+This animated image solution is available for `iOS`/`tvOS`/`macOS`. The `TXAnimatedImage` is subclass of `UIImage/NSImage`, and `TXAnimatedImageView` is subclass of `UIImageView/NSImageView`, to make them compatible with the common frameworks APIs.
 
-The `SDAnimatedImageView` supports the familiar image loading category methods, works like drop-in replacement for `UIImageView/NSImageView`.
+The `TXAnimatedImageView` supports the familiar image loading category methods, works like drop-in replacement for `UIImageView/NSImageView`.
 
 Don't have `UIView` (like `WatchKit` or `CALayer`)? you can still use `SDAnimatedPlayer` the player engine for advanced playback and rendering.
 
@@ -173,16 +173,16 @@ See [Animated Image](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usag
 * Objective-C
 
 ```objective-c
-SDAnimatedImageView *imageView = [SDAnimatedImageView new];
-SDAnimatedImage *animatedImage = [SDAnimatedImage imageNamed:@"image.gif"];
+TXAnimatedImageView *imageView = [TXAnimatedImageView new];
+TXAnimatedImage *animatedImage = [TXAnimatedImage imageNamed:@"image.gif"];
 imageView.image = animatedImage;
 ```
 
 * Swift
 
 ```swift
-let imageView = SDAnimatedImageView()
-let animatedImage = SDAnimatedImage(named: "image.gif")
+let imageView = TXAnimatedImageView()
+let animatedImage = TXAnimatedImage(named: "image.gif")
 imageView.image = animatedImage
 ```
 
@@ -345,7 +345,7 @@ To learn about SDWebImage's architecture design for contribution, read [The Core
 </p>
 
 #### More detailed diagrams
-- [Manager API Diagram](https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/Docs/Diagrams/SDWebImageManagerClassDiagram.png)
+- [Manager API Diagram](https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/Docs/Diagrams/TXWebImageManagerClassDiagram.png)
 - [Coders API Diagram](https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/Docs/Diagrams/SDWebImageCodersClassDiagram.png)
 - [Loader API Diagram](https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/Docs/Diagrams/SDWebImageLoaderClassDiagram.png)
 - [Cache API Diagram](https://raw.githubusercontent.com/SDWebImage/SDWebImage/master/Docs/Diagrams/SDWebImageCacheClassDiagram.png)

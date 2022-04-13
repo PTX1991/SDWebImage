@@ -8,7 +8,7 @@
  */
 
 #import "UIImage+GIF.h"
-#import "SDImageGIFCoder.h"
+#import "TXImageGIFCoder.h"
 
 @implementation UIImage (GIF)
 
@@ -16,7 +16,7 @@
     if (!data) {
         return nil;
     }
-    return [[SDImageGIFCoder sharedCoder] decodedImageWithData:data options:0];
+    return [[TXImageGIFCoder sharedCoder] decodedImageWithData:data options:0];
 }
 
 @end

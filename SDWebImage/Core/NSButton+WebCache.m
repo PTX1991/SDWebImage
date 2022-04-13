@@ -13,7 +13,7 @@
 #import "objc/runtime.h"
 #import "UIView+WebCacheOperation.h"
 #import "UIView+WebCache.h"
-#import "SDInternalMacros.h"
+#import "TXInternalMacros.h"
 
 static NSString * const SDAlternateImageOperationKey = @"NSButtonAlternateImageOperation";
 
@@ -49,7 +49,7 @@ static NSString * const SDAlternateImageOperationKey = @"NSButtonAlternateImageO
     [self sd_setImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:completedBlock];
 }
 
-- (void)sd_setImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable SDImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
+- (void)sd_setImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable TXImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
     [self sd_setImageWithURL:url placeholderImage:placeholder options:options context:nil progress:progressBlock completed:completedBlock];
 }
 
@@ -57,7 +57,7 @@ static NSString * const SDAlternateImageOperationKey = @"NSButtonAlternateImageO
           placeholderImage:(nullable UIImage *)placeholder
                    options:(SDWebImageOptions)options
                    context:(nullable SDWebImageContext *)context
-                  progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                  progress:(nullable TXImageLoaderProgressBlock)progressBlock
                  completed:(nullable SDExternalCompletionBlock)completedBlock {
     self.sd_currentImageURL = url;
     [self sd_internalSetImageWithURL:url
@@ -66,7 +66,7 @@ static NSString * const SDAlternateImageOperationKey = @"NSButtonAlternateImageO
                              context:context
                        setImageBlock:nil
                             progress:progressBlock
-                           completed:^(NSImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                           completed:^(NSImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                                if (completedBlock) {
                                    completedBlock(image, error, cacheType, imageURL);
                                }
@@ -103,7 +103,7 @@ static NSString * const SDAlternateImageOperationKey = @"NSButtonAlternateImageO
     [self sd_setAlternateImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:completedBlock];
 }
 
-- (void)sd_setAlternateImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable SDImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
+- (void)sd_setAlternateImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder options:(SDWebImageOptions)options progress:(nullable TXImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
     [self sd_setAlternateImageWithURL:url placeholderImage:placeholder options:options context:nil progress:progressBlock completed:completedBlock];
 }
 
@@ -111,7 +111,7 @@ static NSString * const SDAlternateImageOperationKey = @"NSButtonAlternateImageO
                    placeholderImage:(nullable UIImage *)placeholder
                             options:(SDWebImageOptions)options
                             context:(nullable SDWebImageContext *)context
-                           progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                           progress:(nullable TXImageLoaderProgressBlock)progressBlock
                           completed:(nullable SDExternalCompletionBlock)completedBlock {
     self.sd_currentAlternateImageURL = url;
     
@@ -127,12 +127,12 @@ static NSString * const SDAlternateImageOperationKey = @"NSButtonAlternateImageO
                     placeholderImage:placeholder
                              options:options
                              context:mutableContext
-                       setImageBlock:^(NSImage * _Nullable image, NSData * _Nullable imageData, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                       setImageBlock:^(NSImage * _Nullable image, NSData * _Nullable imageData, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                            @strongify(self);
                            self.alternateImage = image;
                        }
                             progress:progressBlock
-                           completed:^(NSImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                           completed:^(NSImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                                if (completedBlock) {
                                    completedBlock(image, error, cacheType, imageURL);
                                }

@@ -36,7 +36,7 @@ However, all view categories in 5.0 introduce a new extra arg called `SDWebImage
 
 In 5.0, we introduced a brand new mechanism for supporting animated images. This includes animated image loading, rendering, decoding, and also supports customizations (for advanced users).
 
-This animated image solution is available for `iOS`/`tvOS`/`macOS`. The `SDAnimatedImage` is subclass of `UIImage/NSImage`, and `SDAnimatedImageView` is subclass of `UIImageView/NSImageView`, to make them compatible with the common frameworks APIs. See [Animated Image](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#animated-image-50) for more detailed information.
+This animated image solution is available for `iOS`/`tvOS`/`macOS`. The `TXAnimatedImage` is subclass of `UIImage/NSImage`, and `TXAnimatedImageView` is subclass of `UIImageView/NSImageView`, to make them compatible with the common frameworks APIs. See [Animated Image](https://github.com/rs/SDWebImage/wiki/Advanced-Usage#animated-image-50) for more detailed information.
 
 #### Image Transformer
 
@@ -64,15 +64,15 @@ By taking the advantage of the [Custom Loader](https://github.com/rs/SDWebImage/
 
 ##### Cache Paths
 
-`SDImageCache` in 5.x, use `~/Library/Caches/com.hackemist.SDImageCache/default/` as default cache path. However, 4.x use `~/Library/Caches/default/com.hackemist.SDWebImageCache.default/`. And don't be worried, we will do the migration automatically once the shared cache initialized.
+`TXImageCache` in 5.x, use `~/Library/Caches/com.hackemist.TXImageCache/default/` as default cache path. However, 4.x use `~/Library/Caches/default/com.hackemist.SDWebImageCache.default/`. And don't be worried, we will do the migration automatically once the shared cache initialized.
 
 However, if you have some other custom namespace cache instance, you should try to do migration by yourself. But typically, since the cache is designed to be invalid at any time, you'd better not to bind some important logic related on that cache path changes.
 
-And, if you're previously using any version from `5.0.0-beta` to `5.0.0-beta3`, please note that the cache folder has been temporarily moved to `~/Library/Caches/default/com.hackemist.SDImageCache.default/`, however, the final release version of 5.0.0 use the path above. If you upgrade from those beta version, you may need manually do migration, check `+[SDDiskCache moveCacheDirectoryFromPath:toPath:]` for detail information.
+And, if you're previously using any version from `5.0.0-beta` to `5.0.0-beta3`, please note that the cache folder has been temporarily moved to `~/Library/Caches/default/com.hackemist.TXImageCache.default/`, however, the final release version of 5.0.0 use the path above. If you upgrade from those beta version, you may need manually do migration, check `+[TXDiskCache moveCacheDirectoryFromPath:toPath:]` for detail information.
 
 ##### Cache Cost Function
 
-`SDImageCacheConfig.maxMemoryCost` can be used to specify the memory cost limit. In the 4.x, the cost function is the **pixel count** of images. However, 5.x change it into the total **bytes size** of images. 
+`TXImageCacheConfig.maxMemoryCost` can be used to specify the memory cost limit. In the 4.x, the cost function is the **pixel count** of images. However, 5.x change it into the total **bytes size** of images. 
 
 Because for memory cache, we actually care about the memory usage about bytes, but not the count of pixels. And pixel count can not accurately represent the memory usage.
 
@@ -85,7 +85,7 @@ The **bytes per pixel** is a constant depends on [image pixel format](https://de
 
 #### Prefetcher
 
-`SDWebImagePrefetcher` in 5.x, change the concept of fetching batch of URLs. Now, each time you call `prefetchURLs:`, you will get a token which represents the specified URLs list. It does not cancel the previous URLs which is prefetching, which make the shared prefetcher behaves more intuitively.
+`TXWebImagePrefetcher` in 5.x, change the concept of fetching batch of URLs. Now, each time you call `prefetchURLs:`, you will get a token which represents the specified URLs list. It does not cancel the previous URLs which is prefetching, which make the shared prefetcher behaves more intuitively.
 
 However, in 4.x, each time you call `prefetchURLs:`, it will cancel all previous URLs which is been prefetching.
 
@@ -95,7 +95,7 @@ If you still want the same behavior, manually call `cancelPrefetching` each time
 + Objective-C
 
 ```objective-c
-SDWebImagePrefetcher *prefetcher = SDWebImagePrefetcher.sharedImagePrefetcher;
+TXWebImagePrefetcher *prefetcher = TXWebImagePrefetcher.sharedImagePrefetcher;
 [prefetcher cancelPrefetching];
 [prefetcher prefetchURLs:@[url1, url2]];
 ```
@@ -103,7 +103,7 @@ SDWebImagePrefetcher *prefetcher = SDWebImagePrefetcher.sharedImagePrefetcher;
 + Swift
 
 ```swift
-let prefetcher = SDWebImagePrefetcher.shared
+let prefetcher = TXWebImagePrefetcher.shared
 prefetcher.cancelPrefetching()
 prefetcher.prefetchURLs([url1, url2])
 ```
@@ -115,47 +115,47 @@ This check is done previously in a hard-coded logic for specify error codes. How
 
 Since in 5.x, we supports custom loaders which can use any third-party SDKs, and have their own error domain and error codes. So we now only filter the error codes in [NSURLErrorDomain](https://developer.apple.com/documentation/foundation/nsurlerrordomain). If you have already using some error codes without error domain check, or you use [Custom Download Operation](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usage#custom-download-operation-40), be sure to update it with the right way.
 
-At the same time, our framework errors, now using the formal `SDWebImageErrorDomain` with the pre-defined codes. Check `SDWebImageError.h` for details.
+At the same time, our framework errors, now using the formal `TXWebImageErrorDomain` with the pre-defined codes. Check `TXWebImageError.h` for details.
 
 ### API Changes
 
-#### SDImageCache
+#### TXImageCache
 
-- moved `maxMemoryCost` and `maxMemoryCountLimit` to `SDImageCacheConfig`
+- moved `maxMemoryCost` and `maxMemoryCountLimit` to `TXImageCacheConfig`
 - `makeDiskCachePath:` removed, use `NSSearchPathForDirectoriesInDomains` with NSString's Path API instead.
 - `addReadOnlyCachePath:` removed, use `additionalCachePathBlock` instead
 - `cachePathForKey:inPath:` removed, use `cachePathForKey:` with NSString's path API instead.
 - `defaultCachePathForKey:` removed, use `cachePathForKey:` instead
-- `SDCacheQueryCompletedBlock` renamed to `SDImageCacheQueryCompletionBlock`
-- `SDWebImageCheckCacheCompletionBlock` renamed to `SDImageCacheCheckCompletionBlock`
-- `SDWebImageCalculateSizeBlock` renamed to `SDImageCacheCalculateSizeBlock`
+- `SDCacheQueryCompletedBlock` renamed to `TXImageCacheQueryCompletionBlock`
+- `SDWebImageCheckCacheCompletionBlock` renamed to `TXImageCacheCheckCompletionBlock`
+- `SDWebImageCalculateSizeBlock` renamed to `TXImageCacheCalculateSizeBlock`
 - `getSize` renamed to `totalDiskSize`
 - `getDiskCount` renamed to `totalDiskCount`
 
-#### SDImageCacheConfig
+#### TXImageCacheConfig
 
-- `shouldDecompressImages` removed. Use  `SDImageCacheAvoidDecodeImage` in cache options instead
+- `shouldDecompressImages` removed. Use  `TXImageCacheAvoidDecodeImage` in cache options instead
 - `maxCacheAge` renamed to `maxDiskAge`
 - `maxCacheSize` renamed to `maxDiskSize`
 
-#### SDWebImageManager
+#### TXWebImageManager
 
 - `loadImageWithURL:options:progress:completed:` changed the `completed` param requirement from `nullable` to `nonnull`
-- `loadImageWithURL:options:progress:completed:` return type `id<SDWebImageOperation>` changed to `SDWebImageCombinedOperation *`
-- `imageCache` changed from nullable to nonnull. And property type changed from `SDImageCache *` to `id<SDImageCache>`. The default value does not change.
-- `imageDownloader` renamed to `imageLoader` and changed from nullable to nonnull. And property type changed from `SDWebImageDownloader *` to `id<SDImageLoader>`. The default value does not change.
-- `cacheKeyFilter` property type changed to `id<SDWebImageCacheKeyFilter>`, you can use `+[SDWebImageCacheKeyFilter cacheKeyFilterWithBlock:]` to create
-- `cacheSerializer` property type changed to `id<SDWebImageCacheSerializer>`, you can use `+[SDWebImageCacheSerializer cacheSerializerWithBlock:]` to create
-- `SDWebImageCacheKeyFilterBlock`'s `url` arg change from nullable to nonnull
-- `initWithCache:downloader:` 's `cache` arg type changed from `SDImageCache *` to `id<SDImageCache>`
+- `loadImageWithURL:options:progress:completed:` return type `id<TXWebImageOperation>` changed to `SDWebImageCombinedOperation *`
+- `imageCache` changed from nullable to nonnull. And property type changed from `TXImageCache *` to `id<TXImageCache>`. The default value does not change.
+- `imageDownloader` renamed to `imageLoader` and changed from nullable to nonnull. And property type changed from `TXWebImageDownloader *` to `id<TXImageLoader>`. The default value does not change.
+- `cacheKeyFilter` property type changed to `id<TXWebImageCacheKeyFilter>`, you can use `+[TXWebImageCacheKeyFilter cacheKeyFilterWithBlock:]` to create
+- `cacheSerializer` property type changed to `id<TXWebImageCacheSerializer>`, you can use `+[TXWebImageCacheSerializer cacheSerializerWithBlock:]` to create
+- `TXWebImageCacheKeyFilterBlock`'s `url` arg change from nullable to nonnull
+- `initWithCache:downloader:` 's `cache` arg type changed from `TXImageCache *` to `id<TXImageCache>`
 - `initWithCache:downloader` renamed to `initWithCache:loader:` 
-- `saveImageToCache:forURL:` removed. Use `SDImageCache storeImage:imageData:forKey:cacheType:completion:` (or `SDImageCache storeImage:forKey:toDisk:completion:` if you use default cache class) with `cacheKeyForURL:` instead.
-- `diskImageExistsForURL:completion:` removed. Use `SDImageCache containsImageForKey:cacheType:completion:` (or `SDImageCache diskImageExistsWithKey:completion:` if you use default cache class) with `cacheKeyForURL:` instead.
-- `cachedImageExistsForURL:completion` removed. Use `SDImageCache containsImageForKey:cacheType:completion:` (or `SDImageCache diskImageExistsWithKey:completion:` and `SDImageCache imageFromMemoryCacheForKey:` if you use default cache class) with `cacheKeyForURL:` instead.
+- `saveImageToCache:forURL:` removed. Use `TXImageCache storeImage:imageData:forKey:cacheType:completion:` (or `TXImageCache storeImage:forKey:toDisk:completion:` if you use default cache class) with `cacheKeyForURL:` instead.
+- `diskImageExistsForURL:completion:` removed. Use `TXImageCache containsImageForKey:cacheType:completion:` (or `TXImageCache diskImageExistsWithKey:completion:` if you use default cache class) with `cacheKeyForURL:` instead.
+- `cachedImageExistsForURL:completion` removed. Use `TXImageCache containsImageForKey:cacheType:completion:` (or `TXImageCache diskImageExistsWithKey:completion:` and `TXImageCache imageFromMemoryCacheForKey:` if you use default cache class) with `cacheKeyForURL:` instead.
 
-#### SDWebImageManagerDelegate
+#### TXWebImageManagerDelegate
 
-- removed `imageManager:transformDownloadedImage:forKey:`, use `SDImageTransformer` with context option instead
+- removed `imageManager:transformDownloadedImage:forKey:`, use `TXImageTransformer` with context option instead
 
 #### UIView and subclasses (UIImageView, UIButton, ...)
 
@@ -180,47 +180,47 @@ At the same time, our framework errors, now using the formal `SDWebImageErrorDom
 
 - Removed `sd_setImageWithPreviousCachedImageWithURL:placeholderImage:options:progress:completed`
 
-#### SDWebImageDownloader
+#### TXWebImageDownloader
 
-- `shouldDecompressImages` moved to `SDWebImageDownloaderConfig.shouldDecompressImages`
-- `maxConcurrentDownloads` moved to `SDWebImageDownloaderConfig.maxConcurrentDownloads`
-- `downloadTimeout` moved to `SDWebImageDownloaderConfig.downloadTimeout`
-- `operationClass` moved to `SDWebImageDownloaderConfig.operationClass`
-- `executionOrder` moved to `SDWebImageDownloaderConfig.executionOrder`
-- `urlCredential` moved to `SDWebImageDownloaderConfig.urlCredential`
-- `username` moved to `SDWebImageDownloaderConfig.username`
-- `password` moved to `SDWebImageDownloaderConfig.password`
+- `shouldDecompressImages` moved to `TXWebImageDownloaderConfig.shouldDecompressImages`
+- `maxConcurrentDownloads` moved to `TXWebImageDownloaderConfig.maxConcurrentDownloads`
+- `downloadTimeout` moved to `TXWebImageDownloaderConfig.downloadTimeout`
+- `operationClass` moved to `TXWebImageDownloaderConfig.operationClass`
+- `executionOrder` moved to `TXWebImageDownloaderConfig.executionOrder`
+- `urlCredential` moved to `TXWebImageDownloaderConfig.urlCredential`
+- `username` moved to `TXWebImageDownloaderConfig.username`
+- `password` moved to `TXWebImageDownloaderConfig.password`
 - `initWithSessionConfiguration:` removed, use `initWithConfig:` with session configuration instead
-- `createNewSessionWithConfiguration:` removed, use `initWithConfig:` with new session configuration instead. To modify shared downloader configuration, provide custom `SDWebImageDownloaderConfig.defaultDownloaderConfig` before it created.
+- `createNewSessionWithConfiguration:` removed, use `initWithConfig:` with new session configuration instead. To modify shared downloader configuration, provide custom `TXWebImageDownloaderConfig.defaultDownloaderConfig` before it created.
 - `headersFilter` removed, use `requestModifier` instead
 - `cancel:` removed, use `-[SDWebImageDownloadToken cancel]` instead
-- `shouldDecompressImages` removed. Use `SDWebImageDownloaderAvoidDecodeImage` in downloader options instead
-- use `SDImageLoaderProgressBlock` instead of `SDWebImageDownloaderProgressBlock`
-- use `SDImageLoaderCompletedBlock` instead of `SDWebImageDownloaderCompletedBlock`
+- `shouldDecompressImages` removed. Use `TXWebImageDownloaderAvoidDecodeImage` in downloader options instead
+- use `TXImageLoaderProgressBlock` instead of `TXWebImageDownloaderProgressBlock`
+- use `TXImageLoaderCompletedBlock` instead of `TXWebImageDownloaderCompletedBlock`
 
-#### SDWebImageDownloaderOperation
+#### TXWebImageDownloaderOperation
 
 - `initWithRequest:inSession:options:context:` is now the designated initializer
 - Removed `shouldUseCredentialStorage` property
 - `SDWebImageDownloadOperationInterface` protocol renamed to `SDWebImageDownloadOperation`
 - `expectedSize` removed, use `response.expectedContentLength` instead
-- `shouldDecompressImages` removed. Use `SDWebImageDownloaderAvoidDecodeImage` in downloader options instead.
+- `shouldDecompressImages` removed. Use `TXWebImageDownloaderAvoidDecodeImage` in downloader options instead.
 - `response` property change to readonly
 
-#### SDWebImagePrefetcher
+#### TXWebImagePrefetcher
 
 - `prefetchURLs:` and `prefetchURLs:progress:completed:` return types changed from `void` to `SDWebImagePrefetchToken`
 - `prefetcherQueue` property renamed to `delegateQueue`
 - `maxConcurrentDownloads` replaced with `maxConcurrentPrefetchCount`
 
-#### SDImageCoder
-- `SDCGColorSpaceGetDeviceRGB()` moved to `+[SDImageCoderHelper colorSpaceGetDeviceRGB]` 
-- `SDCGImageRefContainsAlpha()`, moved to `+[SDImageCoderHelper imageRefContainsAlpha:]`
+#### TXImageCoder
+- `SDCGColorSpaceGetDeviceRGB()` moved to `+[TXImageCoderHelper colorSpaceGetDeviceRGB]` 
+- `SDCGImageRefContainsAlpha()`, moved to `+[TXImageCoderHelper imageRefContainsAlpha:]`
 - `decodedImageWithData:` replaced with `decodedImageWithData:options:`
 - `encodedDataWithImage:format:` replaced with `encodedDataWithImage:format:options`
 - `init` method from `SDWebImageProgressiveCoder` changed to `initIncrementalWithOptions:`
 - `incrementalDecodedImageWithData:finished` replaced with `updateIncrementalData:finished` and `incrementalDecodedImageWithOptions:` two APIs
-- removed `decompressedImage:data:options`, use `+[SDImageCoderHelper decodedImageWithImage:]` and `+[SDImageCoderHelper decodedAndScaledDownImageWithImage:limitBytes:]` instead
+- removed `decompressedImage:data:options`, use `+[TXImageCoderHelper decodedImageWithImage:]` and `+[TXImageCoderHelper decodedAndScaledDownImageWithImage:limitBytes:]` instead
 
 #### Constants
 
@@ -233,14 +233,14 @@ In SDWebImage 5.0 we did a clean up of the API. We are using many modern Objecti
 ##### UIView+WebCache
 - `sd_imageURL()` changed to `sd_imageURL`
 
-##### SDImageCache
+##### TXImageCache
 - `shared()` changed to `shared`
 
-##### SDWebImageManager
+##### TXWebImageManager
 - `shared()` changed to `shared`
 - `isRunning()` changed to `isRunning`
 
-##### SDWebImageDownloader
+##### TXWebImageDownloader
 - `shared()` changed to `shared`
 - `setOperationClass(_:)` available for Swift user with `operationClass` property
 - `setSuspended(_:)` changed to `isSuspended` property
@@ -248,15 +248,15 @@ In SDWebImage 5.0 we did a clean up of the API. We are using many modern Objecti
 ##### SDWebImageDownloadOperation
 - `SDWebImageDownloadOperationInterface` protocol renamed to `SDWebImageDownloadOperationProtocol`. 
 
-##### SDImageCodersManager
+##### TXImageCodersManager
 
 - `sharedInstance()` changed to `shared`
 
-##### SDImageIOCoder
+##### TXImageIOCoder
 
 - `shared()` changed to `shared`
 
-##### SDImageGIFCoder
+##### TXImageGIFCoder
 
 - `shared()` changed to `shared`
 

@@ -8,7 +8,7 @@ See [all tickets marked for the 5.12.5 release](https://github.com/SDWebImage/SD
 See [all tickets marked for the 5.12.4 release](https://github.com/SDWebImage/SDWebImage/milestone/93)
 
 ### Fixes
-- Fix imageView blinks with option `SDImageCacheQueryDiskDataSync` #3327
+- Fix imageView blinks with option `TXImageCacheQueryDiskDataSync` #3327
 - Workaround the iOS 15+ Force Decode may return black image because of CoreGraphics #3332
 
 ## [5.12.3 - 5.12 Patch, on Jan 27th, 2022](https://github.com/rs/SDWebImage/releases/tag/5.12.3)
@@ -54,7 +54,7 @@ See [all tickets marked for the 5.12.0 release](https://github.com/SDWebImage/SD
 
 #### Animated Image
 - Added sd_imageFrameCount convenient API for UIAinmatedImage/NSBitmapImageRep #3243 
-- Make SDAnimatedImageRep confirms to correct copy semantic #3258
+- Make TXAnimatedImageRep confirms to correct copy semantic #3258
 
 ### Fixes
 - Fix image source release in iOS 15 #3276 
@@ -74,7 +74,7 @@ See [all tickets marked for the 5.11.1 release](https://github.com/SDWebImage/SD
 - Ensure the invalid URLSeesion will receive the cancel callback and does not trigger the any exception from framework #3205
 
 ### Documentation
-- Fix spelling error in SDWebImageDownloaderOperation #3220
+- Fix spelling error in TXWebImageDownloaderOperation #3220
 
 ## [5.11.0 - Performance, on Apr 1st, 2021](https://github.com/rs/SDWebImage/releases/tag/5.11.0)
 See [all tickets marked for the 5.11.0 release](https://github.com/SDWebImage/SDWebImage/milestone/84)
@@ -101,7 +101,7 @@ See [all tickets marked for the 5.10.4 release](https://github.com/SDWebImage/SD
 See [all tickets marked for the 5.10.3 release](https://github.com/SDWebImage/SDWebImage/milestone/86)
 
 ### Fixes
-- Fixed the store cache type was specified to `SDImageCacheTypeDisk ` that pictures shouldn't cache to memory. #3157
+- Fixed the store cache type was specified to `TXImageCacheTypeDisk ` that pictures shouldn't cache to memory. #3157
 
 ## [5.10.2 - 5.10 Patch, on Dec 29th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.10.2)
 See [all tickets marked for the 5.10.2 release](https://github.com/SDWebImage/SDWebImage/milestone/85)
@@ -125,7 +125,7 @@ See [all tickets marked for the 5.10.0 release](https://github.com/SDWebImage/SD
 
 ### Features
 #### Animated Image
-- Add animation playback mode for SDAnimatedImageView/Player, including reverse, bounce and reversed bounce #3115 
+- Add animation playback mode for TXAnimatedImageView/Player, including reverse, bounce and reversed bounce #3115 
 
 #### Custom Loader
 - Added the options and context arg for Image Loader custom protocol, this can be used for advanced user to grab and check for context for current loading URL to process the logic #3129 
@@ -137,34 +137,34 @@ See [all tickets marked for the 5.10.0 release](https://github.com/SDWebImage/SD
 See [all tickets marked for the 5.9.5 release](https://github.com/SDWebImage/SDWebImage/milestone/81)
 
 ### Fixes
-- Add animationImages support when using SDAnimatedImageView #3113
+- Add animationImages support when using TXAnimatedImageView #3113
 
 ## [5.9.4 - 5.9 Patch, on Oct 13th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.4)
 See [all tickets marked for the 5.9.4 release](https://github.com/SDWebImage/SDWebImage/milestone/80)
 
 ### Fixes
 - Fix race condition when using transitions that are canceled and then switched to a new transition or load operation #3108 #3107
-- Fixed the store cache type was specified to `SDImageCacheTypeDisk ` that no pictures were obtained when the disk had pictures #3110
+- Fixed the store cache type was specified to `TXImageCacheTypeDisk ` that no pictures were obtained when the disk had pictures #3110
 
 ## [5.9.3 - 5.9 Patch, on Oct 13th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.3)
 See [all tickets marked for the 5.9.3 release](https://github.com/SDWebImage/SDWebImage/milestone/79)
 
 ### Fixes
-- Fix coder priority inverse in SDAnimatedImage #3101
-- Fix that SDImageCache will automatically store the disk image into memory cache even if store cache type is disk #3104
+- Fix coder priority inverse in TXAnimatedImage #3101
+- Fix that TXImageCache will automatically store the disk image into memory cache even if store cache type is disk #3104
 
 ## [5.9.2 - 5.9 Patch, on Sep 29th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.2)
 See [all tickets marked for the 5.9.2 release](https://github.com/SDWebImage/SDWebImage/milestone/78)
 
 ### Fixes
-- Fix the issue that SDAnimatedImageView will trigger an empty callback when animation stopped. This will cause some bad effect such as rendering a empty image or placeholder image (especially on iOS 14) #3092
-- Fix: `duration` is not used in SDWebImageTransition convenience initializers. #3094
+- Fix the issue that TXAnimatedImageView will trigger an empty callback when animation stopped. This will cause some bad effect such as rendering a empty image or placeholder image (especially on iOS 14) #3092
+- Fix: `duration` is not used in TXWebImageTransition convenience initializers. #3094
 
 ## [5.9.1 - 5.9 Patch, on Sep 11th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.1)
 See [all tickets marked for the 5.9.1 release](https://github.com/SDWebImage/SDWebImage/milestone/77)
 
 ### Fixes
-- Fix the issue of SDAnimatedImage initWithContentsOfFile where the path name less than 3 characters #3081
+- Fix the issue of TXAnimatedImage initWithContentsOfFile where the path name less than 3 characters #3081
 
 ## [5.9.0 - iOS 14 WebP, on Aug 27th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.0)
 See [all tickets marked for the 5.9.0 release](https://github.com/SDWebImage/SDWebImage/milestone/72)
@@ -173,7 +173,7 @@ See [all tickets marked for the 5.9.0 release](https://github.com/SDWebImage/SDW
 
 #### Image
 - Supports built-in WebP/AWebP codec from ImageIO for iOS 14/tvOS 14/macOS 11/watchOS 7 #3048
-- To use, add `SDImageAWebPCoder` to your coders manager. Note built-in WebP currently supports decoding only, for encoding, you still need `SDImageWebPCoder`
+- To use, add `TXImageAWebPCoder` to your coders manager. Note built-in WebP currently supports decoding only, for encoding, you still need `SDImageWebPCoder`
 - Add the support to pass small bytes to `decodedAndScaledDownLargeImage`, which always scale down (at least 1x1 pixel) but not return the original size #3067
 
 #### Cache
@@ -197,17 +197,17 @@ See [all tickets marked for the 5.8.4 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 5.8.3 release](https://github.com/SDWebImage/SDWebImage/milestone/75)
 
 ### Changes
-- Add the support for that UIImage+MultiFormat methods on SDAnimatedImage, which supports encoding the animation like GIF/APNG/WebP with lower compression quality #3047
+- Add the support for that UIImage+MultiFormat methods on TXAnimatedImage, which supports encoding the animation like GIF/APNG/WebP with lower compression quality #3047
 
 ### Fixes
-- Fix the issue of iOS 14 vector image rendering on SDAnimatedImageView #3046
+- Fix the issue of iOS 14 vector image rendering on TXAnimatedImageView #3046
 
 ## [5.8.2 - 5.8 Patch, on June 23rd, 2020](https://github.com/rs/SDWebImage/releases/tag/5.8.2)
 See [all tickets marked for the 5.8.2 release](https://github.com/SDWebImage/SDWebImage/milestone/74)
 
 ### Fixes
-- Fix the issue that SDAnimatedImageView can not render static image on iOS 14. #3043
-- Fix the `maxPixelSize` logic issue will cause a upscale in SDImageIOAnimatedCoder #3039
+- Fix the issue that TXAnimatedImageView can not render static image on iOS 14. #3043
+- Fix the `maxPixelSize` logic issue will cause a upscale in TXImageIOAnimatedCoder #3039
 
 ## [5.8.1 - 5.8 Patch, on June 12th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.8.1)
 See [all tickets marked for the 5.8.1 release](https://github.com/SDWebImage/SDWebImage/milestone/73)
@@ -219,7 +219,7 @@ See [all tickets marked for the 5.8.1 release](https://github.com/SDWebImage/SDW
 - Fix the issue that the NSURLRequest method should not be nil, which may cause Crash #3037
 - Fix the issue when `maxPixelSize` is larger than image size will cause a upscale in ImageIO #3015
 - Change to use `kCGImageSourceCreateThumbnailFromImageAlways` to solve the issue when HEIC/JPEG contains an embed thumbnail but its size is much smaller than provided `maxPixelSize` #3038
-- SDAnimatedImagePlayer seek returning nil image fix #3030
+- TXAnimatedImagePlayer seek returning nil image fix #3030
 - Fixing Typos throughout project #3026
 
 ## [5.8.0 - Transform original cache and more, on May 11th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.8.0)
@@ -255,7 +255,7 @@ See [all tickets marked for the 5.8.0 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 5.7.4 release](https://github.com/SDWebImage/SDWebImage/milestone/71)
 
 ### Fixes
-- Fix the issue that NSOperation conforms to `SDWebImageOperation` check failed. Fix cancelling prefetcher hung up #2999 #2998
+- Fix the issue that NSOperation conforms to `TXWebImageOperation` check failed. Fix cancelling prefetcher hung up #2999 #2998
 
 ## [5.7.3 - 5.7 Patch, on Apr 21st, 2020](https://github.com/SDWebImage/SDWebImage/releases/tag/5.7.3)
 See [all tickets marked for the 5.7.3 release](https://github.com/SDWebImage/SDWebImage/milestone/70)
@@ -267,7 +267,7 @@ See [all tickets marked for the 5.7.3 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 5.7.2 release](https://github.com/SDWebImage/SDWebImage/milestone/68)
 
 ### Fixes
-- SDAnimatedImageView animation rendering should not use CGContext force decoding, use `kCGImageSourceShouldCacheImmediately` instead which can avoid OOM for large number of GIFs #2977
+- TXAnimatedImageView animation rendering should not use CGContext force decoding, use `kCGImageSourceShouldCacheImmediately` instead which can avoid OOM for large number of GIFs #2977
 - Fix that when first play animated image and use maxBufferSize to 0, the calculation does not works (The CGImage is nil) #2982
 
 ### Project
@@ -278,7 +278,7 @@ See [all tickets marked for the 5.7.1 release](https://github.com/SDWebImage/SDW
 
 ### Fixes
 - Don't copy attributes from originalImage to transformedImage when caching transformedImage #2976. Thanks @bdaz
-- Fix the wrong value assignment for SDAnimatedImageView code on macOS, warning #2974
+- Fix the wrong value assignment for TXAnimatedImageView code on macOS, warning #2974
 
 ## [5.7.0 - Query Cache Type and Encoding Options, on Apr 4th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.7.0)
 See [all tickets marked for the 5.7.0 release](https://github.com/SDWebImage/SDWebImage/milestone/66)
@@ -298,7 +298,7 @@ See [all tickets marked for the 5.7.0 release](https://github.com/SDWebImage/SDW
 - Refactory the current thumbnail && transformer about cache key. Developer should have the API to calculate the cache key from thumbnail or transformer, not hard-coded. #2966
 
 #### Context Option
-- Added new query cache type support, including the SDImageCache API and context option #2968
+- Added new query cache type support, including the TXImageCache API and context option #2968
 - You use `.queryCacheType` to query image from memory/disk/both cache during image pipeline loading
 
 ### Fixes
@@ -338,10 +338,10 @@ See [all tickets marked for the 5.6.0 release](https://github.com/SDWebImage/SDW
 
 #### Context Option
 - Feature add context option for cache, loader and coder, deprecated SDWebImageContextCustomManager #2955
-- This makes it easy to use custom loader, cache, and decoder, without need to create a dummy SDWebImageManager instance.
+- This makes it easy to use custom loader, cache, and decoder, without need to create a dummy TXWebImageManager instance.
 
 ### Fixes
-- Fix the rare case when call `SDWebImageDownloaderOperation.cancel`, the completion block may callback twice #2954
+- Fix the rare case when call `TXWebImageDownloaderOperation.cancel`, the completion block may callback twice #2954
 
 ### Warnings
 - Suppress the deprecation warning when min deployment target version set to iOS 13+ or macCatalyst
@@ -351,13 +351,13 @@ See [all tickets marked for the 5.6.0 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 5.5.2 release](https://github.com/SDWebImage/SDWebImage/milestone/62)
 
 ### Fixes
-- Fix the issue that `maxBufferSize` property does not correctly works for `SDAnimatedImageView` #2934
+- Fix the issue that `maxBufferSize` property does not correctly works for `TXAnimatedImageView` #2934
 
 ## [5.5.1 - 5.5 Patch, on Jan 18th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.5.1)
 See [all tickets marked for the 5.5.1 release](https://github.com/SDWebImage/SDWebImage/milestone/59)
 
 ### Fixes
-- Fix the SDAnimatedImageView's progressive animation bug, which reset the frame index to 0 each time new frames available #2931
+- Fix the TXAnimatedImageView's progressive animation bug, which reset the frame index to 0 each time new frames available #2931
 
 ## [5.5.0 - Thumbnail Decoding && Core Image, on Jan 16th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.5.0)
 See [all tickets marked for the 5.5.0 release](https://github.com/SDWebImage/SDWebImage/milestone/55)
@@ -388,13 +388,13 @@ See [all tickets marked for the 5.5.0 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 5.4.3 release](https://github.com/SDWebImage/SDWebImage/milestone/61)
 
 ### Fixes
-- Fix the SDAnimatedImageView's progressive animation bug, which reset the frame index to 0 each time new frames available #2931
+- Fix the TXAnimatedImageView's progressive animation bug, which reset the frame index to 0 each time new frames available #2931
 
 ## [5.4.2 - 5.4 Patch, on Jan 7th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.4.2)
 See [all tickets marked for the 5.4.2 release](https://github.com/SDWebImage/SDWebImage/milestone/58)
 
 ### Fixes
-- SDAnimatedImage now only keep the animated coder when frame count >=1 , else we will behave like UIImage to save RAM usage #2924
+- TXAnimatedImage now only keep the animated coder when frame count >=1 , else we will behave like UIImage to save RAM usage #2924
 
 ## [5.4.1 - 5.4 Patch, on Dec 27th, 2019](https://github.com/rs/SDWebImage/releases/tag/5.4.1)
 See [all tickets marked for the 5.4.1 release](https://github.com/SDWebImage/SDWebImage/milestone/56)
@@ -422,13 +422,13 @@ See [all tickets marked for the 5.4.0 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 5.3.4 release](https://github.com/SDWebImage/SDWebImage/milestone/60)
 
 ### Fixes
-- Fix the SDAnimatedImageView's progressive animation bug, which reset the frame index to 0 each time new frames available #2931
+- Fix the TXAnimatedImageView's progressive animation bug, which reset the frame index to 0 each time new frames available #2931
 
 ## [5.3 Patch, on Dec 3rd, 2019](https://github.com/rs/SDWebImage/releases/tag/5.3.3)
 See [all tickets marked for the 5.3.3 release](https://github.com/SDWebImage/SDWebImage/milestone/54)
 
 ### Fixes
-- Fix the crash when using NSCache delegate with SDMemoryCache default implementation on dealloc #2899
+- Fix the crash when using NSCache delegate with TXMemoryCache default implementation on dealloc #2899
 
 ## [5.3 Patch, on Nov 22nd, 2019](https://github.com/rs/SDWebImage/releases/tag/5.3.2)
 See [all tickets marked for the 5.3.2 release](https://github.com/SDWebImage/SDWebImage/milestone/53)
@@ -448,7 +448,7 @@ See [all tickets marked for the 5.3.0 release](https://github.com/SDWebImage/SDW
 ### Features
 
 #### Animated Image
-- Refactoring the SDAnimatedImageView with player backend called `SDAnimatedImagePlayer`, make it easier for common usage. #2882
+- Refactoring the TXAnimatedImageView with player backend called `TXAnimatedImagePlayer`, make it easier for common usage. #2882
 - The player use protocol based implementation, which can be used for many scenarios, like WatchKit, CALayer, or even SwiftUI. See [wiki](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usage#animated-player-530)
 - Supports the control of AnimatedImage View/Player 's play rate #2885
 - Supports the runloop mode control for macOS. Which can be useful when user want to pause animation when drag the mouse, or presenting modal window #2886
@@ -465,14 +465,14 @@ See [all tickets marked for the 5.3.0 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 5.2.5 release](https://github.com/SDWebImage/SDWebImage/milestone/50)
 
 ### Fixes
-- Fix macOS SDWebImageIndicator center layout issue when indicator was initialized with 0 frame #2875
+- Fix macOS TXWebImageIndicator center layout issue when indicator was initialized with 0 frame #2875
 
 ## [5.2 Patch, on Oct 27th, 2019](https://github.com/rs/SDWebImage/releases/tag/5.2.4)
 See [all tickets marked for the 5.2.4 release](https://github.com/SDWebImage/SDWebImage/milestone/49)
 
 ### Fixes
-- Fix the regression issue that SDAnimatedImageView on macOS will change the wrong duration speed when pause and resume again #2873
-- Fix SDAnimatedImage on macOS use extra animates property check, which is not intuitive and cause extra setup before usage #2874
+- Fix the regression issue that TXAnimatedImageView on macOS will change the wrong duration speed when pause and resume again #2873
+- Fix TXAnimatedImage on macOS use extra animates property check, which is not intuitive and cause extra setup before usage #2874
 
 ## [5.2 Patch, on Oct 9th, 2019](https://github.com/rs/SDWebImage/releases/tag/5.2.3)
 See [all tickets marked for the 5.2.3 release](https://github.com/SDWebImage/SDWebImage/milestone/48)
@@ -507,16 +507,16 @@ See [all tickets marked for the 5.2.0 release](https://github.com/SDWebImage/SDW
 
 #### Image Coder
 - Supports HEIC sequence (animated) image on iOS 13/macOS 10.15+ #2849
-    - Note the HEIC animated coder does not enable by default. Add `SDImageHEICCoder` if you need the animation.
+    - Note the HEIC animated coder does not enable by default. Add `TXImageHEICCoder` if you need the animation.
 - Refactor APNG and GIF coder implementation with abstract base class #2846
-    - Now we use `SDImageIOAnimatedCoder` base class for all animated Image/IO coder implementation. Developer can get use of this as well.
+    - Now we use `TXImageIOAnimatedCoder` base class for all animated Image/IO coder implementation. Developer can get use of this as well.
 
 #### Animated Image
-- Support to clear frame buffer or reset frame index when stopped for SDAnimatedImageView #2815
+- Support to clear frame buffer or reset frame index when stopped for TXAnimatedImageView #2815
 
 ### Fixes
 - Fix the downloader LIFO order inverse issue when adding new urls during previous url query #2852 #2823
-- Fix the macOS SDAnimatedImageRep to match Netscape standard of GIF loop count, which should use 1 when there are no loop count information #2847 #2155
+- Fix the macOS TXAnimatedImageRep to match Netscape standard of GIF loop count, which should use 1 when there are no loop count information #2847 #2155
 
 ## [5.1 Patch, on Sep 5th, 2019](https://github.com/rs/SDWebImage/releases/tag/5.1.1)
 See [all tickets marked for the 5.1.1 release](https://github.com/SDWebImage/SDWebImage/milestone/44)
@@ -524,8 +524,8 @@ See [all tickets marked for the 5.1.1 release](https://github.com/SDWebImage/SDW
 ### Fixes
 
 - Fix that some option mask check with local BOOL variable, error result on 32 bit device. #2819 #2817
-- Fix the macOS that SDAnimatedImageView does not works for imageScaling and imageAlignment properties #2820
-- Fix the case when SDAnimatedImageView dealloc on the fetch queue, will cause it trigger the UIKit/AppKit method on non-main queue and captured by UI Main Thread Checker #2825
+- Fix the macOS that TXAnimatedImageView does not works for imageScaling and imageAlignment properties #2820
+- Fix the case when TXAnimatedImageView dealloc on the fetch queue, will cause it trigger the UIKit/AppKit method on non-main queue and captured by UI Main Thread Checker #2825
 
 ## [5.1.0 - SwiftPM and more, on Aug 3rd, 2019](https://github.com/rs/SDWebImage/releases/tag/5.1.0)
 See [all tickets marked for the 5.1.0 release](https://github.com/SDWebImage/SDWebImage/milestone/38)
@@ -547,11 +547,11 @@ See [all tickets marked for the 5.1.0 release](https://github.com/SDWebImage/SDW
 
 #### Cache
 
-- Expose the memoryCache and diskCache object on `SDImageCache`, Make it useful for user who have custom property beyond `SDImageCacheConfig` #2779
+- Expose the memoryCache and diskCache object on `TXImageCache`, Make it useful for user who have custom property beyond `TXImageCacheConfig` #2779
 
 ### Fixes
 
-- Fix SDAnimatedImageView's frame buffer bug when display link is pause #2782
+- Fix TXAnimatedImageView's frame buffer bug when display link is pause #2782
 - Fix the bug that UIButton setBackgroundImage convenient method does not pass the options arg to next function call #2785
 - Add a autoreleasepool when prefetch many images #2792
 - Feature supports dynamic style indicator for iOS 13, fix indicator color on macOS 10.14+ #2753
@@ -564,11 +564,11 @@ See [all tickets marked for the 5.1.0 release](https://github.com/SDWebImage/SDW
 
 ### Notable Behavior Changes
 
-- Ensure we always callback user's completion block even when cancelled with `SDWebImageErrorCancelled` error code #2692
+- Ensure we always callback user's completion block even when cancelled with `TXWebImageErrorCancelled` error code #2692
 
 This may effect some users. In previous 4.0~5.0 version, we will not callback completion block when we receive `cancel` call. (including all View Category/Cache/Manager/Downloader APIs)
 
-But from 5.1, we always callback on this case with error code `SDWebImageErrorCancelled`. You can filter this error code if you don't care about cancel.
+But from 5.1, we always callback on this case with error code `TXWebImageErrorCancelled`. You can filter this error code if you don't care about cancel.
 
 This change makes usages like Dispatch Group, observer, or any logic which relay on the completion's callback become acceptable, which is not reliable and will cause issue in previous versions.
 
@@ -584,7 +584,7 @@ Now, the default HTTP header filed `Accept`, use `image/*,*/*;q=0.8`, instead of
 See [all tickets marked for the 5.0.6 release](https://github.com/SDWebImage/SDWebImage/milestone/42)
 
 #### Fixes
-- Fix the SDAnimatedImageRep which use the deprecated API and cause compile issue on Xcode 11 #2745
+- Fix the TXAnimatedImageRep which use the deprecated API and cause compile issue on Xcode 11 #2745
 
 ## [5.0 Patch, on Jun 3rd, 2019](https://github.com/rs/SDWebImage/releases/tag/5.0.5)
 See [all tickets marked for the 5.0.5 release](https://github.com/SDWebImage/SDWebImage/milestone/41)
@@ -607,7 +607,7 @@ See [all tickets marked for the 5.0.3 release](https://github.com/SDWebImage/SDW
 
 #### Fixes
 - Fix SDWebImageDecodeFirstFrameOnly flag is ignored when image loaded from cache #2725
-- Fix that SDAnimatedImageView initWithImage will skip the initialize logic and crash #2728
+- Fix that TXAnimatedImageView initWithImage will skip the initialize logic and crash #2728
 - Replace if judge with MAX() function in scale less than 1 #2710
 
 #### Project
@@ -623,12 +623,12 @@ See [all tickets marked for the 5.0.3 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 5.0.2 release](https://github.com/SDWebImage/SDWebImage/milestone/37)
 
 #### Fixes
-- Fix the bug of SDAnimatedImageView on macOS, which can only render `SDAnimatedImage` but not normal NSImage (including animated image) #2706
+- Fix the bug of TXAnimatedImageView on macOS, which can only render `TXAnimatedImage` but not normal NSImage (including animated image) #2706
 - Fix that `CGImageCreateDecoded:orientation:` use the wrong aspect ratio when orientation is left/leftMirrored/right/rightMirrored #2708
 - Fix one bug of sd_colorAtPoint:, which set the alpha value default to 255 and should be 1. #2708
 
 #### Documentation
-- Fixes typo in SDImageCacheConfig maxDiskAge info #2699
+- Fixes typo in TXImageCacheConfig maxDiskAge info #2699
 
 ## [5.0 Patch, on Apr 11th, 2019](https://github.com/rs/SDWebImage/releases/tag/5.0.1)
 See [all tickets marked for the 5.0.1 release](https://github.com/SDWebImage/SDWebImage/milestone/36)
@@ -647,7 +647,7 @@ See [all tickets marked for the 5.0.0 release](https://github.com/SDWebImage/SDW
 ### Features
 
 #### Animated Image
-- Introduce `SDAnimatedImageView` and `SDAnimatedImage` for full stack solution of animated images.
+- Introduce `TXAnimatedImageView` and `TXAnimatedImage` for full stack solution of animated images.
 - Supports custom coders for nearly every animated image format.
 - Supports progressive loading for animated images.
 - iOS/tvOS/macOS cross-platform support.
@@ -658,14 +658,14 @@ See [all tickets marked for the 5.0.0 release](https://github.com/SDWebImage/SDW
 - Convenient category methods for `UIImage`/`NSImage`
 
 #### Custom Loader
-- Using `SDImageLoader` protocol to implements your own image loader.
+- Using `TXImageLoader` protocol to implements your own image loader.
 - Not limited on HTTP, you can even using SDWebImage with PhotoKit and third-party SDKs.
-- Supports multiple loaders at the same time when using `SDImageLoadersManager`.
+- Supports multiple loaders at the same time when using `TXImageLoadersManager`.
 
 #### Custom Cache
-- Using `SDImageCache` protocol to implement your own image cache.
+- Using `TXImageCache` protocol to implement your own image cache.
 - Standalone disk cache and memory cache class for advanced usage and customization.
-- Supports multiple caches at the same time when using `SDImageCachesManager`.
+- Supports multiple caches at the same time when using `TXImageCachesManager`.
 
 #### Indicator
 - Use indicator to provide a loading view, customizable.
@@ -780,7 +780,7 @@ You can always check [5.0 migration guide](https://github.com/SDWebImage/SDWebIm
 See [all tickets marked for the 5.0.0 release](https://github.com/rs/SDWebImage/milestone/15)
 
 #### Features
-- Minimum progress interval config for `SDWebImageDownloader` #2415 #2437 1d8454d
+- Minimum progress interval config for `TXWebImageDownloader` #2415 #2437 1d8454d
 - Feature disk cache migration from 4.x #2417 #2433
 - Add `SDImageFormatHEIF` represent `mif1` && `msf1` brands #2423 (imported from 4.4.3)
 - Add default `HTTP User-Agent` for specific system #2409 (imported from 4.4.3)
@@ -789,14 +789,14 @@ See [all tickets marked for the 5.0.0 release](https://github.com/rs/SDWebImage/
 - Enhanced contributing guide #2416
 - Adopt all the protocol APIs which contains getter value to use property instead, to make the API easy to use or Swift user #2452
 - Remove `sd_setAnimationImagesWithURLs` API, because its cause ambiguity, behave not consistently and have rare use case #2459
-- Improved `SDAnimatedImage` protocol with `initWithData:scale:options:` #2453
+- Improved `TXAnimatedImage` protocol with `initWithData:scale:options:` #2453
 - Extra args for `SDSetImageBlock` (added `cacheType` and `imageURL`) #2449
 
 #### Fixes
 - Fix that using `NS_TYPED_ENUM` on `SDImageFormat` cause the existing Swift API (`sd_UTTypeFromImageFormat`) naming changed #2413
 - Fix that downloader options about image decoding is not correctly set #2414
 - Make download receive response notification only dispatch to specific observer #2426
-- Fix a race condition during progressive animation load in `SDAnimatedImageView` #2435
+- Fix a race condition during progressive animation load in `TXAnimatedImageView` #2435
 - Fix the bug that `SDWebImageContextCacheKeyFilter` wrongly be used as cache serializer and cause crash #2451
 - Fix resource key invalid when clean cached disk file #2462
 - Add no expiration file support of disk cache #2461
@@ -805,7 +805,7 @@ See [all tickets marked for the 5.0.0 release](https://github.com/rs/SDWebImage/
 See [all tickets marked for the 5.0.0 release](https://github.com/rs/SDWebImage/milestone/15)
 
 #### Features
-- Add `SDImageCoderWebImageContext` coder option, which allow custom coder plugin, to receive the context option from top-level API #2405
+- Add `TXImageCoderWebImageContext` coder option, which allow custom coder plugin, to receive the context option from top-level API #2405
 - Updated all existing diagrams for 5.0 release + added new ones (small detailed diagrams for the most important components) #2407
 
 #### Fixes
@@ -830,7 +830,7 @@ See [all tickets marked for the 4.4.4 release](https://github.com/SDWebImage/SDW
 - Retain operation when post download related notifications (Hopefully fix, but if you face crash, please open a issue) #2576
 
 #### Performances
-- Prioritize SDWebImageDownloaderHighPriority if operation already exists #2575
+- Prioritize TXWebImageDownloaderHighPriority if operation already exists #2575
 
 #### Project
 - Let SD can be imported using static library by CocoaPods using `DEFINES_MODULE` #2549
@@ -847,7 +847,7 @@ See [all tickets marked for the 4.4.3 release](https://github.com/SDWebImage/SDW
 - Add `SDImageFormatHEIF` represent `mif1` && `msf1` brands #2423
 - remove `addProgressCallback`, add `createDownloaderOperationWithUrl` #2336
 - Fix the bug when `FLAnimatedImageView` firstly show one EXIF rotation JPEG `UIImage`, later animated GIF `FLAnimatedImage` will also be rotated #2406
-- Replace `SDWebImageDownloaderOperation` with `NSOperation<SDWebImageDownloaderOperationInterface>` to make generic #2397
+- Replace `TXWebImageDownloaderOperation` with `NSOperation<TXWebImageDownloaderOperationInterface>` to make generic #2397
 - Fix wrong image cache type when disk and memory cache missed #2529
 - Fix FLAnimatedImage version check issue for custom property `optimalFrameCacheSize` && `predrawingEnabled` #2543
 
@@ -864,13 +864,13 @@ See [all tickets marked for the 4.4.3 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 4.4.2 release](https://github.com/SDWebImage/SDWebImage/milestone/27)
 
 #### Features
-- Ability to change the clear cache option `SDImageCacheConfig.diskCacheExpireType` #2357
-- Add option to enable or disable weak memory cache for `SDImageCache` via `SDImageCacheConfig.shouldUseWeakMemoryCache` #2379
+- Ability to change the clear cache option `TXImageCacheConfig.diskCacheExpireType` #2357
+- Add option to enable or disable weak memory cache for `TXImageCache` via `TXImageCacheConfig.shouldUseWeakMemoryCache` #2379
 - Add cache control for `FLAnimatedImage`, this allow user to disable memory cache for associated `FLAnimatedImage` instance #2378
-- Add `diskImageDataForKey:` sync API for `SDImageCache` to directly get the image data from disk #2391
+- Add `diskImageDataForKey:` sync API for `TXImageCache` to directly get the image data from disk #2391
 
 #### Fixes
--  `SDWebImageManager.runningOperations` type changed from `Array` to `Set` #2382
+-  `TXWebImageManager.runningOperations` type changed from `Array` to `Set` #2382
 - Keep the information about image's original compressed format #2390
 - Fix `FLAnimatedImageView+WebCache` delayed draw due to #2047 which is now reverted #2393
 - Check for nullable key when cancel image load operation #2386
@@ -888,9 +888,9 @@ See [all tickets marked for the 5.0.0 release](https://github.com/rs/SDWebImage/
 See the [5.0 Migration Guide](https://raw.githubusercontent.com/rs/SDWebImage/master/Docs/SDWebImage-5.0-Migration-guide.md) for a list of comprehensive changes and the way to update your code
 
 #### Features
-- Introduce `SDAnimatedImageView`, `SDAnimatedImage` and refactor the way we handle animated images #2140
-- Added APNG support via dedicated coder `SDImageAPNGCoder` #2149
-- Refactored `SDWebImageDownloader` configs, separated them into a dedicated `SDWebImageDownloaderConfig` object #2263
+- Introduce `TXAnimatedImageView`, `TXAnimatedImage` and refactor the way we handle animated images #2140
+- Added APNG support via dedicated coder `TXImageAPNGCoder` #2149
+- Refactored `TXWebImageDownloader` configs, separated them into a dedicated `TXWebImageDownloaderConfig` object #2263
 - Refactored the way we work with the scale factor #2266
 - Created request and response modifier #2261
 - Refactor Cache Path API #2276
@@ -900,16 +900,16 @@ See the [5.0 Migration Guide](https://raw.githubusercontent.com/rs/SDWebImage/ma
 - Refactor - custom image loader - Supports loader protocol #2256
 - Use `SDWebImageAvoidDecodeImage` to allow user to control force decode feature for individual image request #2283
 
-- `SDImageCache` supports disk cache writing options. See `SDImageCacheConfig diskCacheWritingOptions` #2148
-- `SDImageCache` now uses `NSData writeToFile:options:error` instead of `NSFileManager createFileAtPath:contents:attributes` #2148
-- Moved `SDImageCache maxMemoryCost` and `SDImageCache maxMemoryCountLimit` to `SDImageCacheConfig` #2151
-- Added `SDImageCache diskImageDataExistsWithKey:` synchronous method #2151
+- `TXImageCache` supports disk cache writing options. See `TXImageCacheConfig diskCacheWritingOptions` #2148
+- `TXImageCache` now uses `NSData writeToFile:options:error` instead of `NSFileManager createFileAtPath:contents:attributes` #2148
+- Moved `TXImageCache maxMemoryCost` and `TXImageCache maxMemoryCountLimit` to `TXImageCacheConfig` #2151
+- Added `TXImageCache diskImageDataExistsWithKey:` synchronous method #2151
 - Moved `UIImage sd_imageLoopCount` and `UIImage isGIF` (and renamed to `sd_isAnimated`) to `UIImage+Metadata` category, removed the outdated methods #2152
-- Move context and other type definitions to a separate header (`SDWebImageDefine`) to allow to be included without dependency #2188
+- Move context and other type definitions to a separate header (`TXWebImageDefine`) to allow to be included without dependency #2188
 - Pass `context` arg from the top level APIs to the bottom level APIs to allow specify logic in the future #2189 d6a3e2c c24c3d3
-- Refactor the image indicator by creating `SDWebImageIndicator` and `SDWebImageProgressIndicator` protocols and two concrete classes that implement activity and progress indicators for both UIKit and AppKit #2185 46b62cf
-- Refactor the implementation of `SDWebImagePrefetcher` so it behaves more like a "shared instance" object, similar to other platform classes. Each instance will manage its own list of urls. #2191 1efc247 92f3d2c bc164d6
-- Refactored and enhanced the way we allow image transformations. Switched from a single delegate method to composition of `SDImageTransformer` #2219
+- Refactor the image indicator by creating `TXWebImageIndicator` and `SDWebImageProgressIndicator` protocols and two concrete classes that implement activity and progress indicators for both UIKit and AppKit #2185 46b62cf
+- Refactor the implementation of `TXWebImagePrefetcher` so it behaves more like a "shared instance" object, similar to other platform classes. Each instance will manage its own list of urls. #2191 1efc247 92f3d2c bc164d6
+- Refactored and enhanced the way we allow image transformations. Switched from a single delegate method to composition of `TXImageTransformer` #2219
 - API style refactoring - #2250
   - Use property instead of setters and getters to make the property available in Swift
   - Use class property with the correct name instead of `+(instanceType)sharedInstance` in singleton to make it more easy to use in Swift. The generated interface should be simple `open class var shared { get }`
@@ -919,14 +919,14 @@ See the [5.0 Migration Guide](https://raw.githubusercontent.com/rs/SDWebImage/ma
   - Change all key for Dictionary with `NS_STRING_ENUM` to make it easy to use in Swift with dot syntax
   - Change all global value type which represent enum with `NS_TYPED_ENUM` to make it easy to use in Swift with dot syntax
 - Remove the extra calculation of image orientation for ImageIO coder & Fix macOS image orientation #2271
-- Added `SDWebImageError` (defined as `NS_ERROR_ENUM`) to group all our errors together #2290
+- Added `TXWebImageError` (defined as `NS_ERROR_ENUM`) to group all our errors together #2290
 - Added tests for macOS
 - Add the `SDWebImageContextStoreCacheType` context option to specify target cache type when the image is downloaded by manager and will store to cache #2360
 - Feature watchOS `WKInterfaceImage` with `sd_setImageWithURL` #2331
 - Add options to specify query cache sync/async behavior #2312
 
 #### Fixes
-- `SDWebImageManager loadImageWithURL:options:progress:completed:` changed the `completed` param requirement from `nullable` to `nonnull` #2164
+- `TXWebImageManager loadImageWithURL:options:progress:completed:` changed the `completed` param requirement from `nullable` to `nonnull` #2164
 
 ## [4.4.1 - 4.4 patch, on June 7th, 2018](https://github.com/SDWebImage/SDWebImage/releases/tag/4.4.1)
 See [all tickets marked for the 4.4.1 release](https://github.com/SDWebImage/SDWebImage/milestone/26)
@@ -945,13 +945,13 @@ See [all tickets marked for the 4.4.0 release](https://github.com/SDWebImage/SDW
 	- Add the support for watchOS to use View Category method (`sd_setImageWithURL:`) on WKInterfaceImage #2343
 	- Add optimalFrameCacheSize && predrawingEnabled options for FLAnimatedImage #2323
 - Cache
-	- Add `SDImageCacheScaleDownLargeImages` to allow cache to scale down large images if need #2281 #2273
+	- Add `TXImageCacheScaleDownLargeImages` to allow cache to scale down large images if need #2281 #2273
 
 #### Improvements
 - View Category
 	- Add `UIViewAnimationOptionAllowUserInteraction` as default options for convenient image transition #2315
 - Manager
-	- Replace `@synchronized` with dispatch_semaphore_t in SDWebImageManager #2340
+	- Replace `@synchronized` with dispatch_semaphore_t in TXWebImageManager #2340
 
 #### Performances
 - Coder
@@ -975,7 +975,7 @@ See [all tickets marked for the 4.3.3 release](https://github.com/SDWebImage/SDW
 
 #### Features
 - Manager
-	- Add cacheSerializer to allow user provide modified version of data when storing the disk cache in SDWebImageManager #2245
+	- Add cacheSerializer to allow user provide modified version of data when storing the disk cache in TXWebImageManager #2245
 	- Add a delegate method to control the custom logic when blocking the failed url #2246
 
 #### Improvements
@@ -999,7 +999,7 @@ See [all tickets marked for the 4.3.1 release](https://github.com/SDWebImage/SDW
 
 #### Fixes
 - Cache
-	- Fix that SDImageCacheQueryDataWhenInMemory should response cacheType to memory cache when the in-memory cache hit #2218
+	- Fix that TXImageCacheQueryDataWhenInMemory should response cacheType to memory cache when the in-memory cache hit #2218
 - Project
 	- Fix the macOS wrong minimum deployment target version to 10.9 #2206
 
@@ -1069,20 +1069,20 @@ See [all tickets marked for the 4.3.0 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 4.2.3 release](https://github.com/SDWebImage/SDWebImage/milestone/20)
 
 #### Features
-- Add a public API to allow user to invalidate URLSession used in SDWebImageDownloader to avoid memory leak on non-singleton instance #2116
+- Add a public API to allow user to invalidate URLSession used in TXWebImageDownloader to avoid memory leak on non-singleton instance #2116
 - Add a SDWebImageExternalCustomManagerKey context arguments to allow user to custom image manager for UIView category #2115
-- Allow custom SDWebImageDownloaderOperation to handle HTTP redirect #2123
+- Allow custom TXWebImageDownloaderOperation to handle HTTP redirect #2123
 
 #### Fixes
 - Fix that FLAnimatedImageView blink and flash when collectionView reload #2102 #2106
-- Fix that SDWebImagePrefetcher startPrefetchingAtIndex accident crash #2110 #2111
+- Fix that TXWebImagePrefetcher startPrefetchingAtIndex accident crash #2110 #2111
 - Fix that Progressive WebP decoding not showing on iOS 11.2 #2130 #2131
 - Fix crash in method implementation of sd_cancelImageLoadOperationWithKey, and avoid retain of operation #2113 #2125 #2132
 - Fix Clang Static Analyzer warning for number nil check from Xcode 9.2 #2142 #2143
 
 #### Improvements
 - Adopt the current requirement, change ImageIO coder's canDecodeFromHEIC to actual implementation #2146 #2138
-- When store image with no data for SDImageCache, check whether it contains alpha to use PNG or JPEG format #2136
+- When store image with no data for TXImageCache, check whether it contains alpha to use PNG or JPEG format #2136
 
 ## [4.2.2 - 4.2 Patch, on Nov 7th, 2017](https://github.com/SDWebImage/SDWebImage/releases/tag/4.2.2)
 See [all tickets marked for the 4.2.2 release](https://github.com/SDWebImage/SDWebImage/milestone/19)
@@ -1112,7 +1112,7 @@ See [all tickets marked for the 4.2.0 release](https://github.com/SDWebImage/SDW
 - Welcome back our previous `UIImage+GIF` category for animated GIF! Not enabled by default. #2064
 - Add the animated GIF encoding support for `SDWebImageGIFCoder` on `macOS` (use `NSImage` API) #2067
 - Implemented `-[NSImage isGIF]` method to return whether current `NSImage` has GIF representation #2071
-- Allow user to provide reading options such as mapped file to improve performance in `SDImageCache` disk cache #2057
+- Allow user to provide reading options such as mapped file to improve performance in `TXImageCache` disk cache #2057
 - Add progressive image load for WebP images #1991 #1987 #1986
 - CI builds use Xcode 9
 - Fixed our tests and improved the code coverage #2068
@@ -1121,7 +1121,7 @@ See [all tickets marked for the 4.2.0 release](https://github.com/SDWebImage/SDW
 - Fixed lost orientation issues #1991 #2034 #2026 #1014 #1040 #815
 - Fixed `UIImage(GIF) sd_animatedGIFWithData` crash #1991 #1837
 - Fixed progressive WebP height issue #2066
-- Fixed `SDWebImageManager.m __destroy_helper_block_` crash #2048 #1941
+- Fixed `TXWebImageManager.m __destroy_helper_block_` crash #2048 #1941
 - Fixed cached image filename are sometimes generated with invalid path extensions #2061
 - Fixed GIF performance problem #1901 by creating `FLAnimatedImage` instance on global queue #2047
 
@@ -1133,7 +1133,7 @@ See [all tickets marked for the 4.1.2 release](https://github.com/SDWebImage/SDW
 
 #### Fixes
 
-- Fix `SDWebImageDownloaderOperation` not call `done` when use `SDWebImageDownloaderIgnoreCachedResponse` #2049
+- Fix `TXWebImageDownloaderOperation` not call `done` when use `TXWebImageDownloaderIgnoreCachedResponse` #2049
 - Static `WebP` decoding little enhancement. Do not need create `WebP` iterator for static images #2050
 - Change `finished` check from `equal` to `equal or greater than` to protect accident condition #2051
 
@@ -1142,8 +1142,8 @@ See [all tickets marked for the 4.1.1 release](https://github.com/SDWebImage/SDW
 
 #### Fixes
 
-- Fixed crash on `[SDWebImageDownloaderOperation reset]_block_invoke` 2f892f9 fixes #1883
-- Fixed `SDWebImageDownloadOperation` `imageData` multi-thread issue #2011 fixes #1998 `[SDWebImageDownloaderOperation URLSession:dataTask:didReceiveData:]` crash
+- Fixed crash on `[TXWebImageDownloaderOperation reset]_block_invoke` 2f892f9 fixes #1883
+- Fixed `SDWebImageDownloadOperation` `imageData` multi-thread issue #2011 fixes #1998 `[TXWebImageDownloaderOperation URLSession:dataTask:didReceiveData:]` crash
 - Fixed `CFRelease` on `NULL` if `CGImageSourceRef` create failed #1978 fixes #1968 #1834 #1947
 - Fixed request cache policy #1994 #2032 fixes #1993 #1861 #1623 was introduced by #1737 (unit test #2031)
 - Fixed `CGBitmapContextCreate` bitmap memory leak #1976 replaces #1860 fixes #1974
@@ -1170,7 +1170,7 @@ See [all tickets marked for the 4.1.0 release](https://github.com/SDWebImage/SDW
 
 #### Features
 
-- add ability to change `NSURLSessionConfiguration` used by `SDWebImageDownloader` #1891 fixes #1870
+- add ability to change `NSURLSessionConfiguration` used by `TXWebImageDownloader` #1891 fixes #1870
 - support animated GIF on `macOS` #1975
 - cleanup the Swift interface by making unavailable all methods with missing params that have alternatives - see #1797 - this may cause require some changes in the Swift code
 
@@ -1179,9 +1179,9 @@ See [all tickets marked for the 4.1.0 release](https://github.com/SDWebImage/SDW
 - handle `NSURLErrorNetworkConnectionLost` #1767
 - fixed `CFBundleVersion` and `CFBundleShortVersionString` not valid for all platforms #1784 + 23a8be8 fixes #1780
 - fixed `UIActivityIndicator` not always initialized on main thread #1802 + a6af214 fixes #1801
-- `SDImageCacheConfig` forward declaration changed to import #1805
+- `TXImageCacheConfig` forward declaration changed to import #1805
 - making image downloading cache policy more clearer #1737
-- added `@autoreleasepool` to `SDImageCache.storeImage` #1849
+- added `@autoreleasepool` to `TXImageCache.storeImage` #1849
 - fixed 32bit machine `long long` type transfer to NSInteger may become negative #1879
 - fixed crash on multiple concurrent downloads when accessing `self.URLOperations` dictionary #1911 fixes #1909 #1950 #1835 #1838
 - fixed crash due to incorrectly retained pointer to operation `self` which appears to create a dangled pointer #1940 fixes #1807 #1858 #1859 #1821 #1925 #1883 #1816 #1716
@@ -1206,7 +1206,7 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 
 #### Features
 
-- Add an option to scale down large images #787 00bf467 efad1e5 8d1a0ae. Fixed #538, #880 and #586. This one is a more robust solution than #884 or #894. Can be activated via `SDWebImageScaleDownLargeImages` or `SDWebImageDownloaderScaleDownLargeImages`
+- Add an option to scale down large images #787 00bf467 efad1e5 8d1a0ae. Fixed #538, #880 and #586. This one is a more robust solution than #884 or #894. Can be activated via `SDWebImageScaleDownLargeImages` or `TXWebImageDownloaderScaleDownLargeImages`
 
 #### Fixes
 
@@ -1237,23 +1237,23 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 #### Backwards incompatible changes
 
 - removed all deprecated methods (that we carried around for backwards compatibility in previous versions) #774
-- Renamed `SDWebImageManager` `downloadImageWithURL:options:progress:completed:` to `loadImageWithURL:options:progress:completed:` as it makes more sense, since we check the cache first and download only if needed a32a177
+- Renamed `TXWebImageManager` `downloadImageWithURL:options:progress:completed:` to `loadImageWithURL:options:progress:completed:` as it makes more sense, since we check the cache first and download only if needed a32a177
 - Deleted targets: `SDWebImage+MKAnnotation`, `SDWebImage+WebP`, `SDWebImageFramework`:  
   - `SDWebImage `target that build as a static library (all subspecs included) -> `libSDWebImage.a`
   - `SDWebImageiOS` and `SDWebImagetvOS` targets that build as dynamic frameworks
 - Renamed the dynamic frameworks targets from `WebImage` to `SDWebImage`. Renamed the `WebImage.h` to `SDWebImage.h` to match the framework naming
 - Renamed the schemes for consistency. Updated the Tests Podfile + project.
 - For #883 Fix multiple requests for same image and then canceling one, several breaking changes were needed:
-  - `SDWebImageDownloader` method `- downloadImageWithURL:options:progress:completed:` now returns a `SDWebImageDownloadToken *` instead of `id <SDWebImageOperation>` (give the ability to cancel downloads using the returned token)
-  - `SDWebImageDownloaderOperation` initializer `- initWithRequest:options:progress:completed:cancelled` split into `- initWithRequest:options` and `addHandlersForProgress:completed:`. Note: there is no more cancel block
+  - `TXWebImageDownloader` method `- downloadImageWithURL:options:progress:completed:` now returns a `SDWebImageDownloadToken *` instead of `id <TXWebImageOperation>` (give the ability to cancel downloads using the returned token)
+  - `TXWebImageDownloaderOperation` initializer `- initWithRequest:options:progress:completed:cancelled` split into `- initWithRequest:options` and `addHandlersForProgress:completed:`. Note: there is no more cancel block
 - Modern Objective-C syntax done in 64382b9 includes:
   - initializers now return `instancetype` instead of `id`
-  - explicit designated initializers (i.e. for `SDImageCache`)
+  - explicit designated initializers (i.e. for `TXImageCache`)
 - For #1575 GIF support using FLAnimatedImage, several changes were needed:
   - replaced type `SDWebImageQueryCompletedBlock` with `SDCacheQueryCompletedBlock` and added an `NSData *` param
-  - because of the change above, the `done` param of `SDImageCache` `queryDiskCacheForKey:done:` is now a `SDCacheQueryCompletedBlock` and those blocks must now include an `NSData *` param
+  - because of the change above, the `done` param of `TXImageCache` `queryDiskCacheForKey:done:` is now a `SDCacheQueryCompletedBlock` and those blocks must now include an `NSData *` param
   - replaced type `SDWebImageCompletionWithFinishedBlock` with `SDInternalCompletionBlock` and added an `NSData *` param
-  - because of the change above, the `completed` param of `SDWebImageManager` `loadImageWithURL:options:progress:completed:` is now `SDInternalCompletionBlock` and those blocks must now include an `NSData *` param
+  - because of the change above, the `completed` param of `TXWebImageManager` `loadImageWithURL:options:progress:completed:` is now `SDInternalCompletionBlock` and those blocks must now include an `NSData *` param
   - for consistency with the previous change, also renamed `SDWebImageCompletionBlock` to `SDExternalCompletionBlock`
   - `UIImage` will no longer respond to `sd_animatedGIFNamed:` or `sd_animatedImageByScalingAndCroppingToSize:`
 - Xcode 7 Objective-C updates (Lightweight Generics and Nullability) #1581
@@ -1262,24 +1262,24 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
   - renamed `SDWebImage` iOS static lib target to `SDWebImage iOS static` for clarity
 - improving the unit tests code coverage #1681 required
   - Refactored `NSData` `ImageContentType` category, instead of returning the contentType as a string, the new added method `sd_imageFormatForImageData` will return a `SDImageFormat` enum value
-  - `SDImageCache` configuration properties moved into `SDImageCacheConfig` (which is now available via `config` property):
+  - `TXImageCache` configuration properties moved into `TXImageCacheConfig` (which is now available via `config` property):
     - `shouldDecompressImages`
     - `shouldDisableiCloud`
     - `shouldCacheImagesInMemory`
     - `maxCacheAge`
     - `maxCacheSize`
-  - The `storeImage:` methods from `SDImageCache` were async already, but declared as sync. Properly marked them as async + added completion. Got rid of the recalculate param. If the `NSData` is provided, use it. Otherwise, recalculate from the `UIImage`
-  - Removed the synchronous methods `diskImageExistsForURL:` and `cachedImageExistsForURL:` from `SDWebImageManager`
-  - Removed the synchronous method `diskImageExistsWithKey:` from `SDImageCache`
-  - Get rid of the confusion caused by `cleanDisk` and `clearDisk` on `SDImageCache`. Renamed `cleanDisk` to `deleteOldFiles`. No longer expose the sync `clearDisk` and `deleteOldFiles`, just the async ones.
-  - Renamed `SDImageCache` `queryDiskCacheForKey:done:` to `queryCacheOperationForKey:done:`
-  - Another `SDImageCache` clarification: `imageFromDiskCacheForKey:` used to also check the memory cache which I think is misleading. Now `imageFromDiskCacheForKey` only checks the disk cache and the new method `imageFromCacheForKey` checks both caches
-  - Got rid of `removeImageForKey:` and `removeImageForKey:fromDisk:` from `SDImageCache` that looked sync but were async. Left only the 2 async ones
+  - The `storeImage:` methods from `TXImageCache` were async already, but declared as sync. Properly marked them as async + added completion. Got rid of the recalculate param. If the `NSData` is provided, use it. Otherwise, recalculate from the `UIImage`
+  - Removed the synchronous methods `diskImageExistsForURL:` and `cachedImageExistsForURL:` from `TXWebImageManager`
+  - Removed the synchronous method `diskImageExistsWithKey:` from `TXImageCache`
+  - Get rid of the confusion caused by `cleanDisk` and `clearDisk` on `TXImageCache`. Renamed `cleanDisk` to `deleteOldFiles`. No longer expose the sync `clearDisk` and `deleteOldFiles`, just the async ones.
+  - Renamed `TXImageCache` `queryDiskCacheForKey:done:` to `queryCacheOperationForKey:done:`
+  - Another `TXImageCache` clarification: `imageFromDiskCacheForKey:` used to also check the memory cache which I think is misleading. Now `imageFromDiskCacheForKey` only checks the disk cache and the new method `imageFromCacheForKey` checks both caches
+  - Got rid of `removeImageForKey:` and `removeImageForKey:fromDisk:` from `TXImageCache` that looked sync but were async. Left only the 2 async ones
   - Removed `UIImageView` `sd_cancelCurrentHighlightedImageLoad`
 - Added `sd_` prefix to the activity indicator related methods (`setShowActivityIndicatorView:`, `setIndicatorStyle:`, `showActivityIndicatorView`, `addActivityIndicator`, `removeActivityIndicator`) #1640
 - Use `dispatch_main_async_safe` for all the completion blocks on the main queue (used to be `dispatch_sync`) - avoiding locks.
 - Removed `dispatch_main_sync_safe` as it can be mistakenly used
-- Add `url` as param to progress block `SDWebImageDownloaderProgressBlock` - #984
+- Add `url` as param to progress block `TXWebImageDownloaderProgressBlock` - #984
 
 #### Features:
 
@@ -1290,21 +1290,21 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 - Converted any remaining code to Modern Objective-C syntax - 64382b9
 - Xcode 7 Objective-C updates (Lightweight Generics and Nullability) #1581
 - via #1595 Clarified and simplified the usage of `TARGET_OS_*` macros. Added `SD_MAC`, `SD_UIKIT`, `SD_IOS`, `SD_TV`, `SD_WATCH`. The biggest issue here was `TARGET_OS_MAC` was 1 for all platforms and we couldn't rely on it.
-- Replaces #1398 Allow to customise cache and image downloader instances used with `SDWebImageManager` - added a new initializer (`initWithCache:downloader:`) 9112170
+- Replaces #1398 Allow to customise cache and image downloader instances used with `TXWebImageManager` - added a new initializer (`initWithCache:downloader:`) 9112170
 - `UIImage` responds to `sd_imageData` and `sd_imageDataAsFormat:` via the `MultiFormat` category. Those methods transform a `UIImage` to the `NSData` representation 82d1f2e
-- Created `SDWebImageDownloaderOperationInterface` to describe the behavior of a downloader operation. Any custom operation must conform to this protocol df3b6a5
+- Created `TXWebImageDownloaderOperationInterface` to describe the behavior of a downloader operation. Any custom operation must conform to this protocol df3b6a5
 - Refactored all the duplicate code from our `WebCache` categories into a `UIView` `WebCache` category. All the other categories will make calls to this one. Customization of setting the image is done via the `setImageBlock` and the `operationKey` e1840c3
 - Due to the change above, the activity indicator can now be added to `UIButton`, `MKAnnotationView`, `UIImageView`
 - Animated WebP support #1438
 - The shared objects (not really singletons) should allow subclassing, therefore the return type of the shared resource method should be `instancetype` and not a fixed type - c57cf7e
-- Allow to specify `NSURLSessionConfiguration` for `SDWebImageDownloader` #1654
-- Add `url` as param to progress block `SDWebImageDownloaderProgressBlock` - #984
+- Allow to specify `NSURLSessionConfiguration` for `TXWebImageDownloader` #1654
+- Add `url` as param to progress block `TXWebImageDownloaderProgressBlock` - #984
 
 #### Fixes:
 
 - Fix multiple requests for same image and then canceling one #883 + 8a78586
 - Fixed #1444 and the master build thanks to [@kenmaz](https://github.com/kenmaz/SDWebImage/commit/5034c334be50765dfe4e97c48bcb74ef64175188)
-- Fixed an issue with the `SDWebImageDownloaderOperation` : `cancelInternal` was not called because of the old mechanism rellying on the `thread` property - probably because that thread did not have a runloop. Removed that and now cancelInternal is called as expected f4bdae6
+- Fixed an issue with the `TXWebImageDownloaderOperation` : `cancelInternal` was not called because of the old mechanism rellying on the `thread` property - probably because that thread did not have a runloop. Removed that and now cancelInternal is called as expected f4bdae6
 - Replaced #781 on replacing dispatch_sync with dispatch_async for the main queue 062e50a f7e8246 c77adf4 fdb8b2c 265ace4 0c47bc3. Check for main queue instead of main thread.
 - Fixed #1619 iOS 10 crash (`setObjectForKey: object cannot be nil`) - #1676 7940577
 - Fixed #1326 #1424 (`Carthage bitcode issue`) - #1593
@@ -1325,7 +1325,7 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 #### Fixes:
 
 - SDWebImage 3.8.0 get wrong image #1589 - the issue was caused by the changes in 3.8.0 (Removed the URL query params from the filename (key) fb0cdb6d 1bf62d4 #1584 - fixes #1433 #1553 #1583 #1585) - Reverted. 
-- Note: The solution for those issues (i.e. #1433 #1553) is to set the `SDWebImageManager` `cacheKeyFilter` block and do their own calculations there.
+- Note: The solution for those issues (i.e. #1433 #1553) is to set the `TXWebImageManager` `cacheKeyFilter` block and do their own calculations there.
 
 ## [3.8.0 Minor release - Replaces NSURLConnection (deprecated) with NSURLSession - on Jun 6th, 2016](https://github.com/SDWebImage/SDWebImage/releases/tag/3.8.0)
 
@@ -1336,7 +1336,7 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 #### Features:
 
 - Replace deprecated `NSURLConnection` with `NSURLSession` #1578 #1586 - fixes #1291 #1318 #823 #1566 #1515
-- Allow to customise cache and image downloader instances used with `SDWebImageManager` 86fc47bf7b - fixes #1398 #870
+- Allow to customise cache and image downloader instances used with `TXWebImageManager` 86fc47bf7b - fixes #1398 #870
 
 #### Fixes:
 
@@ -1350,8 +1350,8 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 - Changed the **libwebp git url** so that people from China can access it - #1390 (from `https://chromium.googlesource.com/webm/libwebp` to `https://github.com/webmproject/libwebp`)
 
 #### Features:
-- Added `cancelAllDownloads` method to `SDWebImageDownloader` #1504 
-- Added API to save image `NSData` to disk cache: `[SDImageCache storeImageDataToDisk:forKey:]` #1453 
+- Added `cancelAllDownloads` method to `TXWebImageDownloader` #1504 
+- Added API to save image `NSData` to disk cache: `[TXImageCache storeImageDataToDisk:forKey:]` #1453 
 
 #### Fixes:
 - Fix #1449: Version 3.7.5 breaks semantic versioning (removes public API). Re-added `sd_setImageWithPreviousCachedImageWithURL:andPlaceholderImage:options:progress:completed:` and deprecated it. Will remove it in 4.0.0 b40124c
@@ -1385,7 +1385,7 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 - fix #1035 -> progress queue with dispatch_async
 - new feature -> activity indicator using auto layout. The activity indicator feature will replace #131
 - #1218 progress callbacks now report on main thread - fixes #1035
-- #1321 Added a new constructor to SDWebImagePrefetcher - replaces #956
+- #1321 Added a new constructor to TXWebImagePrefetcher - replaces #956
 - #976 append the original path extension to the hash filename - fixes #967
 - replaced #999 with #1221
 - added cache tests #1125
@@ -1417,7 +1417,7 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 - Added support for custom disk cache folder with fall back for caches directory [#1153](https://github.com/SDWebImage/SDWebImage/pull/1153) 
 - Added some files to the workspace so they are easier to edit [8431481](https://github.com/SDWebImage/SDWebImage/commit/8431481)
 - Doc update [72ed897](https://github.com/SDWebImage/SDWebImage/commit/72ed897) [7f99c01](https://github.com/SDWebImage/SDWebImage/commit/7f99c01) [#1016](https://github.com/SDWebImage/SDWebImage/pull/1016) [#1038](https://github.com/SDWebImage/SDWebImage/pull/1038) [#1045](https://github.com/SDWebImage/SDWebImage/pull/1045)
-- [Memory Issue] Clear `SDWebImagePrefetcher` `progressBlock` when it has completed [#1017](https://github.com/SDWebImage/SDWebImage/pull/1017) 
+- [Memory Issue] Clear `TXWebImagePrefetcher` `progressBlock` when it has completed [#1017](https://github.com/SDWebImage/SDWebImage/pull/1017) 
 - avoid warning `<Error>: ImageIO: CGImageSourceCreateWithData data parameter is nil` if `imageData` is nil [88ee3c6](https://github.com/SDWebImage/SDWebImage/commit/88ee3c6) [#1018](https://github.com/SDWebImage/SDWebImage/pull/1018) 
 - allow override `diskCachePath` [#1041](https://github.com/SDWebImage/SDWebImage/pull/1041) 
 - Use `__typeof(self)` when assigning `weak` reference for block [#1054](https://github.com/SDWebImage/SDWebImage/pull/1054) 
@@ -1444,9 +1444,9 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 - bumped `libwep` version to `0.4.3`
 
 #### Features:
-- implement `SDWebImageDownloaderAllowInvalidSSLCertificates` option - [#937](https://github.com/SDWebImage/SDWebImage/pull/937) 
+- implement `TXWebImageDownloaderAllowInvalidSSLCertificates` option - [#937](https://github.com/SDWebImage/SDWebImage/pull/937) 
 - flag to transform animated images (`SDWebImageTransformAnimatedImage`) - [#703](https://github.com/SDWebImage/SDWebImage/pull/703) 
-- allows user to override default `SDWebImageDownloaderOperation` - [#876](https://github.com/SDWebImage/SDWebImage/pull/876) 
+- allows user to override default `TXWebImageDownloaderOperation` - [#876](https://github.com/SDWebImage/SDWebImage/pull/876) 
 - adds option to decompress images and select prefetcher queue - [#996](https://github.com/SDWebImage/SDWebImage/pull/996)  
 
 #### Fixes:
@@ -1454,13 +1454,13 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 - fixed [#900](https://github.com/SDWebImage/SDWebImage/issues/900) by adding a new flag `SD_LOG_NONE` that allows silencing the SD logs from the Prefetcher
 - fixed [#895](https://github.com/SDWebImage/SDWebImage/issues/895) unsafe setImage in `setImageWithURL:` - [#896](https://github.com/SDWebImage/SDWebImage/pull/896) 
 - fix `NSNotificationCenter` dispatch on subthreads - [#987](https://github.com/SDWebImage/SDWebImage/pull/987) 
-- fix `SDWebImageDownloader` threading issue - [#104](https://github.com/SDWebImage/SDWebImage/pull/104)6 
+- fix `TXWebImageDownloader` threading issue - [#104](https://github.com/SDWebImage/SDWebImage/pull/104)6 
 - fixed duplicate failed urls are added into `failedURLs` - [#994](https://github.com/SDWebImage/SDWebImage/pull/994) 
 - increased default `maxConcurrentOperationCount`, fixes [#527](https://github.com/SDWebImage/SDWebImage/issues/527) - [#897](https://github.com/SDWebImage/SDWebImage/pull/897) 
 - handle empty urls `NSArray` - [#929](https://github.com/SDWebImage/SDWebImage/pull/929) 
 - decoding webp, depends on source image data alpha status - [#936](https://github.com/SDWebImage/SDWebImage/pull/936) 
 - fix [#610](https://github.com/SDWebImage/SDWebImage/issues/610) display progressive jpeg issue - [#840](https://github.com/SDWebImage/SDWebImage/pull/840) 
-- the code from `SDWebImageDownloaderOperation connection:didFailWithError:` should match the code from `connectionDidFinishLoading:`. This fixes [#872](https://github.com/SDWebImage/SDWebImage/issues/872) - [7f39e5e](https://github.com/SDWebImage/SDWebImage/commit/7f39e5e)
+- the code from `TXWebImageDownloaderOperation connection:didFailWithError:` should match the code from `connectionDidFinishLoading:`. This fixes [#872](https://github.com/SDWebImage/SDWebImage/issues/872) - [7f39e5e](https://github.com/SDWebImage/SDWebImage/commit/7f39e5e)
 - `304 - Not Modified` HTTP status code handling - [#942](https://github.com/SDWebImage/SDWebImage/pull/942) 
 - cost compute fix - [#941](https://github.com/SDWebImage/SDWebImage/pull/941) 
 - initialise `kPNGSignatureData` data - [#981](https://github.com/SDWebImage/SDWebImage/pull/981) 
@@ -1471,7 +1471,7 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 ## [3.7.1 Patch release for 3.7.0 on Jul 23rd, 2014](https://github.com/SDWebImage/SDWebImage/releases/tag/3.7.1)
 
 - fixed `sd_imageOrientationFromImageData:` crash if imageSource is nil - [#819](https://github.com/SDWebImage/SDWebImage/pull/819) [#813](https://github.com/SDWebImage/SDWebImage/pull/813) [#808](https://github.com/SDWebImage/SDWebImage/issues/808) [#828](https://github.com/SDWebImage/SDWebImage/issues/828) - temporary fix
-- fixed `SDWebImageCombinedOperation cancel` crash (also visible as `SDWebImageManager cancelAll`) - [28109c4](https://github.com/SDWebImage/SDWebImage/commit/28109c4) [#798](https://github.com/SDWebImage/SDWebImage/issues/798) [#809](https://github.com/SDWebImage/SDWebImage/issues/809) 
+- fixed `SDWebImageCombinedOperation cancel` crash (also visible as `TXWebImageManager cancelAll`) - [28109c4](https://github.com/SDWebImage/SDWebImage/commit/28109c4) [#798](https://github.com/SDWebImage/SDWebImage/issues/798) [#809](https://github.com/SDWebImage/SDWebImage/issues/809) 
 - fixed duplicate symbols when using with webp via pods - [#795](https://github.com/SDWebImage/SDWebImage/pull/795) 
 - fixed missing `mark` from `pragma mark` - [#827](https://github.com/SDWebImage/SDWebImage/pull/827) 
 
@@ -1482,17 +1482,17 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 - Keep a reference to the image URL - [#560](https://github.com/SDWebImage/SDWebImage/pull/560)
 - Pass imageURL in completedBlock - [#770](https://github.com/SDWebImage/SDWebImage/pull/770)
 - Implemented NTLM auth support. Replaced deprecated auth challenge methods from `NSURLConnectionDelegate` - [#711](https://github.com/SDWebImage/SDWebImage/pull/711) [50c4d1d](https://github.com/SDWebImage/SDWebImage/commit/50c4d1d)
-- Ability to suspend image downloaders `SDWebImageDownloader setSuspended:` - [#734](https://github.com/SDWebImage/SDWebImage/pull/734)
+- Ability to suspend image downloaders `TXWebImageDownloader setSuspended:` - [#734](https://github.com/SDWebImage/SDWebImage/pull/734)
 - Delay the loading of the placeholder image until after load - [#701](https://github.com/SDWebImage/SDWebImage/pull/701)
 - Ability to save images to cache directly - [#714](https://github.com/SDWebImage/SDWebImage/pull/714)
 - Support for image orientation - [#764](https://github.com/SDWebImage/SDWebImage/pull/764)
-- Added async `SDImageCache removeImageForKey:withCompletion:` - [#732](https://github.com/SDWebImage/SDWebImage/pull/732) [cd4b925](https://github.com/SDWebImage/SDWebImage/commit/cd4b925)
+- Added async `TXImageCache removeImageForKey:withCompletion:` - [#732](https://github.com/SDWebImage/SDWebImage/pull/732) [cd4b925](https://github.com/SDWebImage/SDWebImage/commit/cd4b925)
 - Exposed cache paths - [#339](https://github.com/SDWebImage/SDWebImage/issues/339)
-- Exposed `SDWebImageManager cacheKeyForURL:` - [5fd21e5](https://github.com/SDWebImage/SDWebImage/commit/5fd21e5)
-- Exposing `SDWebImageManager` instance from the `SDWebImagePrefetcher` class - [6c409cd](https://github.com/SDWebImage/SDWebImage/commit/6c409cd)
-- `SDWebImageManager` uses the shared instance of `SDWebImageDownloader` - [0772019](https://github.com/SDWebImage/SDWebImage/commit/0772019)
+- Exposed `TXWebImageManager cacheKeyForURL:` - [5fd21e5](https://github.com/SDWebImage/SDWebImage/commit/5fd21e5)
+- Exposing `TXWebImageManager` instance from the `TXWebImagePrefetcher` class - [6c409cd](https://github.com/SDWebImage/SDWebImage/commit/6c409cd)
+- `TXWebImageManager` uses the shared instance of `TXWebImageDownloader` - [0772019](https://github.com/SDWebImage/SDWebImage/commit/0772019)
 - Refactor the cancel logic - [#771](https://github.com/SDWebImage/SDWebImage/pull/771) [6d01e80](https://github.com/SDWebImage/SDWebImage/commit/6d01e80) [23874cd](https://github.com/SDWebImage/SDWebImage/commit/23874cd) [a6f11b3](https://github.com/SDWebImage/SDWebImage/commit/a6f11b3)
-- Added method `SDWebImageManager cachedImageExistsForURL:` to check if an image exists in either the disk OR the memory cache - [#644](https://github.com/SDWebImage/SDWebImage/pull/644)
+- Added method `TXWebImageManager cachedImageExistsForURL:` to check if an image exists in either the disk OR the memory cache - [#644](https://github.com/SDWebImage/SDWebImage/pull/644)
 - Added option to use the cached image instead of the placeholder for `UIImageView`. Replaces [#541](https://github.com/SDWebImage/SDWebImage/pull/541) - [#599](https://github.com/SDWebImage/SDWebImage/issues/599) [30f6726](https://github.com/SDWebImage/SDWebImage/commit/30f6726)
 - Created workspace + added unit tests target
 - Updated documentation - [#476](https://github.com/SDWebImage/SDWebImage/issues/476) [#384](https://github.com/SDWebImage/SDWebImage/issues/384) [#526](https://github.com/SDWebImage/SDWebImage/issues/526) [#376](https://github.com/SDWebImage/SDWebImage/pull/376) [a8f5627](https://github.com/SDWebImage/SDWebImage/commit/a8f5627)
@@ -1500,16 +1500,16 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 ## Bugfixes
 - Fixed Xcode 6 builds - [#741](https://github.com/SDWebImage/SDWebImage/pull/741) [0b47342](https://github.com/SDWebImage/SDWebImage/commit/0b47342)
 - Fixed `diskImageExistsWithKey:` deadlock - [#625](https://github.com/SDWebImage/SDWebImage/issues/625) [6e4fbaf](https://github.com/SDWebImage/SDWebImage/commit/6e4fbaf)
-For consistency, added async methods in `SDWebImageManager` `cachedImageExistsForURL:completion:` and `diskImageExistsForURL:completion:`
+For consistency, added async methods in `TXWebImageManager` `cachedImageExistsForURL:completion:` and `diskImageExistsForURL:completion:`
 - Fixed race condition that causes cancellation of one download operation to stop a run loop that is now used for another download operation. Race is introduced through `performSelector:onThread:withObject:waitUntilDone:` - [#698](https://github.com/SDWebImage/SDWebImage/pull/698)
 - Fixed race condition between operation cancelation and loading finish - [39db378](https://github.com/SDWebImage/SDWebImage/commit/39db378) [#621](https://github.com/SDWebImage/SDWebImage/pull/621) [#783](https://github.com/SDWebImage/SDWebImage/pull/783)
-- Fixed race condition in SDWebImageManager if one operation is cancelled - [f080e38](https://github.com/SDWebImage/SDWebImage/commit/f080e38) [#699](https://github.com/SDWebImage/SDWebImage/pull/699)
+- Fixed race condition in TXWebImageManager if one operation is cancelled - [f080e38](https://github.com/SDWebImage/SDWebImage/commit/f080e38) [#699](https://github.com/SDWebImage/SDWebImage/pull/699)
 - Fixed issue where cancelled operations aren't removed from `runningOperations` - [#68](https://github.com/SDWebImage/SDWebImage/issues/68)
 - Should not add url to failedURLs when timeout, cancel and so on - [#766](https://github.com/SDWebImage/SDWebImage/pull/766) [#707](https://github.com/SDWebImage/SDWebImage/issues/707)
 - Fixed potential *object mutated while being enumerated* crash - [#727](https://github.com/SDWebImage/SDWebImage/pull/727) [#728](https://github.com/SDWebImage/SDWebImage/pull/728) (revert a threading fix from [#727](https://github.com/SDWebImage/SDWebImage/pull/727))
 - Fixed `NSURLConnection` response statusCode not valid (e.g. 404), downloader never stops its runloop and hangs the operation queue - [#735](https://github.com/SDWebImage/SDWebImage/pull/735)
 - Fixed `SDWebImageRefreshCached` bug for large images - [#744](https://github.com/SDWebImage/SDWebImage/pull/744)
-- Added proper handling for `SDWebImageDownloaderLowPriority` - [#713](https://github.com/SDWebImage/SDWebImage/issues/713) [#745](https://github.com/SDWebImage/SDWebImage/issues/745)
+- Added proper handling for `TXWebImageDownloaderLowPriority` - [#713](https://github.com/SDWebImage/SDWebImage/issues/713) [#745](https://github.com/SDWebImage/SDWebImage/issues/745)
 - Fixed fixing potential bug when sending a nil url for UIButton+WebCache - [#761](https://github.com/SDWebImage/SDWebImage/issues/761) [#763](https://github.com/SDWebImage/SDWebImage/pull/763)
 - Fixed issue [#529](https://github.com/SDWebImage/SDWebImage/pull/529) - if the `cacheKeyFilter` was set, this was ignored when computing the `scaledImageForKey`. For most of the developers that did not set `cacheKeyFilter`, the code will work exactly the same - [eb91fdd](https://github.com/SDWebImage/SDWebImage/commit/eb91fdd)
 - Returning error in setImage completedBlock if the url was nil. Added `dispatch_main_async_safe` macro - [#505](https://github.com/SDWebImage/SDWebImage/issues/505) [af3e4f8](https://github.com/SDWebImage/SDWebImage/commit/af3e4f8)
@@ -1520,7 +1520,7 @@ For consistency, added async methods in `SDWebImageManager` `cachedImageExistsFo
 - Save image in cache before calling completion block - [#700](https://github.com/SDWebImage/SDWebImage/pull/700)
 - Fixed arm64 warnings - [#685](https://github.com/SDWebImage/SDWebImage/pull/685) [#720](https://github.com/SDWebImage/SDWebImage/pull/720) [#721](https://github.com/SDWebImage/SDWebImage/pull/721) [#687](https://github.com/SDWebImage/SDWebImage/pull/687)
 - Improved logging - [#721](https://github.com/SDWebImage/SDWebImage/pull/721)
-- Added `SDWebImageCompat.m` to `SDWebImage+MKAnnotation` target
+- Added `TXWebImageCompat.m` to `SDWebImage+MKAnnotation` target
 
 ## [3.6 Fix and cleanup on Mar 24th, 2014](https://github.com/SDWebImage/SDWebImage/releases/tag/3.6)
 
@@ -1559,7 +1559,7 @@ For consistency, added async methods in `SDWebImageManager` `cachedImageExistsFo
 ## [3.2 Bug fixes on Mar 13th, 2013](https://github.com/SDWebImage/SDWebImage/releases/tag/3.2)
 
 - `SDWebImageRefreshCached` download option [#326](https://github.com/SDWebImage/SDWebImage/pull/326)
-- New `SDWebImageManager` delegate methods [ebd63a88c1](https://github.com/SDWebImage/SDWebImage/commit/ebd63a88c116ac7acfbeded5c84d0fffa2443438)
+- New `TXWebImageManager` delegate methods [ebd63a88c1](https://github.com/SDWebImage/SDWebImage/commit/ebd63a88c116ac7acfbeded5c84d0fffa2443438)
 - Fix long standing issue with alpha en JPEGs [#299](https://github.com/SDWebImage/SDWebImage/pull/299)
 - Add synchronous disk-cache loading method [#297](https://github.com/SDWebImage/SDWebImage/pull/297)
 - Fix `SDWebImageCacheMemoryOnly` flag

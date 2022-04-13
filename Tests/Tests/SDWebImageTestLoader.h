@@ -8,10 +8,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <SDWebImage/SDImageLoader.h>
+#import <SDWebImage/TXImageLoader.h>
 
 // A really naive implementation of custom image loader using `NSURLSession`
-@interface SDWebImageTestLoader : NSObject <SDImageLoader>
+@interface SDWebImageTestLoader : NSObject <TXImageLoader>
 
 @property (nonatomic, class, readonly, nonnull) SDWebImageTestLoader *sharedLoader;
 

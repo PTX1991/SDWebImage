@@ -8,11 +8,11 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "SDWebImageCompat.h"
+#import "TXWebImageCompat.h"
 
 /**
  You can use switch case like normal enum. It's also recommended to add a default case. You should not assume anything about the raw value.
- For custom coder plugin, it can also extern the enum for supported format. See `SDImageCoder` for more detailed information.
+ For custom coder plugin, it can also extern the enum for supported format. See `TXImageCoder` for more detailed information.
  */
 typedef NSInteger SDImageFormat NS_TYPED_EXTENSIBLE_ENUM;
 static const SDImageFormat SDImageFormatUndefined = -1;

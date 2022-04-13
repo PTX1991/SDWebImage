@@ -12,7 +12,7 @@
 
 #import "UIView+WebCacheOperation.h"
 #import "UIView+WebCache.h"
-#import "SDInternalMacros.h"
+#import "TXInternalMacros.h"
 
 static NSString * const SDHighlightedImageOperationKey = @"UIImageViewImageOperationHighlighted";
 
@@ -38,14 +38,14 @@ static NSString * const SDHighlightedImageOperationKey = @"UIImageViewImageOpera
     [self sd_setHighlightedImageWithURL:url options:options progress:nil completed:completedBlock];
 }
 
-- (void)sd_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(nullable SDImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
+- (void)sd_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(nullable TXImageLoaderProgressBlock)progressBlock completed:(nullable SDExternalCompletionBlock)completedBlock {
     [self sd_setHighlightedImageWithURL:url options:options context:nil progress:progressBlock completed:completedBlock];
 }
 
 - (void)sd_setHighlightedImageWithURL:(nullable NSURL *)url
                               options:(SDWebImageOptions)options
                               context:(nullable SDWebImageContext *)context
-                             progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                             progress:(nullable TXImageLoaderProgressBlock)progressBlock
                             completed:(nullable SDExternalCompletionBlock)completedBlock {
     @weakify(self);
     SDWebImageMutableContext *mutableContext;
@@ -59,12 +59,12 @@ static NSString * const SDHighlightedImageOperationKey = @"UIImageViewImageOpera
                     placeholderImage:nil
                              options:options
                              context:mutableContext
-                       setImageBlock:^(UIImage * _Nullable image, NSData * _Nullable imageData, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                       setImageBlock:^(UIImage * _Nullable image, NSData * _Nullable imageData, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
                            @strongify(self);
                            self.highlightedImage = image;
                        }
                             progress:progressBlock
-                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                           completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, TXImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                                if (completedBlock) {
                                    completedBlock(image, error, cacheType, imageURL);
                                }

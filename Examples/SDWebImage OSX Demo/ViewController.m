@@ -13,8 +13,8 @@
 
 @property (weak) IBOutlet NSImageView *imageView1;
 @property (weak) IBOutlet NSImageView *imageView2;
-@property (weak) IBOutlet SDAnimatedImageView *imageView3;
-@property (weak) IBOutlet SDAnimatedImageView *imageView4;
+@property (weak) IBOutlet TXAnimatedImageView *imageView3;
+@property (weak) IBOutlet TXAnimatedImageView *imageView4;
 @property (weak) IBOutlet NSButton *clearCacheButton;
 
 @end
@@ -25,7 +25,7 @@
     [super viewDidLoad];
     
     // For animated GIF rendering, set `animates` to YES or will only show the first frame
-    self.imageView2.animates = YES; // `SDAnimatedImageRep` can be used for built-in `NSImageView` to support better GIF & APNG rendering as well. No need `SDAnimatedImageView`
+    self.imageView2.animates = YES; // `TXAnimatedImageRep` can be used for built-in `NSImageView` to support better GIF & APNG rendering as well. No need `TXAnimatedImageView`
     self.imageView4.animates = YES;
     
     // NSImageView + Static Image
@@ -40,11 +40,11 @@
     item1.tag = 1;
     self.imageView2.menu = menu1;
     
-    // SDAnimatedImageView + Static Image
+    // TXAnimatedImageView + Static Image
     [self.imageView3 sd_setImageWithURL:[NSURL URLWithString:@"https://nr-platform.s3.amazonaws.com/uploads/platform/published_extension/branding_icon/275/AmazonS3.png"]];
     
-    // SDAnimatedImageView + Animated Image
-    self.imageView4.sd_imageTransition = SDWebImageTransition.fadeTransition;
+    // TXAnimatedImageView + Animated Image
+    self.imageView4.sd_imageTransition = TXWebImageTransition.fadeTransition;
     self.imageView4.imageScaling = NSImageScaleProportionallyUpOrDown;
     self.imageView4.imageAlignment = NSImageAlignLeft; // supports NSImageView's layout properties
     [self.imageView4 sd_setImageWithURL:[NSURL URLWithString:@"http://littlesvr.ca/apng/images/SteamEngine.webp"]];
@@ -62,8 +62,8 @@
 - (void)clearCacheButtonClicked:(NSResponder *)sender {
     NSButton *button = (NSButton *)sender;
     button.state = NSControlStateValueOn;
-    [[SDImageCache sharedImageCache] clearMemory];
-    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+    [[TXImageCache sharedImageCache] clearMemory];
+    [[TXImageCache sharedImageCache] clearDiskOnCompletion:^{
         button.state = NSControlStateValueOff;
     }];
 }

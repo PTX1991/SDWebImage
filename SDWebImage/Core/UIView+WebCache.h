@@ -6,18 +6,18 @@
  * file that was distributed with this source code.
  */
 
-#import "SDWebImageCompat.h"
-#import "SDWebImageDefine.h"
-#import "SDWebImageManager.h"
-#import "SDWebImageTransition.h"
-#import "SDWebImageIndicator.h"
+#import "TXWebImageCompat.h"
+#import "TXWebImageDefine.h"
+#import "TXWebImageManager.h"
+#import "TXWebImageTransition.h"
+#import "TXWebImageIndicator.h"
 
 /**
  The value specify that the image progress unit count cannot be determined because the progressBlock is not been called.
  */
 FOUNDATION_EXPORT const int64_t SDWebImageProgressUnitCountUnknown; /* 1LL */
 
-typedef void(^SDSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable imageData, SDImageCacheType cacheType, NSURL * _Nullable imageURL);
+typedef void(^SDSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable imageData, TXImageCacheType cacheType, NSURL * _Nullable imageURL);
 
 /**
  Integrates SDWebImage async downloading and caching of remote images with UIView subclass.
@@ -64,7 +64,7 @@ typedef void(^SDSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable ima
  *   This block has no return value and takes the requested UIImage as first parameter and the NSData representation as second parameter.
  *   In case of error the image parameter is nil and the third parameter may contain an NSError.
  *
- *   The forth parameter is an `SDImageCacheType` enum indicating if the image was retrieved from the local cache
+ *   The forth parameter is an `TXImageCacheType` enum indicating if the image was retrieved from the local cache
  *   or from the memory cache or from the network.
  *
  *   The fifth parameter normally is always YES. However, if you provide SDWebImageAvoidAutoSetImage with SDWebImageProgressiveLoad options to enable progressive downloading and set the image yourself. This block is thus called repeatedly with a partial image. When image is fully downloaded, the
@@ -77,7 +77,7 @@ typedef void(^SDSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable ima
                            options:(SDWebImageOptions)options
                            context:(nullable SDWebImageContext *)context
                      setImageBlock:(nullable SDSetImageBlock)setImageBlock
-                          progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                          progress:(nullable TXImageLoaderProgressBlock)progressBlock
                          completed:(nullable SDInternalCompletionBlock)completedBlock;
 
 /**
@@ -90,10 +90,10 @@ typedef void(^SDSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable ima
 #pragma mark - Image Transition
 
 /**
- The image transition when image load finished. See `SDWebImageTransition`.
+ The image transition when image load finished. See `TXWebImageTransition`.
  If you specify nil, do not do transition. Defaults to nil.
  */
-@property (nonatomic, strong, nullable) SDWebImageTransition *sd_imageTransition;
+@property (nonatomic, strong, nullable) TXWebImageTransition *sd_imageTransition;
 
 #pragma mark - Image Indicator
 
@@ -102,7 +102,7 @@ typedef void(^SDSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable ima
  The setter will remove the old indicator view and add new indicator view to current view's subview.
  @note Because this is UI related, you should access only from the main queue.
  */
-@property (nonatomic, strong, nullable) id<SDWebImageIndicator> sd_imageIndicator;
+@property (nonatomic, strong, nullable) id<TXWebImageIndicator> sd_imageIndicator;
 
 #endif
 

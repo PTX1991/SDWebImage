@@ -10,7 +10,7 @@
 #import "objc/runtime.h"
 #import "NSImage+Compatibility.h"
 
-FOUNDATION_STATIC_INLINE NSUInteger SDMemoryCacheCostForImage(UIImage *image) {
+FOUNDATION_STATIC_INLINE NSUInteger TXMemoryCacheCostForImage(UIImage *image) {
     CGImageRef imageRef = image.CGImage;
     if (!imageRef) {
         return 0;
@@ -35,7 +35,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDMemoryCacheCostForImage(UIImage *image) {
     if (value != nil) {
         memoryCost = [value unsignedIntegerValue];
     } else {
-        memoryCost = SDMemoryCacheCostForImage(self);
+        memoryCost = TXMemoryCacheCostForImage(self);
     }
     return memoryCost;
 }

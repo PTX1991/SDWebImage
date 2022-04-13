@@ -9,10 +9,10 @@
 #import "UIView+WebCache.h"
 #import "objc/runtime.h"
 #import "UIView+WebCacheOperation.h"
-#import "SDWebImageError.h"
-#import "SDInternalMacros.h"
-#import "SDWebImageTransitionInternal.h"
-#import "SDImageCache.h"
+#import "TXWebImageError.h"
+#import "TXInternalMacros.h"
+#import "TXWebImageTransitionInternal.h"
+#import "TXImageCache.h"
 
 const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
 
@@ -52,7 +52,7 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
                            options:(SDWebImageOptions)options
                            context:(nullable SDWebImageContext *)context
                      setImageBlock:(nullable SDSetImageBlock)setImageBlock
-                          progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                          progress:(nullable TXImageLoaderProgressBlock)progressBlock
                          completed:(nullable SDInternalCompletionBlock)completedBlock {
     if (context) {
         // copy to avoid mutable object
@@ -72,9 +72,9 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
     [self sd_cancelImageLoadOperationWithKey:validOperationKey];
     self.sd_imageURL = url;
     
-    SDWebImageManager *manager = context[SDWebImageContextCustomManager];
+    TXWebImageManager *manager = context[SDWebImageContextCustomManager];
     if (!manager) {
-        manager = [SDWebImageManager sharedManager];
+        manager = [TXWebImageManager sharedManager];
     } else {
         // remove this manager to avoid retain cycle (manger -> loader -> operation -> context -> manager)
         SDWebImageMutableContext *mutableContext = [context mutableCopy];
@@ -83,8 +83,8 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
     }
     
     BOOL shouldUseWeakCache = NO;
-    if ([manager.imageCache isKindOfClass:SDImageCache.class]) {
-        shouldUseWeakCache = ((SDImageCache *)manager.imageCache).config.shouldUseWeakMemoryCache;
+    if ([manager.imageCache isKindOfClass:TXImageCache.class]) {
+        shouldUseWeakCache = ((TXImageCache *)manager.imageCache).config.shouldUseWeakMemoryCache;
     }
     if (!(options & SDWebImageDelayPlaceholder)) {
         if (shouldUseWeakCache) {
@@ -92,10 +92,10 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
             // call memory cache to trigger weak cache sync logic, ignore the return value and go on normal query
             // this unfortunately will cause twice memory cache query, but it's fast enough
             // in the future the weak cache feature may be re-design or removed
-            [((SDImageCache *)manager.imageCache) imageFromMemoryCacheForKey:key];
+            [((TXImageCache *)manager.imageCache) imageFromMemoryCacheForKey:key];
         }
         dispatch_main_async_safe(^{
-            [self sd_setImage:placeholder imageData:nil basedOnClassOrViaCustomSetImageBlock:setImageBlock cacheType:SDImageCacheTypeNone imageURL:url];
+            [self sd_setImage:placeholder imageData:nil basedOnClassOrViaCustomSetImageBlock:setImageBlock cacheType:TXImageCacheTypeNone imageURL:url];
         });
     }
     
@@ -110,10 +110,10 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
 #if SD_UIKIT || SD_MAC
         // check and start image indicator
         [self sd_startImageIndicator];
-        id<SDWebImageIndicator> imageIndicator = self.sd_imageIndicator;
+        id<TXWebImageIndicator> imageIndicator = self.sd_imageIndicator;
 #endif
         
-        SDImageLoaderProgressBlock combinedProgressBlock = ^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        TXImageLoaderProgressBlock combinedProgressBlock = ^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             if (imageProgress) {
                 imageProgress.totalUnitCount = expectedSize;
                 imageProgress.completedUnitCount = receivedSize;
@@ -135,7 +135,7 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
             }
         };
         @weakify(self);
-        id <SDWebImageOperation> operation = [manager loadImageWithURL:url options:options context:context progress:combinedProgressBlock completed:^(UIImage *image, NSData *data, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        id <TXWebImageOperation> operation = [manager loadImageWithURL:url options:options context:context progress:combinedProgressBlock completed:^(UIImage *image, NSData *data, NSError *error, TXImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             @strongify(self);
             if (!self) { return; }
             // if the progress not been updated, mark it to complete state
@@ -186,19 +186,19 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
             
 #if SD_UIKIT || SD_MAC
             // check whether we should use the image transition
-            SDWebImageTransition *transition = nil;
+            TXWebImageTransition *transition = nil;
             BOOL shouldUseTransition = NO;
             if (options & SDWebImageForceTransition) {
                 // Always
                 shouldUseTransition = YES;
-            } else if (cacheType == SDImageCacheTypeNone) {
+            } else if (cacheType == TXImageCacheTypeNone) {
                 // From network
                 shouldUseTransition = YES;
             } else {
                 // From disk (and, user don't use sync query)
-                if (cacheType == SDImageCacheTypeMemory) {
+                if (cacheType == TXImageCacheTypeMemory) {
                     shouldUseTransition = NO;
-                } else if (cacheType == SDImageCacheTypeDisk) {
+                } else if (cacheType == TXImageCacheTypeDisk) {
                     if (options & SDWebImageQueryMemoryDataSync || options & SDWebImageQueryDiskDataSync) {
                         shouldUseTransition = NO;
                     } else {
@@ -229,8 +229,8 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
 #endif
         dispatch_main_async_safe(^{
             if (completedBlock) {
-                NSError *error = [NSError errorWithDomain:SDWebImageErrorDomain code:SDWebImageErrorInvalidURL userInfo:@{NSLocalizedDescriptionKey : @"Image url is nil"}];
-                completedBlock(nil, nil, error, SDImageCacheTypeNone, YES, url);
+                NSError *error = [NSError errorWithDomain:TXWebImageErrorDomain code:TXWebImageErrorInvalidURL userInfo:@{NSLocalizedDescriptionKey : @"Image url is nil"}];
+                completedBlock(nil, nil, error, TXImageCacheTypeNone, YES, url);
             }
         });
     }
@@ -241,7 +241,7 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
     self.sd_latestOperationKey = nil;
 }
 
-- (void)sd_setImage:(UIImage *)image imageData:(NSData *)imageData basedOnClassOrViaCustomSetImageBlock:(SDSetImageBlock)setImageBlock cacheType:(SDImageCacheType)cacheType imageURL:(NSURL *)imageURL {
+- (void)sd_setImage:(UIImage *)image imageData:(NSData *)imageData basedOnClassOrViaCustomSetImageBlock:(SDSetImageBlock)setImageBlock cacheType:(TXImageCacheType)cacheType imageURL:(NSURL *)imageURL {
 #if SD_UIKIT || SD_MAC
     [self sd_setImage:image imageData:imageData basedOnClassOrViaCustomSetImageBlock:setImageBlock transition:nil cacheType:cacheType imageURL:imageURL];
 #else
@@ -256,21 +256,21 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
 }
 
 #if SD_UIKIT || SD_MAC
-- (void)sd_setImage:(UIImage *)image imageData:(NSData *)imageData basedOnClassOrViaCustomSetImageBlock:(SDSetImageBlock)setImageBlock transition:(SDWebImageTransition *)transition cacheType:(SDImageCacheType)cacheType imageURL:(NSURL *)imageURL {
+- (void)sd_setImage:(UIImage *)image imageData:(NSData *)imageData basedOnClassOrViaCustomSetImageBlock:(SDSetImageBlock)setImageBlock transition:(TXWebImageTransition *)transition cacheType:(TXImageCacheType)cacheType imageURL:(NSURL *)imageURL {
     UIView *view = self;
     SDSetImageBlock finalSetImageBlock;
     if (setImageBlock) {
         finalSetImageBlock = setImageBlock;
     } else if ([view isKindOfClass:[UIImageView class]]) {
         UIImageView *imageView = (UIImageView *)view;
-        finalSetImageBlock = ^(UIImage *setImage, NSData *setImageData, SDImageCacheType setCacheType, NSURL *setImageURL) {
+        finalSetImageBlock = ^(UIImage *setImage, NSData *setImageData, TXImageCacheType setCacheType, NSURL *setImageURL) {
             imageView.image = setImage;
         };
     }
 #if SD_UIKIT
     else if ([view isKindOfClass:[UIButton class]]) {
         UIButton *button = (UIButton *)view;
-        finalSetImageBlock = ^(UIImage *setImage, NSData *setImageData, SDImageCacheType setCacheType, NSURL *setImageURL) {
+        finalSetImageBlock = ^(UIImage *setImage, NSData *setImageData, TXImageCacheType setCacheType, NSURL *setImageURL) {
             [button setImage:setImage forState:UIControlStateNormal];
         };
     }
@@ -278,7 +278,7 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
 #if SD_MAC
     else if ([view isKindOfClass:[NSButton class]]) {
         NSButton *button = (NSButton *)view;
-        finalSetImageBlock = ^(UIImage *setImage, NSData *setImageData, SDImageCacheType setCacheType, NSURL *setImageURL) {
+        finalSetImageBlock = ^(UIImage *setImage, NSData *setImageData, TXImageCacheType setCacheType, NSURL *setImageURL) {
             button.image = setImage;
         };
     }
@@ -382,22 +382,22 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
 #if SD_UIKIT || SD_MAC
 
 #pragma mark - Image Transition
-- (SDWebImageTransition *)sd_imageTransition {
+- (TXWebImageTransition *)sd_imageTransition {
     return objc_getAssociatedObject(self, @selector(sd_imageTransition));
 }
 
-- (void)setSd_imageTransition:(SDWebImageTransition *)sd_imageTransition {
+- (void)setSd_imageTransition:(TXWebImageTransition *)sd_imageTransition {
     objc_setAssociatedObject(self, @selector(sd_imageTransition), sd_imageTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - Indicator
-- (id<SDWebImageIndicator>)sd_imageIndicator {
+- (id<TXWebImageIndicator>)sd_imageIndicator {
     return objc_getAssociatedObject(self, @selector(sd_imageIndicator));
 }
 
-- (void)setSd_imageIndicator:(id<SDWebImageIndicator>)sd_imageIndicator {
+- (void)setSd_imageIndicator:(id<TXWebImageIndicator>)sd_imageIndicator {
     // Remove the old indicator view
-    id<SDWebImageIndicator> previousIndicator = self.sd_imageIndicator;
+    id<TXWebImageIndicator> previousIndicator = self.sd_imageIndicator;
     [previousIndicator.indicatorView removeFromSuperview];
     
     objc_setAssociatedObject(self, @selector(sd_imageIndicator), sd_imageIndicator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -418,7 +418,7 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
 }
 
 - (void)sd_startImageIndicator {
-    id<SDWebImageIndicator> imageIndicator = self.sd_imageIndicator;
+    id<TXWebImageIndicator> imageIndicator = self.sd_imageIndicator;
     if (!imageIndicator) {
         return;
     }
@@ -428,7 +428,7 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
 }
 
 - (void)sd_stopImageIndicator {
-    id<SDWebImageIndicator> imageIndicator = self.sd_imageIndicator;
+    id<TXWebImageIndicator> imageIndicator = self.sd_imageIndicator;
     if (!imageIndicator) {
         return;
     }

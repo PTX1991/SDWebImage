@@ -102,9 +102,9 @@
     UIColor *imageColor = UIColor.blackColor;
     CGSize imageSize = CGSizeMake(3024, 4032);
     CGRect imageRect = CGRectMake(0, 0, imageSize.width, imageSize.height);
-    SDGraphicsImageRendererFormat *format = [[SDGraphicsImageRendererFormat alloc] init];
+    TXGraphicsImageRendererFormat *format = [[TXGraphicsImageRendererFormat alloc] init];
     format.scale = 1;
-    SDGraphicsImageRenderer *renderer = [[SDGraphicsImageRenderer alloc] initWithSize:imageSize format:format];
+    TXGraphicsImageRenderer *renderer = [[TXGraphicsImageRenderer alloc] initWithSize:imageSize format:format];
     UIImage *image = [renderer imageWithActions:^(CGContextRef  _Nonnull context) {
         CGContextSetFillColorWithColor(context, [imageColor CGColor]);
         CGContextFillRect(context, imageRect);
@@ -119,9 +119,9 @@
     NSString *testImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestImage" ofType:@"png"];
     UIImage *image = [[UIImage alloc] initWithContentsOfFile:testImagePath];
     UIColor *backgroundColor = [UIColor blackColor];
-    NSData *encodedData = [SDImageCodersManager.sharedManager encodedDataWithImage:image format:SDImageFormatJPEG options:@{SDImageCoderEncodeBackgroundColor : backgroundColor}];
+    NSData *encodedData = [TXImageCodersManager.sharedManager encodedDataWithImage:image format:SDImageFormatJPEG options:@{TXImageCoderEncodeBackgroundColor : backgroundColor}];
     expect(encodedData).notTo.beNil();
-    UIImage *decodedImage = [SDImageCodersManager.sharedManager decodedImageWithData:encodedData options:nil];
+    UIImage *decodedImage = [TXImageCodersManager.sharedManager decodedImageWithData:encodedData options:nil];
     expect(decodedImage).notTo.beNil();
     expect(decodedImage.size.width).to.equal(image.size.width);
     expect(decodedImage.size.height).to.equal(image.size.height);
@@ -136,14 +136,14 @@
     // This large JPEG encoding size between (770KB ~ 2.23MB)
     NSUInteger limitFileSize = 1 * 1024 * 1024; // 1MB
     // 100 quality (biggest)
-    NSData *maxEncodedData = [SDImageCodersManager.sharedManager encodedDataWithImage:image format:SDImageFormatJPEG options:nil];
+    NSData *maxEncodedData = [TXImageCodersManager.sharedManager encodedDataWithImage:image format:SDImageFormatJPEG options:nil];
     expect(maxEncodedData).notTo.beNil();
     expect(maxEncodedData.length).beGreaterThan(limitFileSize);
     // 0 quality (smallest)
-    NSData *minEncodedData = [SDImageCodersManager.sharedManager encodedDataWithImage:image format:SDImageFormatJPEG options:@{SDImageCoderEncodeCompressionQuality : @(0)}];
+    NSData *minEncodedData = [TXImageCodersManager.sharedManager encodedDataWithImage:image format:SDImageFormatJPEG options:@{TXImageCoderEncodeCompressionQuality : @(0)}];
     expect(minEncodedData).notTo.beNil();
     expect(minEncodedData.length).beLessThan(limitFileSize);
-    NSData *limitEncodedData = [SDImageCodersManager.sharedManager encodedDataWithImage:image format:SDImageFormatJPEG options:@{SDImageCoderEncodeMaxFileSize : @(limitFileSize)}];
+    NSData *limitEncodedData = [TXImageCodersManager.sharedManager encodedDataWithImage:image format:SDImageFormatJPEG options:@{TXImageCoderEncodeMaxFileSize : @(limitFileSize)}];
     expect(limitEncodedData).notTo.beNil();
     // So, if we limit the file size, the output data should in (770KB ~ 2.23MB)
     expect(limitEncodedData.length).beLessThan(maxEncodedData.length);
@@ -156,7 +156,7 @@
     
     // Check that animated image rendering should not use lazy decoding (performance related)
     CFAbsoluteTime begin = CFAbsoluteTimeGetCurrent();
-    SDImageAPNGCoder *coder = [[SDImageAPNGCoder alloc] initWithAnimatedImageData:testImageData options:@{SDImageCoderDecodeFirstFrameOnly : @(NO)}];
+    TXImageAPNGCoder *coder = [[TXImageAPNGCoder alloc] initWithAnimatedImageData:testImageData options:@{TXImageCoderDecodeFirstFrameOnly : @(NO)}];
     UIImage *imageWithoutLazyDecoding = [coder animatedImageFrameAtIndex:0];
     CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
     CFAbsoluteTime duration = end - begin;
@@ -164,8 +164,8 @@
     
     // Check that static image rendering should use lazy decoding
     CFAbsoluteTime begin2 = CFAbsoluteTimeGetCurrent();
-    SDImageAPNGCoder *coder2 = SDImageAPNGCoder.sharedCoder;
-    UIImage *imageWithLazyDecoding = [coder2 decodedImageWithData:testImageData options:@{SDImageCoderDecodeFirstFrameOnly : @(YES)}];
+    TXImageAPNGCoder *coder2 = TXImageAPNGCoder.sharedCoder;
+    UIImage *imageWithLazyDecoding = [coder2 decodedImageWithData:testImageData options:@{TXImageCoderDecodeFirstFrameOnly : @(YES)}];
     CFAbsoluteTime end2 = CFAbsoluteTimeGetCurrent();
     CFAbsoluteTime duration2 = end2 - begin2;
     expect(imageWithLazyDecoding.sd_isDecoded).beFalsy();
@@ -176,7 +176,7 @@
 
 - (void)test11ThatAPNGPCoderWorks {
     NSURL *APNGURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImageAnimated" withExtension:@"apng"];
-    [self verifyCoder:[SDImageAPNGCoder sharedCoder]
+    [self verifyCoder:[TXImageAPNGCoder sharedCoder]
     withLocalImageURL:APNGURL
      supportsEncoding:YES
       isAnimatedImage:YES];
@@ -184,7 +184,7 @@
 
 - (void)test12ThatGIFCoderWorks {
     NSURL *gifURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"gif"];
-    [self verifyCoder:[SDImageGIFCoder sharedCoder]
+    [self verifyCoder:[TXImageGIFCoder sharedCoder]
     withLocalImageURL:gifURL
      supportsEncoding:YES
       isAnimatedImage:YES];
@@ -196,7 +196,7 @@
     // This behavior is different from other modern animated image format like APNG/WebP. Which will play infinitely
     NSString *testImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestLoopCount" ofType:@"gif"];
     NSData *testImageData = [NSData dataWithContentsOfFile:testImagePath];
-    UIImage *image = [SDImageGIFCoder.sharedCoder decodedImageWithData:testImageData options:nil];
+    UIImage *image = [TXImageGIFCoder.sharedCoder decodedImageWithData:testImageData options:nil];
     expect(image.sd_imageLoopCount).equal(1);
 }
 
@@ -208,7 +208,7 @@
 #else
         BOOL supportsEncoding = NO; // Travis-CI Mac env currently does not support HEIC encoding
 #endif
-        [self verifyCoder:[SDImageIOCoder sharedCoder]
+        [self verifyCoder:[TXImageIOCoder sharedCoder]
         withLocalImageURL:heicURL
          supportsEncoding:supportsEncoding
           isAnimatedImage:NO];
@@ -218,7 +218,7 @@
 - (void)test14ThatHEIFWorks {
     if (@available(iOS 11, tvOS 11, macOS 10.13, *)) {
         NSURL *heifURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"heif"];
-        [self verifyCoder:[SDImageIOCoder sharedCoder]
+        [self verifyCoder:[TXImageIOCoder sharedCoder]
         withLocalImageURL:heifURL
          supportsEncoding:NO
           isAnimatedImage:NO];
@@ -226,8 +226,8 @@
 }
 
 - (void)test15ThatCodersManagerWorks {
-    SDImageCodersManager *manager = [[SDImageCodersManager alloc] init];
-    manager.coders = @[SDImageIOCoder.sharedCoder];
+    TXImageCodersManager *manager = [[TXImageCodersManager alloc] init];
+    manager.coders = @[TXImageIOCoder.sharedCoder];
     expect([manager canDecodeFromData:nil]).beTruthy(); // Image/IO will return YES for future format
     expect([manager decodedImageWithData:nil options:nil]).beNil();
     expect([manager canEncodeToFormat:SDImageFormatUndefined]).beTruthy(); // Image/IO will return YES for future format
@@ -244,7 +244,7 @@
         BOOL isAnimatedImage = NO; // Travis-CI Mac env does not upgrade to macOS 10.15
         BOOL supportsEncoding = NO; // Travis-CI Mac env currently does not support HEIC encoding
 #endif
-        [self verifyCoder:[SDImageHEICCoder sharedCoder]
+        [self verifyCoder:[TXImageHEICCoder sharedCoder]
         withLocalImageURL:heicURL
          supportsEncoding:supportsEncoding
            encodingFormat:SDImageFormatHEIC
@@ -255,7 +255,7 @@
 
 - (void)test17ThatPDFWorks {
     NSURL *pdfURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"pdf"];
-    [self verifyCoder:[SDImageIOCoder sharedCoder]
+    [self verifyCoder:[TXImageIOCoder sharedCoder]
     withLocalImageURL:pdfURL
      supportsEncoding:NO
        encodingFormat:SDImageFormatUndefined
@@ -270,7 +270,7 @@
         /// TV OS does not support ImageIO's webp.
         [self verifyCoder:[SDImageWebPCoder sharedCoder]
 #else
-        [self verifyCoder:[SDImageAWebPCoder sharedCoder]
+        [self verifyCoder:[TXImageAWebPCoder sharedCoder]
 #endif
         withLocalImageURL:staticWebPURL
          supportsEncoding:NO // Currently (iOS 14.0) seems no encoding support
@@ -287,7 +287,7 @@
         /// TV OS does not support ImageIO's webp.
         [self verifyCoder:[SDImageWebPCoder sharedCoder]
 #else
-        [self verifyCoder:[SDImageAWebPCoder sharedCoder]
+        [self verifyCoder:[TXImageAWebPCoder sharedCoder]
 #endif
         withLocalImageURL:staticWebPURL
          supportsEncoding:NO // Currently (iOS 14.0) seems no encoding support
@@ -298,7 +298,7 @@
 }
 
 - (void)test20ThatImageIOAnimatedCoderAbstractClass {
-    SDImageIOAnimatedCoder *coder = [[SDImageIOAnimatedCoder alloc] init];
+    TXImageIOAnimatedCoder *coder = [[TXImageIOAnimatedCoder alloc] init];
     @try {
         [coder canEncodeToFormat:SDImageFormatPNG];
         XCTFail("Should throw exception");
@@ -324,7 +324,7 @@
 #endif
         CGImageRelease(imageRef);
         // Encode with embed thumbnail
-        NSData *encodedData = [SDImageIOCoder.sharedCoder encodedDataWithImage:image format:SDImageFormatHEIC options:@{SDImageCoderEncodeEmbedThumbnail : @(YES)}];
+        NSData *encodedData = [TXImageIOCoder.sharedCoder encodedDataWithImage:image format:SDImageFormatHEIC options:@{TXImageCoderEncodeEmbedThumbnail : @(YES)}];
         
         // The new HEIC contains one embed thumbnail
         CGImageSourceRef source2 = CGImageSourceCreateWithData((__bridge CFDataRef)encodedData, nil);
@@ -343,14 +343,14 @@
 
 #pragma mark - Utils
 
-- (void)verifyCoder:(id<SDImageCoder>)coder
+- (void)verifyCoder:(id<TXImageCoder>)coder
 withLocalImageURL:(NSURL *)imageUrl
  supportsEncoding:(BOOL)supportsEncoding
   isAnimatedImage:(BOOL)isAnimated {
     [self verifyCoder:coder withLocalImageURL:imageUrl supportsEncoding:supportsEncoding encodingFormat:SDImageFormatUndefined isAnimatedImage:isAnimated isVectorImage:NO];
 }
 
-- (void)verifyCoder:(id<SDImageCoder>)coder
+- (void)verifyCoder:(id<TXImageCoder>)coder
   withLocalImageURL:(NSURL *)imageUrl
    supportsEncoding:(BOOL)supportsEncoding
      encodingFormat:(SDImageFormat)encodingFormat
@@ -403,15 +403,15 @@ withLocalImageURL:(NSURL *)imageUrl
     CGFloat thumbnailWidth = 50;
     CGFloat thumbnailHeight = 50;
     UIImage *thumbImage = [coder decodedImageWithData:inputImageData options:@{
-        SDImageCoderDecodeThumbnailPixelSize : @(CGSizeMake(thumbnailWidth, thumbnailHeight)),
-        SDImageCoderDecodePreserveAspectRatio : @(NO)
+        TXImageCoderDecodeThumbnailPixelSize : @(CGSizeMake(thumbnailWidth, thumbnailHeight)),
+        TXImageCoderDecodePreserveAspectRatio : @(NO)
     }];
     expect(thumbImage).toNot.beNil();
     expect(thumbImage.size).equal(CGSizeMake(thumbnailWidth, thumbnailHeight));
     // check thumbnail with aspect ratio limit
     thumbImage = [coder decodedImageWithData:inputImageData options:@{
-        SDImageCoderDecodeThumbnailPixelSize : @(CGSizeMake(thumbnailWidth, thumbnailHeight)),
-        SDImageCoderDecodePreserveAspectRatio : @(YES)
+        TXImageCoderDecodeThumbnailPixelSize : @(CGSizeMake(thumbnailWidth, thumbnailHeight)),
+        TXImageCoderDecodePreserveAspectRatio : @(YES)
     }];
     expect(thumbImage).toNot.beNil();
     CGFloat ratio = pixelWidth / pixelHeight;
@@ -452,7 +452,7 @@ withLocalImageURL:(NSURL *)imageUrl
         } else {
             maxPixelSize = CGSizeMake(round(maxHeight * ratio), maxHeight);
         }
-        NSData *outputMaxImageData = [coder encodedDataWithImage:inputImage format:encodingFormat options:@{SDImageCoderEncodeMaxPixelSize : @(CGSizeMake(maxWidth, maxHeight))}];
+        NSData *outputMaxImageData = [coder encodedDataWithImage:inputImage format:encodingFormat options:@{TXImageCoderEncodeMaxPixelSize : @(CGSizeMake(maxWidth, maxHeight))}];
         UIImage *outputMaxImage = [coder decodedImageWithData:outputMaxImageData options:nil];
         // Image/IO's thumbnail API does not always use round to preserve precision, we check ABS <= 1
         expect(ABS(outputMaxImage.size.width - maxPixelSize.width)).beLessThanOrEqualTo(1);

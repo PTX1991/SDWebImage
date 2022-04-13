@@ -8,7 +8,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <SDWebImage/SDImageCoder.h>
+#import <SDWebImage/TXImageCoder.h>
 
 @interface SDWebImageTestCoder : NSObject <SDProgressiveImageCoder>
 

@@ -11,14 +11,14 @@
 #import "UIColor+SDHexString.h"
 #import <CoreImage/CoreImage.h>
 
-@interface SDImageTransformerTests : SDTestCase
+@interface TXImageTransformerTests : SDTestCase
 
 @property (nonatomic, strong) UIImage *testImageCG;
 @property (nonatomic, strong) UIImage *testImageCI;
 
 @end
 
-@implementation SDImageTransformerTests
+@implementation TXImageTransformerTests
 
 #pragma mark - UIImage+Transform
 
@@ -217,7 +217,7 @@
     expect([topCenterColor.sd_hexString isEqualToString:[UIColor whiteColor].sd_hexString]).beTruthy();
 }
 
-#pragma mark - SDImageTransformer
+#pragma mark - TXImageTransformer
 
 - (void)test09ImagePipelineTransformer {
     CGSize size = CGSizeMake(100, 100);
@@ -270,7 +270,7 @@
                       @"SDImageBlurTransformer(5.000000)",
                       @"SDImageFilterTransformer(CIColorInvert)"
                       ];
-    NSString *transformerKey = [transformerKeys componentsJoinedByString:@"-"]; // SDImageTransformerKeySeparator
+    NSString *transformerKey = [transformerKeys componentsJoinedByString:@"-"]; // TXImageTransformerKeySeparator
     expect([pipelineTransformer.transformerKey isEqualToString:transformerKey]).beTruthy();
     
     UIImage *transformedImage = [pipelineTransformer transformedImageWithImage:self.testImageCG forKey:@"Test"];
@@ -325,7 +325,7 @@
     // Check the longest side of "F" point color
     UIColor *pointColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
     
-    CGImageRef upCGImage = [SDImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationUp];
+    CGImageRef upCGImage = [TXImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationUp];
 #if SD_UIKIT
     UIImage *upImage = [[UIImage alloc] initWithCGImage:upCGImage];
 #else
@@ -335,7 +335,7 @@
     expect(upImage.size).equal(CGSizeMake(150, 200));
     CGImageRelease(upCGImage);
     
-    CGImageRef upMirroredCGImage = [SDImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationUpMirrored];
+    CGImageRef upMirroredCGImage = [TXImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationUpMirrored];
 #if SD_UIKIT
     UIImage *upMirroredImage = [[UIImage alloc] initWithCGImage:upMirroredCGImage];
 #else
@@ -345,7 +345,7 @@
     expect(upMirroredImage.size).equal(CGSizeMake(150, 200));
     CGImageRelease(upMirroredCGImage);
     
-    CGImageRef downCGImage = [SDImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationDown];
+    CGImageRef downCGImage = [TXImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationDown];
 #if SD_UIKIT
     UIImage *downImage = [[UIImage alloc] initWithCGImage:downCGImage];
 #else
@@ -355,7 +355,7 @@
     expect(downImage.size).equal(CGSizeMake(150, 200));
     CGImageRelease(downCGImage);
     
-    CGImageRef downMirrorerdCGImage = [SDImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationDownMirrored];
+    CGImageRef downMirrorerdCGImage = [TXImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationDownMirrored];
 #if SD_UIKIT
     UIImage *downMirroredImage = [[UIImage alloc] initWithCGImage:downMirrorerdCGImage];
 #else
@@ -365,7 +365,7 @@
     expect(downMirroredImage.size).equal(CGSizeMake(150, 200));
     CGImageRelease(downMirrorerdCGImage);
     
-    CGImageRef leftMirroredCGImage = [SDImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationLeftMirrored];
+    CGImageRef leftMirroredCGImage = [TXImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationLeftMirrored];
 #if SD_UIKIT
     UIImage *leftMirroredImage = [[UIImage alloc] initWithCGImage:leftMirroredCGImage];
 #else
@@ -375,7 +375,7 @@
     expect(leftMirroredImage.size).equal(CGSizeMake(200, 150));
     CGImageRelease(leftMirroredCGImage);
     
-    CGImageRef rightCGImage = [SDImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationRight];
+    CGImageRef rightCGImage = [TXImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationRight];
 #if SD_UIKIT
     UIImage *rightImage = [[UIImage alloc] initWithCGImage:rightCGImage];
 #else
@@ -385,7 +385,7 @@
     expect(rightImage.size).equal(CGSizeMake(200, 150));
     CGImageRelease(rightCGImage);
     
-    CGImageRef rightMirroredCGImage = [SDImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationRightMirrored];
+    CGImageRef rightMirroredCGImage = [TXImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationRightMirrored];
 #if SD_UIKIT
     UIImage *rightMirroredImage = [[UIImage alloc] initWithCGImage:rightMirroredCGImage];
 #else
@@ -395,7 +395,7 @@
     expect(rightMirroredImage.size).equal(CGSizeMake(200, 150));
     CGImageRelease(rightMirroredCGImage);
     
-    CGImageRef leftCGImage = [SDImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationLeft];
+    CGImageRef leftCGImage = [TXImageCoderHelper CGImageCreateDecoded:originalCGImage orientation:kCGImagePropertyOrientationLeft];
 #if SD_UIKIT
     UIImage *leftImage = [[UIImage alloc] initWithCGImage:leftCGImage];
 #else
@@ -410,7 +410,7 @@
     UIImage *testImage = [[UIImage alloc] initWithContentsOfFile:[self testBMPPathForName:@"TestImage"]];
     CGImageRef cgImage = testImage.CGImage;
     expect(cgImage).notTo.beNil();
-    UIImage *decodedImage = [SDImageCoderHelper decodedImageWithImage:testImage];
+    UIImage *decodedImage = [TXImageCoderHelper decodedImageWithImage:testImage];
     expect(decodedImage).notTo.beNil();
     UIColor *testColor = [decodedImage sd_colorAtPoint:CGPointMake(100, 100)];
     // Should not be black color

@@ -6,11 +6,11 @@
  * file that was distributed with this source code.
  */
 
-#import "SDWebImageCompat.h"
+#import "TXWebImageCompat.h"
 
 #if SD_UIKIT
 
-#import "SDWebImageManager.h"
+#import "TXWebImageManager.h"
 
 /**
  * Integrates SDWebImage async downloading and caching of remote images with UIImageView for highlighted state.
@@ -99,7 +99,7 @@
  */
 - (void)sd_setHighlightedImageWithURL:(nullable NSURL *)url
                               options:(SDWebImageOptions)options
-                             progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                             progress:(nullable TXImageLoaderProgressBlock)progressBlock
                             completed:(nullable SDExternalCompletionBlock)completedBlock;
 
 /**
@@ -121,7 +121,7 @@
 - (void)sd_setHighlightedImageWithURL:(nullable NSURL *)url
                               options:(SDWebImageOptions)options
                               context:(nullable SDWebImageContext *)context
-                             progress:(nullable SDImageLoaderProgressBlock)progressBlock
+                             progress:(nullable TXImageLoaderProgressBlock)progressBlock
                             completed:(nullable SDExternalCompletionBlock)completedBlock;
 
 @end

@@ -10,7 +10,7 @@
 #import "SDWebImageTestLoader.h"
 #import <KVOController/KVOController.h>
 
-@interface NSURLSessionTask (SDWebImageOperation) <SDWebImageOperation>
+@interface NSURLSessionTask (TXWebImageOperation) <TXWebImageOperation>
 
 @end
 
@@ -33,13 +33,13 @@
     return YES;
 }
 
-- (id<SDWebImageOperation>)requestImageWithURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(SDImageLoaderProgressBlock)progressBlock completed:(SDImageLoaderCompletedBlock)completedBlock {
+- (id<TXWebImageOperation>)requestImageWithURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context progress:(TXImageLoaderProgressBlock)progressBlock completed:(TXImageLoaderCompletedBlock)completedBlock {
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                UIImage *image = SDImageLoaderDecodeImageData(data, url, options, context);
+                UIImage *image = TXImageLoaderDecodeImageData(data, url, options, context);
                 if (completedBlock) {
                     completedBlock(image, data, nil, YES);
                 }

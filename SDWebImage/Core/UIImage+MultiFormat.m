@@ -7,7 +7,7 @@
  */
 
 #import "UIImage+MultiFormat.h"
-#import "SDImageCodersManager.h"
+#import "TXImageCodersManager.h"
 
 @implementation UIImage (MultiFormat)
 
@@ -23,8 +23,8 @@
     if (!data) {
         return nil;
     }
-    SDImageCoderOptions *options = @{SDImageCoderDecodeScaleFactor : @(MAX(scale, 1)), SDImageCoderDecodeFirstFrameOnly : @(firstFrameOnly)};
-    return [[SDImageCodersManager sharedManager] decodedImageWithData:data options:options];
+    TXImageCoderOptions *options = @{TXImageCoderDecodeScaleFactor : @(MAX(scale, 1)), TXImageCoderDecodeFirstFrameOnly : @(firstFrameOnly)};
+    return [[TXImageCodersManager sharedManager] decodedImageWithData:data options:options];
 }
 
 - (nullable NSData *)sd_imageData {
@@ -40,8 +40,8 @@
 }
 
 - (nullable NSData *)sd_imageDataAsFormat:(SDImageFormat)imageFormat compressionQuality:(double)compressionQuality firstFrameOnly:(BOOL)firstFrameOnly {
-    SDImageCoderOptions *options = @{SDImageCoderEncodeCompressionQuality : @(compressionQuality), SDImageCoderEncodeFirstFrameOnly : @(firstFrameOnly)};
-    return [[SDImageCodersManager sharedManager] encodedDataWithImage:self format:imageFormat options:options];
+    TXImageCoderOptions *options = @{TXImageCoderEncodeCompressionQuality : @(compressionQuality), TXImageCoderEncodeFirstFrameOnly : @(firstFrameOnly)};
+    return [[TXImageCodersManager sharedManager] encodedDataWithImage:self format:imageFormat options:options];
 }
 
 @end

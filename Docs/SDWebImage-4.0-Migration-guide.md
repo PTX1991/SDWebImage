@@ -39,22 +39,22 @@ SDWebImage 4.x
 [imageView sd_setImageWithURL:url placeholderImage:placeholderImage];
 ```
 
-#### Using directly SDWebImageManager
+#### Using directly TXWebImageManager
 
 SDWebImage 3.x
 ```
-[manager downloadImageWithURL:url options:options: progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) { ... } ];
+[manager downloadImageWithURL:url options:options: progress:nil completed:^(UIImage *image, NSError *error, TXImageCacheType cacheType, BOOL finished, NSURL *imageURL) { ... } ];
 ```
 
 SDWebImage 4.x
 ```
-[manager loadImageWithURL:url options:options: progress:nil completed:^(UIImage *image, NSData *imageData, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) { ... } ];
+[manager loadImageWithURL:url options:options: progress:nil completed:^(UIImage *image, NSData *imageData, NSError *error, TXImageCacheType cacheType, BOOL finished, NSURL *imageURL) { ... } ];
 ```
 
 ### Entities
 
 #### Added
-- `SDImageCacheConfig` class for `SDImageCache` config (`shouldDecompressImages`, `shouldDisableiCloud`, `shouldCacheImagesInMemory`, `maxCacheAge`, `maxCacheSize`)
+- `TXImageCacheConfig` class for `TXImageCache` config (`shouldDecompressImages`, `shouldDisableiCloud`, `shouldCacheImagesInMemory`, `maxCacheAge`, `maxCacheSize`)
 - `SDWebImageDownloadToken` class for the ability to cancel specific downloads (`url`, `downloadOperationCancelToken`)
 - `UIView (WebCache)` category because of DRY, with methods
   - `sd_imageURL`
@@ -63,7 +63,7 @@ SDWebImage 4.x
   - `sd_showActivityIndicatorView`
   - `sd_addActivityIndicator`
   - `sd_removeActivityIndicator`
-- `SDWebImageDownloaderOperationInterface` protocol to describe the downloader operation behavior (in case one wants to customize)
+- `TXWebImageDownloaderOperationInterface` protocol to describe the downloader operation behavior (in case one wants to customize)
 - `SDImageFormat` enum containing the formats supported by the library (jpeg, png, gif, tiff, webp)
 - `FLAnimatedImageView (WebCache)` category for `FLAnimatedImageView` from [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
 
@@ -128,7 +128,7 @@ SDWebImage 4.x
   - `setHighlightedImageWithURL:options:progress:completed:`
   - `cancelCurrentHighlightedImageLoad`
   
-#### SDWebImageManager
+#### TXWebImageManager
 - `initWithCache:downloader:` is now the designated initializer
 - added `SDWebImageScaleDownLargeImages` option for scaling large images
 - renamed `downloadImageWithURL:options:progress:completed` to `loadImageWithURL:options:progress:completed` just to make it clear what the method does
@@ -143,31 +143,31 @@ SDWebImage 4.x
   - `SDWebImageCompletedBlock`
   - `SDWebImageCompletedWithFinishedBlock`
   
-#### SDWebImagePrefetcher
+#### TXWebImagePrefetcher
 - `initWithImageManager:` is now the designated initializer
 
-#### SDWebImageDownloader
+#### TXWebImageDownloader
 - added `initWithSessionConfiguration:` which is now the designated initializer
-- added `SDWebImageDownloaderScaleDownLargeImages` option for scaling large images
-- added a `NSURL` param to `SDWebImageDownloaderProgressBlock`
+- added `TXWebImageDownloaderScaleDownLargeImages` option for scaling large images
+- added a `NSURL` param to `TXWebImageDownloaderProgressBlock`
 - `downloadImageWithURL:options:progress:completed:` now returns a `SDWebImageDownloadToken`
 - added method `cancel:` which takes a `SDWebImageDownloadToken`
 
-#### SDWebImageDownloaderOperation
+#### TXWebImageDownloaderOperation
 - `initWithRequest:inSession:options:progress:completed:cancelled:` replaced by two methods: `initWithRequest:inSession:options:` and `addHandlersForProgress:completed:`
 - `initWithRequest:inSession:options:` is now the designated initializer
 - added `cancel:` method
 - removed deprecated methods:
   - `initWithRequest:options:progress:completed:cancelled:`
   
-#### SDImageCache
-- moved the following properties to `SDImageCacheConfig`:
+#### TXImageCache
+- moved the following properties to `TXImageCacheConfig`:
   - `shouldDecompressImages`
   - `shouldDisableiCloud`
   - `shouldCacheImagesInMemory`
   - `maxCacheAge`
   - `maxCacheSize`
-- added a `config` property (`SDImageCacheConfig`)
+- added a `config` property (`TXImageCacheConfig`)
 - renamed `SDWebImageQueryCompletedBlock` to `SDCacheQueryCompletedBlock` and added `NSData` param
 - `initWithNamespace:diskCacheDirectory:` is now the designated initializer
 - the `storeImage:forKey:`, `storeImage:forKey:toDisk:`, `storeImage:recalculateFromImage:imageData:forKey:toDisk:` methods were async already, but declared as sync. Properly marked them as async + added `completion` param. Got rid of the `recalculate` param. If the `NSData` is provided, use it. Otherwise, recalculate it from the `UIImage`
@@ -185,7 +185,7 @@ SDWebImage 4.x
 - renamed `sd_contentTypeForImageData:` to `sd_imageFormatForImageData:` and returns `SDImageFormat`
 - removed the deprecated method `contentTypeForImageData:`
 
-#### SDWebImageCompat
+#### TXWebImageCompat
 - removed `dispatch_main_sync_safe` as it could be mistakenly used
 - updated `dispatch_main_async_safe` so it checks for the main queue instead of the main thread
 
