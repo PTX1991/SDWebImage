@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'MapKit' do |mk|
     mk.osx.deployment_target = '10.11'
-    mk.ios.deployment_target = '9.0'
+    mk.ios.deployment_target = '11.0'
     mk.tvos.deployment_target = '9.0'
     mk.source_files = 'SDWebImageMapKit/MapKit/*.{h,m}'
     mk.framework = 'MapKit'
