@@ -14,7 +14,7 @@
 #import "TXWebImageTransitionInternal.h"
 #import "TXImageCache.h"
 
-const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
+const int64_t TXWebImageProgressUnitCountUnknown = 1LL;
 
 @implementation UIView (WebCache)
 
@@ -140,8 +140,8 @@ const int64_t SDWebImageProgressUnitCountUnknown = 1LL;
             if (!self) { return; }
             // if the progress not been updated, mark it to complete state
             if (imageProgress && finished && !error && imageProgress.totalUnitCount == 0 && imageProgress.completedUnitCount == 0) {
-                imageProgress.totalUnitCount = SDWebImageProgressUnitCountUnknown;
-                imageProgress.completedUnitCount = SDWebImageProgressUnitCountUnknown;
+                imageProgress.totalUnitCount = TXWebImageProgressUnitCountUnknown;
+                imageProgress.completedUnitCount = TXWebImageProgressUnitCountUnknown;
             }
             
 #if SD_UIKIT || SD_MAC

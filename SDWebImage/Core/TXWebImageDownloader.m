@@ -12,14 +12,14 @@
 #import "TXWebImageError.h"
 #import "TXInternalMacros.h"
 
-NSNotificationName const SDWebImageDownloadStartNotification = @"SDWebImageDownloadStartNotification";
-NSNotificationName const SDWebImageDownloadReceiveResponseNotification = @"SDWebImageDownloadReceiveResponseNotification";
-NSNotificationName const SDWebImageDownloadStopNotification = @"SDWebImageDownloadStopNotification";
+NSNotificationName const TXWebImageDownloadStartNotification = @"TXWebImageDownloadStartNotification";
+NSNotificationName const TXWebImageDownloadReceiveResponseNotification = @"TXWebImageDownloadReceiveResponseNotification";
+NSNotificationName const TXWebImageDownloadStopNotification = @"TXWebImageDownloadStopNotification";
 NSNotificationName const SDWebImageDownloadFinishNotification = @"SDWebImageDownloadFinishNotification";
 
 static void * TXWebImageDownloaderContext = &TXWebImageDownloaderContext;
 
-@interface SDWebImageDownloadToken ()
+@interface TXWebImageDownloadToken ()
 
 @property (nonatomic, strong, nullable, readwrite) NSURL *url;
 @property (nonatomic, strong, nullable, readwrite) NSURLRequest *request;
@@ -62,15 +62,15 @@ static void * TXWebImageDownloaderContext = &TXWebImageDownloaderContext;
 #pragma clang diagnostic pop
 
         // Remove observer in case it was previously added.
-        [[NSNotificationCenter defaultCenter] removeObserver:activityIndicator name:SDWebImageDownloadStartNotification object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:activityIndicator name:SDWebImageDownloadStopNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:activityIndicator name:TXWebImageDownloadStartNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:activityIndicator name:TXWebImageDownloadStopNotification object:nil];
 
         [[NSNotificationCenter defaultCenter] addObserver:activityIndicator
                                                  selector:NSSelectorFromString(@"startActivity")
-                                                     name:SDWebImageDownloadStartNotification object:nil];
+                                                     name:TXWebImageDownloadStartNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:activityIndicator
                                                  selector:NSSelectorFromString(@"stopActivity")
-                                                     name:SDWebImageDownloadStopNotification object:nil];
+                                                     name:TXWebImageDownloadStopNotification object:nil];
     }
 }
 
@@ -178,19 +178,19 @@ static void * TXWebImageDownloaderContext = &TXWebImageDownloaderContext;
     return value;
 }
 
-- (nullable SDWebImageDownloadToken *)downloadImageWithURL:(NSURL *)url
+- (nullable TXWebImageDownloadToken *)downloadImageWithURL:(NSURL *)url
                                                  completed:(TXWebImageDownloaderCompletedBlock)completedBlock {
     return [self downloadImageWithURL:url options:0 progress:nil completed:completedBlock];
 }
 
-- (nullable SDWebImageDownloadToken *)downloadImageWithURL:(NSURL *)url
+- (nullable TXWebImageDownloadToken *)downloadImageWithURL:(NSURL *)url
                                                    options:(TXWebImageDownloaderOptions)options
                                                   progress:(TXWebImageDownloaderProgressBlock)progressBlock
                                                  completed:(TXWebImageDownloaderCompletedBlock)completedBlock {
     return [self downloadImageWithURL:url options:options context:nil progress:progressBlock completed:completedBlock];
 }
 
-- (nullable SDWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
+- (nullable TXWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
                                                    options:(TXWebImageDownloaderOptions)options
                                                    context:(nullable SDWebImageContext *)context
                                                   progress:(nullable TXWebImageDownloaderProgressBlock)progressBlock
@@ -252,7 +252,7 @@ static void * TXWebImageDownloaderContext = &TXWebImageDownloaderContext;
     }
     SD_UNLOCK(_operationsLock);
     
-    SDWebImageDownloadToken *token = [[SDWebImageDownloadToken alloc] initWithDownloadOperation:operation];
+    TXWebImageDownloadToken *token = [[TXWebImageDownloadToken alloc] initWithDownloadOperation:operation];
     token.url = url;
     token.request = operation.request;
     token.downloadOperationCancelToken = downloadOperationCancelToken;
@@ -520,19 +520,19 @@ didReceiveResponse:(NSURLResponse *)response
 
 @end
 
-@implementation SDWebImageDownloadToken
+@implementation TXWebImageDownloadToken
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:SDWebImageDownloadReceiveResponseNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:SDWebImageDownloadStopNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TXWebImageDownloadReceiveResponseNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TXWebImageDownloadStopNotification object:nil];
 }
 
 - (instancetype)initWithDownloadOperation:(NSOperation<TXWebImageDownloaderOperation> *)downloadOperation {
     self = [super init];
     if (self) {
         _downloadOperation = downloadOperation;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadDidReceiveResponse:) name:SDWebImageDownloadReceiveResponseNotification object:downloadOperation];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadDidStop:) name:SDWebImageDownloadStopNotification object:downloadOperation];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadDidReceiveResponse:) name:TXWebImageDownloadReceiveResponseNotification object:downloadOperation];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadDidStop:) name:TXWebImageDownloadStopNotification object:downloadOperation];
     }
     return self;
 }

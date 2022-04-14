@@ -51,7 +51,7 @@
  for UIKit(macOS), it use a `UIActivityIndicatorView`.
  for AppKit(macOS), it use a `NSProgressIndicator` with the spinning style.
  */
-@interface SDWebImageActivityIndicator : NSObject <TXWebImageIndicator>
+@interface TXWebImageActivityIndicator : NSObject <TXWebImageIndicator>
 
 #if SD_UIKIT
 @property (nonatomic, strong, readonly, nonnull) UIActivityIndicatorView *indicatorView;
@@ -64,22 +64,22 @@
 /**
  Convenience way to use activity indicator.
  */
-@interface SDWebImageActivityIndicator (Conveniences)
+@interface TXWebImageActivityIndicator (Conveniences)
 
 /// These indicator use the fixed color without dark mode support
 /// gray-style activity indicator
-@property (nonatomic, class, nonnull, readonly) SDWebImageActivityIndicator *grayIndicator;
+@property (nonatomic, class, nonnull, readonly) TXWebImageActivityIndicator *grayIndicator;
 /// large gray-style activity indicator
-@property (nonatomic, class, nonnull, readonly) SDWebImageActivityIndicator *grayLargeIndicator;
+@property (nonatomic, class, nonnull, readonly) TXWebImageActivityIndicator *grayLargeIndicator;
 /// white-style activity indicator
-@property (nonatomic, class, nonnull, readonly) SDWebImageActivityIndicator *whiteIndicator;
+@property (nonatomic, class, nonnull, readonly) TXWebImageActivityIndicator *whiteIndicator;
 /// large white-style activity indicator
-@property (nonatomic, class, nonnull, readonly) SDWebImageActivityIndicator *whiteLargeIndicator;
+@property (nonatomic, class, nonnull, readonly) TXWebImageActivityIndicator *whiteLargeIndicator;
 /// These indicator use the system style, supports dark mode if available (iOS 13+/macOS 10.14+)
 /// large activity indicator
-@property (nonatomic, class, nonnull, readonly) SDWebImageActivityIndicator *largeIndicator;
+@property (nonatomic, class, nonnull, readonly) TXWebImageActivityIndicator *largeIndicator;
 /// medium activity indicator
-@property (nonatomic, class, nonnull, readonly) SDWebImageActivityIndicator *mediumIndicator;
+@property (nonatomic, class, nonnull, readonly) TXWebImageActivityIndicator *mediumIndicator;
 
 @end
 
@@ -90,7 +90,7 @@
  for UIKit(macOS), it use a `UIProgressView`.
  for AppKit(macOS), it use a `NSProgressIndicator` with the bar style.
  */
-@interface SDWebImageProgressIndicator : NSObject <TXWebImageIndicator>
+@interface TXWebImageProgressIndicator : NSObject <TXWebImageIndicator>
 
 #if SD_UIKIT
 @property (nonatomic, strong, readonly, nonnull) UIProgressView *indicatorView;
@@ -103,12 +103,12 @@
 /**
  Convenience way to create progress indicator. Remember to specify the indicator width or use layout constraint if need.
  */
-@interface SDWebImageProgressIndicator (Conveniences)
+@interface TXWebImageProgressIndicator (Conveniences)
 
 /// default-style progress indicator
-@property (nonatomic, class, nonnull, readonly) SDWebImageProgressIndicator *defaultIndicator;
+@property (nonatomic, class, nonnull, readonly) TXWebImageProgressIndicator *defaultIndicator;
 /// bar-style progress indicator
-@property (nonatomic, class, nonnull, readonly) SDWebImageProgressIndicator *barIndicator API_UNAVAILABLE(macos, tvos);
+@property (nonatomic, class, nonnull, readonly) TXWebImageProgressIndicator *barIndicator API_UNAVAILABLE(macos, tvos);
 
 @end
 

@@ -11,7 +11,7 @@
 
 @interface TXWebImagePrefetcher ()
 
-@property (strong, atomic, nonnull) NSMutableSet<SDWebImagePrefetchToken *> *runningTokens;
+@property (strong, atomic, nonnull) NSMutableSet<TXWebImagePrefetchToken *> *runningTokens;
 
 @end
 
@@ -145,7 +145,7 @@
                            @"http://via.placeholder.com/30x30.jpg",
                            @"http://via.placeholder.com/40x40.jpg"];
     TXWebImagePrefetcher *prefetcher = [[TXWebImagePrefetcher alloc] init];
-    SDWebImagePrefetchToken *token = [prefetcher prefetchURLs:imageURLs];
+    TXWebImagePrefetchToken *token = [prefetcher prefetchURLs:imageURLs];
     expect(prefetcher.runningTokens.count).equal(1);
     [token cancel];
     expect(prefetcher.runningTokens.count).equal(0);

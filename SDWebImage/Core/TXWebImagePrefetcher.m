@@ -11,7 +11,7 @@
 #import "TXInternalMacros.h"
 #import <stdatomic.h>
 
-@interface SDWebImagePrefetchToken () {
+@interface TXWebImagePrefetchToken () {
     @public
     // Though current implementation, `TXWebImageManager` completion block is always on main queue. But however, there is no guarantee in docs. And we may introduce config to specify custom queue in the future.
     // These value are just used as incrementing counter, keep thread-safe using memory_order_relaxed for performance.
@@ -38,7 +38,7 @@
 @interface TXWebImagePrefetcher ()
 
 @property (strong, nonatomic, nonnull) TXWebImageManager *manager;
-@property (strong, atomic, nonnull) NSMutableSet<SDWebImagePrefetchToken *> *runningTokens;
+@property (strong, atomic, nonnull) NSMutableSet<TXWebImagePrefetchToken *> *runningTokens;
 @property (strong, nonatomic, nonnull) NSOperationQueue *prefetchQueue;
 
 @end
@@ -79,11 +79,11 @@
 }
 
 #pragma mark - Prefetch
-- (nullable SDWebImagePrefetchToken *)prefetchURLs:(nullable NSArray<NSURL *> *)urls {
+- (nullable TXWebImagePrefetchToken *)prefetchURLs:(nullable NSArray<NSURL *> *)urls {
     return [self prefetchURLs:urls progress:nil completed:nil];
 }
 
-- (nullable SDWebImagePrefetchToken *)prefetchURLs:(nullable NSArray<NSURL *> *)urls
+- (nullable TXWebImagePrefetchToken *)prefetchURLs:(nullable NSArray<NSURL *> *)urls
                                           progress:(nullable TXWebImagePrefetcherProgressBlock)progressBlock
                                          completed:(nullable TXWebImagePrefetcherCompletionBlock)completionBlock {
     if (!urls || urls.count == 0) {
@@ -92,7 +92,7 @@
         }
         return nil;
     }
-    SDWebImagePrefetchToken *token = [SDWebImagePrefetchToken new];
+    TXWebImagePrefetchToken *token = [TXWebImagePrefetchToken new];
     token.prefetcher = self;
     token.urls = urls;
     token->_skippedCount = 0;
@@ -109,7 +109,7 @@
     return token;
 }
 
-- (void)startPrefetchWithToken:(SDWebImagePrefetchToken * _Nonnull)token {
+- (void)startPrefetchWithToken:(TXWebImagePrefetchToken * _Nonnull)token {
     for (NSURL *url in token.urls) {
         @autoreleasepool {
             @weakify(self);
@@ -160,13 +160,13 @@
 #pragma mark - Cancel
 - (void)cancelPrefetching {
     @synchronized(self.runningTokens) {
-        NSSet<SDWebImagePrefetchToken *> *copiedTokens = [self.runningTokens copy];
+        NSSet<TXWebImagePrefetchToken *> *copiedTokens = [self.runningTokens copy];
         [copiedTokens makeObjectsPerformSelector:@selector(cancel)];
         [self.runningTokens removeAllObjects];
     }
 }
 
-- (void)callProgressBlockForToken:(SDWebImagePrefetchToken *)token imageURL:(NSURL *)url {
+- (void)callProgressBlockForToken:(TXWebImagePrefetchToken *)token imageURL:(NSURL *)url {
     if (!token) {
         return;
     }
@@ -185,7 +185,7 @@
     });
 }
 
-- (void)callCompletionBlockForToken:(SDWebImagePrefetchToken *)token {
+- (void)callCompletionBlockForToken:(TXWebImagePrefetchToken *)token {
     if (!token) {
         return;
     }
@@ -208,7 +208,7 @@
 - (NSUInteger)tokenTotalCount {
     NSUInteger tokenTotalCount = 0;
     @synchronized (self.runningTokens) {
-        for (SDWebImagePrefetchToken *token in self.runningTokens) {
+        for (TXWebImagePrefetchToken *token in self.runningTokens) {
             tokenTotalCount += token->_totalCount;
         }
     }
@@ -218,7 +218,7 @@
 - (NSUInteger)tokenSkippedCount {
     NSUInteger tokenSkippedCount = 0;
     @synchronized (self.runningTokens) {
-        for (SDWebImagePrefetchToken *token in self.runningTokens) {
+        for (TXWebImagePrefetchToken *token in self.runningTokens) {
             tokenSkippedCount += atomic_load_explicit(&(token->_skippedCount), memory_order_relaxed);
         }
     }
@@ -228,14 +228,14 @@
 - (NSUInteger)tokenFinishedCount {
     NSUInteger tokenFinishedCount = 0;
     @synchronized (self.runningTokens) {
-        for (SDWebImagePrefetchToken *token in self.runningTokens) {
+        for (TXWebImagePrefetchToken *token in self.runningTokens) {
             tokenFinishedCount += atomic_load_explicit(&(token->_finishedCount), memory_order_relaxed);
         }
     }
     return tokenFinishedCount;
 }
 
-- (void)addRunningToken:(SDWebImagePrefetchToken *)token {
+- (void)addRunningToken:(TXWebImagePrefetchToken *)token {
     if (!token) {
         return;
     }
@@ -244,7 +244,7 @@
     }
 }
 
-- (void)removeRunningToken:(SDWebImagePrefetchToken *)token {
+- (void)removeRunningToken:(TXWebImagePrefetchToken *)token {
     if (!token) {
         return;
     }
@@ -263,7 +263,7 @@
 
 @end
 
-@implementation SDWebImagePrefetchToken
+@implementation TXWebImagePrefetchToken
 
 - (instancetype)init {
     self = [super init];

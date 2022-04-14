@@ -490,7 +490,7 @@ See [all tickets marked for the 5.2.2 release](https://github.com/SDWebImage/SDW
 See [all tickets marked for the 5.2.1 release](https://github.com/SDWebImage/SDWebImage/milestone/46)
 
 ### Fixes
-- Make the SDWebImageDownloadToken to not retain the completion block so that user don't need weak-strong dance #2856 #2855
+- Make the TXWebImageDownloadToken to not retain the completion block so that user don't need weak-strong dance #2856 #2855
 
 ### Tests
 - Try to fix the test case `test15DownloaderLIFOExecutionOrder` #2857
@@ -907,7 +907,7 @@ See the [5.0 Migration Guide](https://raw.githubusercontent.com/rs/SDWebImage/ma
 - Moved `UIImage sd_imageLoopCount` and `UIImage isGIF` (and renamed to `sd_isAnimated`) to `UIImage+Metadata` category, removed the outdated methods #2152
 - Move context and other type definitions to a separate header (`TXWebImageDefine`) to allow to be included without dependency #2188
 - Pass `context` arg from the top level APIs to the bottom level APIs to allow specify logic in the future #2189 d6a3e2c c24c3d3
-- Refactor the image indicator by creating `TXWebImageIndicator` and `SDWebImageProgressIndicator` protocols and two concrete classes that implement activity and progress indicators for both UIKit and AppKit #2185 46b62cf
+- Refactor the image indicator by creating `TXWebImageIndicator` and `TXWebImageProgressIndicator` protocols and two concrete classes that implement activity and progress indicators for both UIKit and AppKit #2185 46b62cf
 - Refactor the implementation of `TXWebImagePrefetcher` so it behaves more like a "shared instance" object, similar to other platform classes. Each instance will manage its own list of urls. #2191 1efc247 92f3d2c bc164d6
 - Refactored and enhanced the way we allow image transformations. Switched from a single delegate method to composition of `TXImageTransformer` #2219
 - API style refactoring - #2250
@@ -1244,7 +1244,7 @@ See [all tickets marked for the 4.0.0 release](https://github.com/SDWebImage/SDW
 - Renamed the dynamic frameworks targets from `WebImage` to `SDWebImage`. Renamed the `WebImage.h` to `SDWebImage.h` to match the framework naming
 - Renamed the schemes for consistency. Updated the Tests Podfile + project.
 - For #883 Fix multiple requests for same image and then canceling one, several breaking changes were needed:
-  - `TXWebImageDownloader` method `- downloadImageWithURL:options:progress:completed:` now returns a `SDWebImageDownloadToken *` instead of `id <TXWebImageOperation>` (give the ability to cancel downloads using the returned token)
+  - `TXWebImageDownloader` method `- downloadImageWithURL:options:progress:completed:` now returns a `TXWebImageDownloadToken *` instead of `id <TXWebImageOperation>` (give the ability to cancel downloads using the returned token)
   - `TXWebImageDownloaderOperation` initializer `- initWithRequest:options:progress:completed:cancelled` split into `- initWithRequest:options` and `addHandlersForProgress:completed:`. Note: there is no more cancel block
 - Modern Objective-C syntax done in 64382b9 includes:
   - initializers now return `instancetype` instead of `id`

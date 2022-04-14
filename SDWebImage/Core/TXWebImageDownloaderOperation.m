@@ -223,7 +223,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
         }
         __block typeof(self) strongSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:strongSelf];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TXWebImageDownloadStartNotification object:strongSelf];
         });
     } else {
         if (!self.isFinished) self.finished = YES;
@@ -244,7 +244,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
     
     __block typeof(self) strongSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:strongSelf];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TXWebImageDownloadStopNotification object:strongSelf];
     });
 
     if (self.dataTask) {
@@ -383,7 +383,7 @@ didReceiveResponse:(NSURLResponse *)response
     }
     __block typeof(self) strongSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadReceiveResponseNotification object:strongSelf];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TXWebImageDownloadReceiveResponseNotification object:strongSelf];
     });
     
     if (completionHandler) {
@@ -475,7 +475,7 @@ didReceiveResponse:(NSURLResponse *)response
         self.dataTask = nil;
         __block typeof(self) strongSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:strongSelf];
+            [[NSNotificationCenter defaultCenter] postNotificationName:TXWebImageDownloadStopNotification object:strongSelf];
             if (!error) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadFinishNotification object:strongSelf];
             }

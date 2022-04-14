@@ -160,7 +160,7 @@ TXWebImageManager *manager = [TXWebImageManager sharedManager];
  For example, you can control the global options, based on the URL or original context option like the below code.
  
  @code
- TXWebImageManager.sharedManager.optionsProcessor = [TXWebImageOptionsProcessor optionsProcessorWithBlock:^SDWebImageOptionsResult * _Nullable(NSURL * _Nullable url, SDWebImageOptions options, SDWebImageContext * _Nullable context) {
+ TXWebImageManager.sharedManager.optionsProcessor = [TXWebImageOptionsProcessor optionsProcessorWithBlock:^TXWebImageOptionsResult * _Nullable(NSURL * _Nullable url, SDWebImageOptions options, SDWebImageContext * _Nullable context) {
      // Only do animation on `TXAnimatedImageView`
      if (!context[SDWebImageContextAnimatedImageClass]) {
         options |= SDWebImageDecodeFirstFrameOnly;
@@ -174,7 +174,7 @@ TXWebImageManager *manager = [TXWebImageManager sharedManager];
      mutableContext[SDWebImageContextImageScaleFactor] = @(UIScreen.mainScreen.scale);
      context = [mutableContext copy];
  
-     return [[SDWebImageOptionsResult alloc] initWithOptions:options context:context];
+     return [[TXWebImageOptionsResult alloc] initWithOptions:options context:context];
  }];
  @endcode
  */

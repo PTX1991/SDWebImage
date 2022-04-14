@@ -15,7 +15,7 @@
 /**
  The value specify that the image progress unit count cannot be determined because the progressBlock is not been called.
  */
-FOUNDATION_EXPORT const int64_t SDWebImageProgressUnitCountUnknown; /* 1LL */
+FOUNDATION_EXPORT const int64_t TXWebImageProgressUnitCountUnknown; /* 1LL */
 
 typedef void(^SDSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable imageData, TXImageCacheType cacheType, NSURL * _Nullable imageURL);
 
@@ -41,7 +41,7 @@ typedef void(^SDSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable ima
 
 /**
  * The current image loading progress associated to the view. The unit count is the received size and excepted size of download.
- * The `totalUnitCount` and `completedUnitCount` will be reset to 0 after a new image loading start (change from current queue). And they will be set to `SDWebImageProgressUnitCountUnknown` if the progressBlock not been called but the image loading success to mark the progress finished (change from main queue).
+ * The `totalUnitCount` and `completedUnitCount` will be reset to 0 after a new image loading start (change from current queue). And they will be set to `TXWebImageProgressUnitCountUnknown` if the progressBlock not been called but the image loading success to mark the progress finished (change from main queue).
  * @note You can use Key-Value Observing on the progress, but you should take care that the change to progress is from a background queue during download(the same as progressBlock). If you want to using KVO and update the UI, make sure to dispatch on the main queue. And it's recommend to use some KVO libs like KVOController because it's more safe and easy to use.
  * @note The getter will create a progress instance if the value is nil. But by default, we don't create one. If you need to use Key-Value Observing, you must trigger the getter or set a custom progress instance before the loading start. The default value is nil.
  * @note Note that because of the limitations of categories this property can get out of sync if you update the progress directly.

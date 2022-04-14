@@ -12,10 +12,10 @@
 #import <CoreImage/CoreImage.h>
 #endif
 
-// Separator for different transformerKey, for example, `image.png` |> flip(YES,NO) |> rotate(pi/4,YES) => 'image-SDImageFlippingTransformer(1,0)-SDImageRotationTransformer(0.78539816339,1).png'
+// Separator for different transformerKey, for example, `image.png` |> flip(YES,NO) |> rotate(pi/4,YES) => 'image-TXImageFlippingTransformer(1,0)-TXImageRotationTransformer(0.78539816339,1).png'
 static NSString * const TXImageTransformerKeySeparator = @"-";
 
-NSString * _Nullable SDTransformedKeyForKey(NSString * _Nullable key, NSString * _Nonnull transformerKey) {
+NSString * _Nullable TXTransformedKeyForKey(NSString * _Nullable key, NSString * _Nonnull transformerKey) {
     if (!key || !transformerKey) {
         return nil;
     }
@@ -38,22 +38,22 @@ NSString * _Nullable SDTransformedKeyForKey(NSString * _Nullable key, NSString *
     }
 }
 
-NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thumbnailPixelSize, BOOL preserveAspectRatio) {
+NSString * _Nullable TXThumbnailedKeyForKey(NSString * _Nullable key, CGSize thumbnailPixelSize, BOOL preserveAspectRatio) {
     NSString *thumbnailKey = [NSString stringWithFormat:@"Thumbnail({%f,%f},%d)", thumbnailPixelSize.width, thumbnailPixelSize.height, preserveAspectRatio];
-    return SDTransformedKeyForKey(key, thumbnailKey);
+    return TXTransformedKeyForKey(key, thumbnailKey);
 }
 
-@interface SDImagePipelineTransformer ()
+@interface TXImagePipelineTransformer ()
 
 @property (nonatomic, copy, readwrite, nonnull) NSArray<id<TXImageTransformer>> *transformers;
 @property (nonatomic, copy, readwrite) NSString *transformerKey;
 
 @end
 
-@implementation SDImagePipelineTransformer
+@implementation TXImagePipelineTransformer
 
 + (instancetype)transformerWithTransformers:(NSArray<id<TXImageTransformer>> *)transformers {
-    SDImagePipelineTransformer *transformer = [SDImagePipelineTransformer new];
+    TXImagePipelineTransformer *transformer = [TXImagePipelineTransformer new];
     transformer.transformers = transformers;
     transformer.transformerKey = [[self class] cacheKeyForTransformers:transformers];
     
@@ -86,7 +86,7 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 @end
 
-@interface SDImageRoundCornerTransformer ()
+@interface TXImageRoundCornerTransformer ()
 
 @property (nonatomic, assign) CGFloat cornerRadius;
 @property (nonatomic, assign) SDRectCorner corners;
@@ -95,10 +95,10 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 @end
 
-@implementation SDImageRoundCornerTransformer
+@implementation TXImageRoundCornerTransformer
 
 + (instancetype)transformerWithRadius:(CGFloat)cornerRadius corners:(SDRectCorner)corners borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor {
-    SDImageRoundCornerTransformer *transformer = [SDImageRoundCornerTransformer new];
+    TXImageRoundCornerTransformer *transformer = [TXImageRoundCornerTransformer new];
     transformer.cornerRadius = cornerRadius;
     transformer.corners = corners;
     transformer.borderWidth = borderWidth;
@@ -108,7 +108,7 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 }
 
 - (NSString *)transformerKey {
-    return [NSString stringWithFormat:@"SDImageRoundCornerTransformer(%f,%lu,%f,%@)", self.cornerRadius, (unsigned long)self.corners, self.borderWidth, self.borderColor.sd_hexString];
+    return [NSString stringWithFormat:@"TXImageRoundCornerTransformer(%f,%lu,%f,%@)", self.cornerRadius, (unsigned long)self.corners, self.borderWidth, self.borderColor.sd_hexString];
 }
 
 - (UIImage *)transformedImageWithImage:(UIImage *)image forKey:(NSString *)key {
@@ -120,17 +120,17 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 @end
 
-@interface SDImageResizingTransformer ()
+@interface TXImageResizingTransformer ()
 
 @property (nonatomic, assign) CGSize size;
 @property (nonatomic, assign) SDImageScaleMode scaleMode;
 
 @end
 
-@implementation SDImageResizingTransformer
+@implementation TXImageResizingTransformer
 
 + (instancetype)transformerWithSize:(CGSize)size scaleMode:(SDImageScaleMode)scaleMode {
-    SDImageResizingTransformer *transformer = [SDImageResizingTransformer new];
+    TXImageResizingTransformer *transformer = [TXImageResizingTransformer new];
     transformer.size = size;
     transformer.scaleMode = scaleMode;
     
@@ -139,7 +139,7 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 - (NSString *)transformerKey {
     CGSize size = self.size;
-    return [NSString stringWithFormat:@"SDImageResizingTransformer({%f,%f},%lu)", size.width, size.height, (unsigned long)self.scaleMode];
+    return [NSString stringWithFormat:@"TXImageResizingTransformer({%f,%f},%lu)", size.width, size.height, (unsigned long)self.scaleMode];
 }
 
 - (UIImage *)transformedImageWithImage:(UIImage *)image forKey:(NSString *)key {
@@ -151,16 +151,16 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 @end
 
-@interface SDImageCroppingTransformer ()
+@interface TXImageCroppingTransformer ()
 
 @property (nonatomic, assign) CGRect rect;
 
 @end
 
-@implementation SDImageCroppingTransformer
+@implementation TXImageCroppingTransformer
 
 + (instancetype)transformerWithRect:(CGRect)rect {
-    SDImageCroppingTransformer *transformer = [SDImageCroppingTransformer new];
+    TXImageCroppingTransformer *transformer = [TXImageCroppingTransformer new];
     transformer.rect = rect;
     
     return transformer;
@@ -168,7 +168,7 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 - (NSString *)transformerKey {
     CGRect rect = self.rect;
-    return [NSString stringWithFormat:@"SDImageCroppingTransformer({%f,%f,%f,%f})", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];
+    return [NSString stringWithFormat:@"TXImageCroppingTransformer({%f,%f,%f,%f})", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];
 }
 
 - (UIImage *)transformedImageWithImage:(UIImage *)image forKey:(NSString *)key {
@@ -180,17 +180,17 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 @end
 
-@interface SDImageFlippingTransformer ()
+@interface TXImageFlippingTransformer ()
 
 @property (nonatomic, assign) BOOL horizontal;
 @property (nonatomic, assign) BOOL vertical;
 
 @end
 
-@implementation SDImageFlippingTransformer
+@implementation TXImageFlippingTransformer
 
 + (instancetype)transformerWithHorizontal:(BOOL)horizontal vertical:(BOOL)vertical {
-    SDImageFlippingTransformer *transformer = [SDImageFlippingTransformer new];
+    TXImageFlippingTransformer *transformer = [TXImageFlippingTransformer new];
     transformer.horizontal = horizontal;
     transformer.vertical = vertical;
     
@@ -198,7 +198,7 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 }
 
 - (NSString *)transformerKey {
-    return [NSString stringWithFormat:@"SDImageFlippingTransformer(%d,%d)", self.horizontal, self.vertical];
+    return [NSString stringWithFormat:@"TXImageFlippingTransformer(%d,%d)", self.horizontal, self.vertical];
 }
 
 - (UIImage *)transformedImageWithImage:(UIImage *)image forKey:(NSString *)key {
@@ -210,17 +210,17 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 @end
 
-@interface SDImageRotationTransformer ()
+@interface TXImageRotationTransformer ()
 
 @property (nonatomic, assign) CGFloat angle;
 @property (nonatomic, assign) BOOL fitSize;
 
 @end
 
-@implementation SDImageRotationTransformer
+@implementation TXImageRotationTransformer
 
 + (instancetype)transformerWithAngle:(CGFloat)angle fitSize:(BOOL)fitSize {
-    SDImageRotationTransformer *transformer = [SDImageRotationTransformer new];
+    TXImageRotationTransformer *transformer = [TXImageRotationTransformer new];
     transformer.angle = angle;
     transformer.fitSize = fitSize;
     
@@ -228,7 +228,7 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 }
 
 - (NSString *)transformerKey {
-    return [NSString stringWithFormat:@"SDImageRotationTransformer(%f,%d)", self.angle, self.fitSize];
+    return [NSString stringWithFormat:@"TXImageRotationTransformer(%f,%d)", self.angle, self.fitSize];
 }
 
 - (UIImage *)transformedImageWithImage:(UIImage *)image forKey:(NSString *)key {
@@ -242,23 +242,23 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 #pragma mark - Image Blending
 
-@interface SDImageTintTransformer ()
+@interface TXImageTintTransformer ()
 
 @property (nonatomic, strong, nonnull) UIColor *tintColor;
 
 @end
 
-@implementation SDImageTintTransformer
+@implementation TXImageTintTransformer
 
 + (instancetype)transformerWithColor:(UIColor *)tintColor {
-    SDImageTintTransformer *transformer = [SDImageTintTransformer new];
+    TXImageTintTransformer *transformer = [TXImageTintTransformer new];
     transformer.tintColor = tintColor;
     
     return transformer;
 }
 
 - (NSString *)transformerKey {
-    return [NSString stringWithFormat:@"SDImageTintTransformer(%@)", self.tintColor.sd_hexString];
+    return [NSString stringWithFormat:@"TXImageTintTransformer(%@)", self.tintColor.sd_hexString];
 }
 
 - (UIImage *)transformedImageWithImage:(UIImage *)image forKey:(NSString *)key {
@@ -272,23 +272,23 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 
 #pragma mark - Image Effect
 
-@interface SDImageBlurTransformer ()
+@interface TXImageBlurTransformer ()
 
 @property (nonatomic, assign) CGFloat blurRadius;
 
 @end
 
-@implementation SDImageBlurTransformer
+@implementation TXImageBlurTransformer
 
 + (instancetype)transformerWithRadius:(CGFloat)blurRadius {
-    SDImageBlurTransformer *transformer = [SDImageBlurTransformer new];
+    TXImageBlurTransformer *transformer = [TXImageBlurTransformer new];
     transformer.blurRadius = blurRadius;
     
     return transformer;
 }
 
 - (NSString *)transformerKey {
-    return [NSString stringWithFormat:@"SDImageBlurTransformer(%f)", self.blurRadius];
+    return [NSString stringWithFormat:@"TXImageBlurTransformer(%f)", self.blurRadius];
 }
 
 - (UIImage *)transformedImageWithImage:(UIImage *)image forKey:(NSString *)key {
@@ -301,23 +301,23 @@ NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thu
 @end
 
 #if SD_UIKIT || SD_MAC
-@interface SDImageFilterTransformer ()
+@interface TXImageFilterTransformer ()
 
 @property (nonatomic, strong, nonnull) CIFilter *filter;
 
 @end
 
-@implementation SDImageFilterTransformer
+@implementation TXImageFilterTransformer
 
 + (instancetype)transformerWithFilter:(CIFilter *)filter {
-    SDImageFilterTransformer *transformer = [SDImageFilterTransformer new];
+    TXImageFilterTransformer *transformer = [TXImageFilterTransformer new];
     transformer.filter = filter;
     
     return transformer;
 }
 
 - (NSString *)transformerKey {
-    return [NSString stringWithFormat:@"SDImageFilterTransformer(%@)", self.filter.name];
+    return [NSString stringWithFormat:@"TXImageFilterTransformer(%@)", self.filter.name];
 }
 
 - (UIImage *)transformedImageWithImage:(UIImage *)image forKey:(NSString *)key {

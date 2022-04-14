@@ -10,14 +10,14 @@
 #import "TXWebImageCompat.h"
 #import "TXWebImageDefine.h"
 
-@class SDWebImageOptionsResult;
+@class TXWebImageOptionsResult;
 
-typedef SDWebImageOptionsResult * _Nullable(^TXWebImageOptionsProcessorBlock)(NSURL * _Nullable url, SDWebImageOptions options, SDWebImageContext * _Nullable context);
+typedef TXWebImageOptionsResult * _Nullable(^TXWebImageOptionsProcessorBlock)(NSURL * _Nullable url, SDWebImageOptions options, SDWebImageContext * _Nullable context);
 
 /**
  The options result contains both options and context.
  */
-@interface SDWebImageOptionsResult : NSObject
+@interface TXWebImageOptionsResult : NSObject
 
 /**
  WebCache options.
@@ -55,7 +55,7 @@ typedef SDWebImageOptionsResult * _Nullable(^TXWebImageOptionsProcessorBlock)(NS
  @param context A context contains different options to perform specify changes or processes, see `SDWebImageContextOption`. This hold the extra objects which `options` enum can not hold.
  @return The processed result, contains both options and context
  */
-- (nullable SDWebImageOptionsResult *)processedResultForURL:(nullable NSURL *)url
+- (nullable TXWebImageOptionsResult *)processedResultForURL:(nullable NSURL *)url
                                                     options:(SDWebImageOptions)options
                                                     context:(nullable SDWebImageContext *)context;
 

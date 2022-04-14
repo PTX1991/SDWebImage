@@ -8,14 +8,14 @@
 
 #import "TXWebImageOptionsProcessor.h"
 
-@interface SDWebImageOptionsResult ()
+@interface TXWebImageOptionsResult ()
 
 @property (nonatomic, assign) SDWebImageOptions options;
 @property (nonatomic, copy, nullable) SDWebImageContext *context;
 
 @end
 
-@implementation SDWebImageOptionsResult
+@implementation TXWebImageOptionsResult
 
 - (instancetype)initWithOptions:(SDWebImageOptions)options context:(SDWebImageContext *)context {
     self = [super init];
@@ -49,7 +49,7 @@
     return optionsProcessor;
 }
 
-- (SDWebImageOptionsResult *)processedResultForURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context {
+- (TXWebImageOptionsResult *)processedResultForURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context {
     if (!self.block) {
         return nil;
     }

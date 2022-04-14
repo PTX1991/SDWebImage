@@ -18,7 +18,7 @@
 /**
  *  Category for TXWebImageDownloader so we can access the operationClass
  */
-@interface SDWebImageDownloadToken ()
+@interface TXWebImageDownloadToken ()
 @property (nonatomic, weak, nullable) NSOperation<TXWebImageDownloaderOperation> *downloadOperation;
 @end
 
@@ -85,7 +85,7 @@
     NSURL *imageURL3 = [NSURL URLWithString:kTestGIFURL];
     // we try to set a usual NSOperation as operation class. Should not work
     downloader.config.operationClass = [NSOperation class];
-    SDWebImageDownloadToken *token = [downloader downloadImageWithURL:imageURL1 options:0 progress:nil completed:nil];
+    TXWebImageDownloadToken *token = [downloader downloadImageWithURL:imageURL1 options:0 progress:nil completed:nil];
     NSOperation<TXWebImageDownloaderOperation> *operation = token.downloadOperation;
     expect([operation class]).to.equal([TXWebImageDownloaderOperation class]);
     
@@ -171,7 +171,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Cancel"];
     
     NSURL *imageURL = [NSURL URLWithString:@"http://via.placeholder.com/1000x1000.png"];
-    SDWebImageDownloadToken *token = [[TXWebImageDownloader sharedDownloader]
+    TXWebImageDownloadToken *token = [[TXWebImageDownloader sharedDownloader]
                                       downloadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
                                           expect(error).notTo.beNil();
                                           expect(error.domain).equal(TXWebImageErrorDomain);
@@ -283,7 +283,7 @@
     for (int i = 1; i <= waitIndex; i++) {
         [self createLIFOOperationWithDownloader:downloader expectation:expectations[i-1] index:i];
     }
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWebImageDownloadStartNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:TXWebImageDownloadStartNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         TXWebImageDownloaderOperation *operation = note.object;
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kPlaceholderTestURLTemplate, waitIndex]];
         if (![operation.request.URL isEqual:url]) {
@@ -399,7 +399,7 @@
 /**
  *  Per #883 - Fix multiple requests for same image and then canceling one
  *  Old SDWebImage (3.x) could not handle correctly multiple requests for the same image + cancel
- *  In 4.0, via #883 added `SDWebImageDownloadToken` so we can cancel exactly the request we want
+ *  In 4.0, via #883 added `TXWebImageDownloadToken` so we can cancel exactly the request we want
  *  This test validates the scenario of making 2 requests for the same image and cancelling the 1st one
  */
 - (void)test20ThatDownloadingSameURLTwiceAndCancellingFirstWorks {
@@ -407,7 +407,7 @@
     
     NSURL *imageURL = [NSURL URLWithString:kTestJPEGURL];
     
-    SDWebImageDownloadToken *token1 = [[TXWebImageDownloader sharedDownloader]
+    TXWebImageDownloadToken *token1 = [[TXWebImageDownloader sharedDownloader]
                                        downloadImageWithURL:imageURL
                                        options:0
                                        progress:nil
@@ -417,7 +417,7 @@
                                        }];
     expect(token1).toNot.beNil();
     
-    SDWebImageDownloadToken *token2 = [[TXWebImageDownloader sharedDownloader]
+    TXWebImageDownloadToken *token2 = [[TXWebImageDownloader sharedDownloader]
                                        downloadImageWithURL:imageURL
                                        options:0
                                        progress:nil
@@ -438,7 +438,7 @@
 /**
  *  Per #883 - Fix multiple requests for same image and then canceling one
  *  Old SDWebImage (3.x) could not handle correctly multiple requests for the same image + cancel
- *  In 4.0, via #883 added `SDWebImageDownloadToken` so we can cancel exactly the request we want
+ *  In 4.0, via #883 added `TXWebImageDownloadToken` so we can cancel exactly the request we want
  *  This test validates the scenario of requesting an image, cancel and then requesting it again
  */
 - (void)test21ThatCancelingDownloadThenRequestingAgainWorks {
@@ -446,7 +446,7 @@
     
     NSURL *imageURL = [NSURL URLWithString:kTestJPEGURL];
     
-    SDWebImageDownloadToken *token1 = [[TXWebImageDownloader sharedDownloader]
+    TXWebImageDownloadToken *token1 = [[TXWebImageDownloader sharedDownloader]
                                        downloadImageWithURL:imageURL
                                        options:0
                                        progress:nil
@@ -458,7 +458,7 @@
     
     [token1 cancel];
     
-    SDWebImageDownloadToken *token2 = [[TXWebImageDownloader sharedDownloader]
+    TXWebImageDownloadToken *token2 = [[TXWebImageDownloader sharedDownloader]
                                        downloadImageWithURL:imageURL
                                        options:0
                                        progress:nil
@@ -575,7 +575,7 @@
     }];
     downloader.responseModifier = responseModifier;
     
-    __block SDWebImageDownloadToken *token;
+    __block TXWebImageDownloadToken *token;
     token = [downloader downloadImageWithURL:[NSURL URLWithString:kTestJPEGURL] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).notTo.beNil();
         expect(error.code).equal(TXWebImageErrorInvalidDownloadStatusCode);
@@ -660,7 +660,7 @@
     
     TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] init];
     
-    __block SDWebImageDownloadToken *token;
+    __block TXWebImageDownloadToken *token;
     token = [downloader downloadImageWithURL:[NSURL URLWithString:kTestJPEGURL] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).beNil();
         if (@available(iOS 10.0, tvOS 10.0, macOS 10.12, *)) {
@@ -711,7 +711,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Progressive download should use the same coder for each animated image"];
     TXWebImageDownloader *downloader = [[TXWebImageDownloader alloc] init];
     
-    __block SDWebImageDownloadToken *token;
+    __block TXWebImageDownloadToken *token;
     __block id<TXImageCoder> progressiveCoder;
     token = [downloader downloadImageWithURL:[NSURL URLWithString:kTestGIFURL] options:TXWebImageDownloaderProgressiveLoad context:@{SDWebImageContextAnimatedImageClass : TXAnimatedImage.class} progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).beNil();
@@ -744,7 +744,7 @@
     TXWebImageDownloader *downloader2 = [[TXWebImageDownloader alloc] initWithConfig:config2];
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Acceptable content type should work"];
     
-    __block SDWebImageDownloadToken *token1;
+    __block TXWebImageDownloadToken *token1;
     token1 = [downloader1 downloadImageWithURL:[NSURL URLWithString:kTestJPEGURL] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).notTo.beNil();
         expect(error.code).equal(TXWebImageErrorInvalidDownloadStatusCode);
@@ -753,7 +753,7 @@
         [expectation1 fulfill];
     }];
     
-    __block SDWebImageDownloadToken *token2;
+    __block TXWebImageDownloadToken *token2;
     token2 = [downloader2 downloadImageWithURL:[NSURL URLWithString:kTestJPEGURL] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         expect(error).notTo.beNil();
         expect(error.code).equal(TXWebImageErrorInvalidDownloadContentType);

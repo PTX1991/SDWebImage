@@ -193,10 +193,10 @@
     __block BOOL optionsProcessorCalled = NO;
     
     TXWebImageManager *manager = [[TXWebImageManager alloc] initWithCache:[TXImageCache sharedImageCache] loader:[TXWebImageDownloader sharedDownloader]];
-    manager.optionsProcessor = [TXWebImageOptionsProcessor optionsProcessorWithBlock:^SDWebImageOptionsResult * _Nullable(NSURL * _Nonnull url, SDWebImageOptions options, SDWebImageContext * _Nullable context) {
+    manager.optionsProcessor = [TXWebImageOptionsProcessor optionsProcessorWithBlock:^TXWebImageOptionsResult * _Nullable(NSURL * _Nonnull url, SDWebImageOptions options, SDWebImageContext * _Nullable context) {
         if ([url.absoluteString isEqualToString:kTestPNGURL]) {
             optionsProcessorCalled = YES;
-            return [[SDWebImageOptionsResult alloc] initWithOptions:0 context:@{SDWebImageContextImageScaleFactor : @(3)}];
+            return [[TXWebImageOptionsResult alloc] initWithOptions:0 context:@{SDWebImageContextImageScaleFactor : @(3)}];
         } else {
             return nil;
         }

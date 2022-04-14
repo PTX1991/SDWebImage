@@ -143,7 +143,7 @@ static id<TXImageLoader> _defaultImageLoader;
         if (preserveAspectRatioValue != nil) {
             preserveAspectRatio = preserveAspectRatioValue.boolValue;
         }
-        key = SDThumbnailedKeyForKey(key, thumbnailSize, preserveAspectRatio);
+        key = TXThumbnailedKeyForKey(key, thumbnailSize, preserveAspectRatio);
     }
     
     // Transformer Key Appending
@@ -155,7 +155,7 @@ static id<TXImageLoader> _defaultImageLoader;
         }
     }
     if (transformer) {
-        key = SDTransformedKeyForKey(key, transformer.transformerKey);
+        key = TXTransformedKeyForKey(key, transformer.transformerKey);
     }
     
     return key;
@@ -206,7 +206,7 @@ static id<TXImageLoader> _defaultImageLoader;
     SD_UNLOCK(_runningOperationsLock);
     
     // Preprocess the options and context arg to decide the final the result for manager
-    SDWebImageOptionsResult *result = [self processedResultForURL:url options:options context:context];
+    TXWebImageOptionsResult *result = [self processedResultForURL:url options:options context:context];
     
     // Start the entry to load image from cache
     [self callCacheProcessForOperation:operation url:url options:result.options context:result.context progress:progressBlock completed:completedBlock];
@@ -652,8 +652,8 @@ static id<TXImageLoader> _defaultImageLoader;
     return shouldBlockFailedURL;
 }
 
-- (SDWebImageOptionsResult *)processedResultForURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context {
-    SDWebImageOptionsResult *result;
+- (TXWebImageOptionsResult *)processedResultForURL:(NSURL *)url options:(SDWebImageOptions)options context:(SDWebImageContext *)context {
+    TXWebImageOptionsResult *result;
     SDWebImageMutableContext *mutableContext = [SDWebImageMutableContext dictionary];
     
     // Image Transformer from manager
@@ -685,7 +685,7 @@ static id<TXImageLoader> _defaultImageLoader;
     }
     if (!result) {
         // Use default options result
-        result = [[SDWebImageOptionsResult alloc] initWithOptions:options context:context];
+        result = [[TXWebImageOptionsResult alloc] initWithOptions:options context:context];
     }
     
     return result;

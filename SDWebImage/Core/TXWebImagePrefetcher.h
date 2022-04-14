@@ -14,7 +14,7 @@
 /**
  A token represents a list of URLs, can be used to cancel the download.
  */
-@interface SDWebImagePrefetchToken : NSObject <TXWebImageOperation>
+@interface TXWebImagePrefetchToken : NSObject <TXWebImageOperation>
 
 /**
  * Cancel the current prefetching.
@@ -114,7 +114,7 @@ typedef void(^TXWebImagePrefetcherCompletionBlock)(NSUInteger noOfFinishedUrls, 
  * @param urls list of URLs to prefetch
  * @return the token to cancel the current prefetching.
  */
-- (nullable SDWebImagePrefetchToken *)prefetchURLs:(nullable NSArray<NSURL *> *)urls;
+- (nullable TXWebImagePrefetchToken *)prefetchURLs:(nullable NSArray<NSURL *> *)urls;
 
 /**
  * Assign list of URLs to let TXWebImagePrefetcher to queue the prefetching. It based on the image manager so the image may from the cache and network according to the `options` property.
@@ -130,7 +130,7 @@ typedef void(^TXWebImagePrefetcherCompletionBlock)(NSUInteger noOfFinishedUrls, 
  *                        second parameter is the number of skipped requests
  * @return the token to cancel the current prefetching.
  */
-- (nullable SDWebImagePrefetchToken *)prefetchURLs:(nullable NSArray<NSURL *> *)urls
+- (nullable TXWebImagePrefetchToken *)prefetchURLs:(nullable NSArray<NSURL *> *)urls
                                           progress:(nullable TXWebImagePrefetcherProgressBlock)progressBlock
                                          completed:(nullable TXWebImagePrefetcherCompletionBlock)completionBlock;
 

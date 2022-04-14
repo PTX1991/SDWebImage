@@ -16,7 +16,7 @@
 
 #pragma mark - Activity Indicator
 
-@interface SDWebImageActivityIndicator ()
+@interface TXWebImageActivityIndicator ()
 
 #if SD_UIKIT
 @property (nonatomic, strong, readwrite, nonnull) UIActivityIndicatorView *indicatorView;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation SDWebImageActivityIndicator
+@implementation TXWebImageActivityIndicator
 
 - (instancetype)init {
     self = [super init];
@@ -76,12 +76,12 @@
 
 @end
 
-@implementation SDWebImageActivityIndicator (Conveniences)
+@implementation TXWebImageActivityIndicator (Conveniences)
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-+ (SDWebImageActivityIndicator *)grayIndicator {
-    SDWebImageActivityIndicator *indicator = [SDWebImageActivityIndicator new];
++ (TXWebImageActivityIndicator *)grayIndicator {
+    TXWebImageActivityIndicator *indicator = [TXWebImageActivityIndicator new];
 #if SD_UIKIT
 #if SD_IOS
     indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
@@ -94,8 +94,8 @@
     return indicator;
 }
 
-+ (SDWebImageActivityIndicator *)grayLargeIndicator {
-    SDWebImageActivityIndicator *indicator = SDWebImageActivityIndicator.grayIndicator;
++ (TXWebImageActivityIndicator *)grayLargeIndicator {
+    TXWebImageActivityIndicator *indicator = TXWebImageActivityIndicator.grayIndicator;
 #if SD_UIKIT
     UIColor *grayColor = indicator.indicatorView.color;
     indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
@@ -108,8 +108,8 @@
     return indicator;
 }
 
-+ (SDWebImageActivityIndicator *)whiteIndicator {
-    SDWebImageActivityIndicator *indicator = [SDWebImageActivityIndicator new];
++ (TXWebImageActivityIndicator *)whiteIndicator {
+    TXWebImageActivityIndicator *indicator = [TXWebImageActivityIndicator new];
 #if SD_UIKIT
     indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
 #else
@@ -122,8 +122,8 @@
     return indicator;
 }
 
-+ (SDWebImageActivityIndicator *)whiteLargeIndicator {
-    SDWebImageActivityIndicator *indicator = SDWebImageActivityIndicator.whiteIndicator;
++ (TXWebImageActivityIndicator *)whiteLargeIndicator {
+    TXWebImageActivityIndicator *indicator = TXWebImageActivityIndicator.whiteIndicator;
 #if SD_UIKIT
     indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
 #else
@@ -134,8 +134,8 @@
     return indicator;
 }
 
-+ (SDWebImageActivityIndicator *)largeIndicator {
-    SDWebImageActivityIndicator *indicator = [SDWebImageActivityIndicator new];
++ (TXWebImageActivityIndicator *)largeIndicator {
+    TXWebImageActivityIndicator *indicator = [TXWebImageActivityIndicator new];
 #if SD_UIKIT
     if (@available(iOS 13.0, tvOS 13.0, *)) {
         indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge;
@@ -149,8 +149,8 @@
     return indicator;
 }
 
-+ (SDWebImageActivityIndicator *)mediumIndicator {
-    SDWebImageActivityIndicator *indicator = [SDWebImageActivityIndicator new];
++ (TXWebImageActivityIndicator *)mediumIndicator {
+    TXWebImageActivityIndicator *indicator = [TXWebImageActivityIndicator new];
 #if SD_UIKIT
     if (@available(iOS 13.0, tvOS 13.0, *)) {
         indicator.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleMedium;
@@ -169,7 +169,7 @@
 
 #pragma mark - Progress Indicator
 
-@interface SDWebImageProgressIndicator ()
+@interface TXWebImageProgressIndicator ()
 
 #if SD_UIKIT
 @property (nonatomic, strong, readwrite, nonnull) UIProgressView *indicatorView;
@@ -179,7 +179,7 @@
 
 @end
 
-@implementation SDWebImageProgressIndicator
+@implementation TXWebImageProgressIndicator
 
 - (instancetype)init {
     self = [super init];
@@ -254,16 +254,16 @@
 
 @end
 
-@implementation SDWebImageProgressIndicator (Conveniences)
+@implementation TXWebImageProgressIndicator (Conveniences)
 
-+ (SDWebImageProgressIndicator *)defaultIndicator {
-    SDWebImageProgressIndicator *indicator = [SDWebImageProgressIndicator new];
++ (TXWebImageProgressIndicator *)defaultIndicator {
+    TXWebImageProgressIndicator *indicator = [TXWebImageProgressIndicator new];
     return indicator;
 }
 
 #if SD_IOS
-+ (SDWebImageProgressIndicator *)barIndicator {
-    SDWebImageProgressIndicator *indicator = [SDWebImageProgressIndicator new];
++ (TXWebImageProgressIndicator *)barIndicator {
+    TXWebImageProgressIndicator *indicator = [TXWebImageProgressIndicator new];
     indicator.indicatorView.progressViewStyle = UIProgressViewStyleBar;
     return indicator;
 }

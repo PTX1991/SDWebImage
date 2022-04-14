@@ -437,15 +437,15 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"UIView indicator does not work"];
     
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.sd_imageIndicator = SDWebImageActivityIndicator.grayIndicator;
+    imageView.sd_imageIndicator = TXWebImageActivityIndicator.grayIndicator;
     // Cover each convience method, finally use progress indicator for test
-    imageView.sd_imageIndicator = SDWebImageActivityIndicator.grayLargeIndicator;
-    imageView.sd_imageIndicator = SDWebImageActivityIndicator.whiteIndicator;
-    imageView.sd_imageIndicator = SDWebImageActivityIndicator.whiteLargeIndicator;
+    imageView.sd_imageIndicator = TXWebImageActivityIndicator.grayLargeIndicator;
+    imageView.sd_imageIndicator = TXWebImageActivityIndicator.whiteIndicator;
+    imageView.sd_imageIndicator = TXWebImageActivityIndicator.whiteLargeIndicator;
 #if SD_IOS
-    imageView.sd_imageIndicator = SDWebImageProgressIndicator.barIndicator;
+    imageView.sd_imageIndicator = TXWebImageProgressIndicator.barIndicator;
 #endif
-    imageView.sd_imageIndicator = SDWebImageProgressIndicator.defaultIndicator;
+    imageView.sd_imageIndicator = TXWebImageProgressIndicator.defaultIndicator;
     // Test setter trigger removeFromSuperView
     expect(imageView.subviews.count).equal(1);
     
@@ -494,12 +494,12 @@
     UIView *view = [[UIView alloc] init];
     NSURL *originalImageURL = [NSURL URLWithString:kTestJPEGURL];
     TXWebImageManager *customManager = [[TXWebImageManager alloc] initWithCache:TXImageCachesManager.sharedManager loader:TXImageLoadersManager.sharedManager];
-    customManager.optionsProcessor = [TXWebImageOptionsProcessor optionsProcessorWithBlock:^SDWebImageOptionsResult * _Nullable(NSURL * _Nullable url, SDWebImageOptions options, SDWebImageContext * _Nullable context) {
+    customManager.optionsProcessor = [TXWebImageOptionsProcessor optionsProcessorWithBlock:^TXWebImageOptionsResult * _Nullable(NSURL * _Nullable url, SDWebImageOptions options, SDWebImageContext * _Nullable context) {
         // expect manager does not exist, avoid retain cycle
         expect(context[SDWebImageContextCustomManager]).beNil();
         // expect operation key to be the image view class
         expect(context[SDWebImageContextSetImageOperationKey]).equal(NSStringFromClass(view.class));
-        return [[SDWebImageOptionsResult alloc] initWithOptions:options context:context];
+        return [[TXWebImageOptionsResult alloc] initWithOptions:options context:context];
     }];
     [view sd_internalSetImageWithURL:originalImageURL
                     placeholderImage:nil

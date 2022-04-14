@@ -16,7 +16,7 @@
  @param transformerKey The transformer key from the transformer
  @return The transformed cache key
  */
-FOUNDATION_EXPORT NSString * _Nullable SDTransformedKeyForKey(NSString * _Nullable key, NSString * _Nonnull transformerKey);
+FOUNDATION_EXPORT NSString * _Nullable TXTransformedKeyForKey(NSString * _Nullable key, NSString * _Nonnull transformerKey);
 
 /**
  Return the thumbnailed cache key which applied with specify thumbnailSize and preserveAspectRatio control.
@@ -24,9 +24,9 @@ FOUNDATION_EXPORT NSString * _Nullable SDTransformedKeyForKey(NSString * _Nullab
  @param thumbnailPixelSize The thumbnail pixel size
  @param preserveAspectRatio The preserve aspect ratio option
  @return The thumbnailed cache key
- @note If you have both transformer and thumbnail applied for image, call `SDThumbnailedKeyForKey` firstly and then with `SDTransformedKeyForKey`.`
+ @note If you have both transformer and thumbnail applied for image, call `TXThumbnailedKeyForKey` firstly and then with `TXTransformedKeyForKey`.`
  */
-FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullable key, CGSize thumbnailPixelSize, BOOL preserveAspectRatio);
+FOUNDATION_EXPORT NSString * _Nullable TXThumbnailedKeyForKey(NSString * _Nullable key, CGSize thumbnailPixelSize, BOOL preserveAspectRatio);
 
 /**
  A transformer protocol to transform the image load from cache or from download.
@@ -61,7 +61,7 @@ FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullab
  Pipeline transformer. Which you can bind multiple transformers together to let the image to be transformed one by one in order and generate the final image.
  @note Because transformers are lightweight, if you want to append or arrange transformers, create another pipeline transformer instead. This class is considered as immutable.
  */
-@interface SDImagePipelineTransformer : NSObject <TXImageTransformer>
+@interface TXImagePipelineTransformer : NSObject <TXImageTransformer>
 
 /**
  All transformers in pipeline
@@ -80,7 +80,7 @@ FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullab
 /**
  Image round corner transformer
  */
-@interface SDImageRoundCornerTransformer: NSObject <TXImageTransformer>
+@interface TXImageRoundCornerTransformer: NSObject <TXImageTransformer>
 
 /**
  The radius of each corner oval. Values larger than half the
@@ -116,7 +116,7 @@ FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullab
 /**
  Image resizing transformer
  */
-@interface SDImageResizingTransformer : NSObject <TXImageTransformer>
+@interface TXImageResizingTransformer : NSObject <TXImageTransformer>
 
 /**
  The new size to be resized, values should be positive.
@@ -136,7 +136,7 @@ FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullab
 /**
  Image cropping transformer
  */
-@interface SDImageCroppingTransformer : NSObject <TXImageTransformer>
+@interface TXImageCroppingTransformer : NSObject <TXImageTransformer>
 
 /**
  Image's inner rect.
@@ -151,7 +151,7 @@ FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullab
 /**
  Image flipping transformer
  */
-@interface SDImageFlippingTransformer : NSObject <TXImageTransformer>
+@interface TXImageFlippingTransformer : NSObject <TXImageTransformer>
 
 /**
  YES to flip the image horizontally. ⇋
@@ -171,7 +171,7 @@ FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullab
 /**
  Image rotation transformer
  */
-@interface SDImageRotationTransformer : NSObject <TXImageTransformer>
+@interface TXImageRotationTransformer : NSObject <TXImageTransformer>
 
 /**
  Rotated radians in counterclockwise.⟲
@@ -194,7 +194,7 @@ FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullab
 /**
  Image tint color transformer
  */
-@interface SDImageTintTransformer : NSObject <TXImageTransformer>
+@interface TXImageTintTransformer : NSObject <TXImageTransformer>
 
 /**
  The tint color.
@@ -211,7 +211,7 @@ FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullab
 /**
  Image blur effect transformer
  */
-@interface SDImageBlurTransformer : NSObject <TXImageTransformer>
+@interface TXImageBlurTransformer : NSObject <TXImageTransformer>
 
 /**
  The radius of the blur in points, 0 means no blur effect.
@@ -227,7 +227,7 @@ FOUNDATION_EXPORT NSString * _Nullable SDThumbnailedKeyForKey(NSString * _Nullab
 /**
  Core Image filter transformer
  */
-@interface SDImageFilterTransformer: NSObject <TXImageTransformer>
+@interface TXImageFilterTransformer: NSObject <TXImageTransformer>
 
 /**
  The CIFilter to be applied to the image.

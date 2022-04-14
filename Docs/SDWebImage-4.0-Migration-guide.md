@@ -55,7 +55,7 @@ SDWebImage 4.x
 
 #### Added
 - `TXImageCacheConfig` class for `TXImageCache` config (`shouldDecompressImages`, `shouldDisableiCloud`, `shouldCacheImagesInMemory`, `maxCacheAge`, `maxCacheSize`)
-- `SDWebImageDownloadToken` class for the ability to cancel specific downloads (`url`, `downloadOperationCancelToken`)
+- `TXWebImageDownloadToken` class for the ability to cancel specific downloads (`url`, `downloadOperationCancelToken`)
 - `UIView (WebCache)` category because of DRY, with methods
   - `sd_imageURL`
   - `sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:`
@@ -150,8 +150,8 @@ SDWebImage 4.x
 - added `initWithSessionConfiguration:` which is now the designated initializer
 - added `TXWebImageDownloaderScaleDownLargeImages` option for scaling large images
 - added a `NSURL` param to `TXWebImageDownloaderProgressBlock`
-- `downloadImageWithURL:options:progress:completed:` now returns a `SDWebImageDownloadToken`
-- added method `cancel:` which takes a `SDWebImageDownloadToken`
+- `downloadImageWithURL:options:progress:completed:` now returns a `TXWebImageDownloadToken`
+- added method `cancel:` which takes a `TXWebImageDownloadToken`
 
 #### TXWebImageDownloaderOperation
 - `initWithRequest:inSession:options:progress:completed:cancelled:` replaced by two methods: `initWithRequest:inSession:options:` and `addHandlersForProgress:completed:`

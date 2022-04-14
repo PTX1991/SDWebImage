@@ -161,7 +161,7 @@ At the same time, our framework errors, now using the formal `TXWebImageErrorDom
 
 - `sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:` renamed to `UIView sd_internalSetImageWithURL:placeholderImage:options:context:setImageBlock:progress:completed:` (The biggest changes is that the completion block type from `SDExternalCompletionBlock` to `SDInternalCompletionBlock`. Which allow advanced user to get more information of image loading process) 
 - `sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:context:` removed
-- activity indicator refactoring - use `sd_imageIndicator` with `SDWebImageActivityIndicator`
+- activity indicator refactoring - use `sd_imageIndicator` with `TXWebImageActivityIndicator`
   - `sd_setShowActivityIndicatorView:` removed 
   - `sd_setIndicatorStyle:` removed
   - `sd_showActivityIndicatorView` removed
@@ -193,7 +193,7 @@ At the same time, our framework errors, now using the formal `TXWebImageErrorDom
 - `initWithSessionConfiguration:` removed, use `initWithConfig:` with session configuration instead
 - `createNewSessionWithConfiguration:` removed, use `initWithConfig:` with new session configuration instead. To modify shared downloader configuration, provide custom `TXWebImageDownloaderConfig.defaultDownloaderConfig` before it created.
 - `headersFilter` removed, use `requestModifier` instead
-- `cancel:` removed, use `-[SDWebImageDownloadToken cancel]` instead
+- `cancel:` removed, use `-[TXWebImageDownloadToken cancel]` instead
 - `shouldDecompressImages` removed. Use `TXWebImageDownloaderAvoidDecodeImage` in downloader options instead
 - use `TXImageLoaderProgressBlock` instead of `TXWebImageDownloaderProgressBlock`
 - use `TXImageLoaderCompletedBlock` instead of `TXWebImageDownloaderCompletedBlock`
@@ -209,7 +209,7 @@ At the same time, our framework errors, now using the formal `TXWebImageErrorDom
 
 #### TXWebImagePrefetcher
 
-- `prefetchURLs:` and `prefetchURLs:progress:completed:` return types changed from `void` to `SDWebImagePrefetchToken`
+- `prefetchURLs:` and `prefetchURLs:progress:completed:` return types changed from `void` to `TXWebImagePrefetchToken`
 - `prefetcherQueue` property renamed to `delegateQueue`
 - `maxConcurrentDownloads` replaced with `maxConcurrentPrefetchCount`
 

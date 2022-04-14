@@ -106,7 +106,7 @@
     if (cell == nil) {
         cell = [[MyCustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.customImageView.sd_imageTransition = TXWebImageTransition.fadeTransition;
-        cell.customImageView.sd_imageIndicator = SDWebImageActivityIndicator.grayIndicator;
+        cell.customImageView.sd_imageIndicator = TXWebImageActivityIndicator.grayIndicator;
     }
     
     cell.customTextLabel.text = [NSString stringWithFormat:@"Image #%ld", (long)indexPath.row];
@@ -118,7 +118,7 @@
                          progress:nil
                         completed:^(UIImage * _Nullable image, NSError * _Nullable error, TXImageCacheType cacheType, NSURL * _Nullable imageURL) {
         SDWebImageCombinedOperation *operation = [imageView sd_imageLoadOperationForKey:imageView.sd_latestOperationKey];
-        SDWebImageDownloadToken *token = operation.loaderOperation;
+        TXWebImageDownloadToken *token = operation.loaderOperation;
         if (@available(iOS 10.0, *)) {
             NSURLSessionTaskMetrics *metrics = token.metrics;
             if (metrics) {

@@ -238,19 +238,19 @@
     UIColor *tintColor = [UIColor clearColor];
     CGFloat blurRadius = 5;
     
-    SDImageResizingTransformer *transformer1 = [SDImageResizingTransformer transformerWithSize:size scaleMode:scaleMode];
-    SDImageRotationTransformer *transformer2 = [SDImageRotationTransformer transformerWithAngle:angle fitSize:fitSize];
-    SDImageRoundCornerTransformer *transformer3 = [SDImageRoundCornerTransformer transformerWithRadius:radius corners:corners borderWidth:borderWidth borderColor:borderCoder];
-    SDImageFlippingTransformer *transformer4 = [SDImageFlippingTransformer transformerWithHorizontal:horizontal vertical:vertical];
-    SDImageCroppingTransformer *transformer5 = [SDImageCroppingTransformer transformerWithRect:cropRect];
-    SDImageTintTransformer *transformer6 = [SDImageTintTransformer transformerWithColor:tintColor];
-    SDImageBlurTransformer *transformer7 = [SDImageBlurTransformer transformerWithRadius:blurRadius];
+    TXImageResizingTransformer *transformer1 = [TXImageResizingTransformer transformerWithSize:size scaleMode:scaleMode];
+    TXImageRotationTransformer *transformer2 = [TXImageRotationTransformer transformerWithAngle:angle fitSize:fitSize];
+    TXImageRoundCornerTransformer *transformer3 = [TXImageRoundCornerTransformer transformerWithRadius:radius corners:corners borderWidth:borderWidth borderColor:borderCoder];
+    TXImageFlippingTransformer *transformer4 = [TXImageFlippingTransformer transformerWithHorizontal:horizontal vertical:vertical];
+    TXImageCroppingTransformer *transformer5 = [TXImageCroppingTransformer transformerWithRect:cropRect];
+    TXImageTintTransformer *transformer6 = [TXImageTintTransformer transformerWithColor:tintColor];
+    TXImageBlurTransformer *transformer7 = [TXImageBlurTransformer transformerWithRadius:blurRadius];
     
     CIFilter *filter = [CIFilter filterWithName:@"CIColorInvert"];
-    SDImageFilterTransformer *transformer8 = [SDImageFilterTransformer transformerWithFilter:filter];
+    TXImageFilterTransformer *transformer8 = [TXImageFilterTransformer transformerWithFilter:filter];
     
     // Chain all built-in transformers for test case
-    SDImagePipelineTransformer *pipelineTransformer = [SDImagePipelineTransformer transformerWithTransformers:@[
+    TXImagePipelineTransformer *pipelineTransformer = [TXImagePipelineTransformer transformerWithTransformers:@[
                                                                                                                 transformer1,
                                                                                                                 transformer2,
                                                                                                                 transformer3,
@@ -261,14 +261,14 @@
                                                                                                                 transformer8
                                                                                                                 ]];
     NSArray *transformerKeys = @[
-                      @"SDImageResizingTransformer({100.000000,100.000000},2)",
-                      @"SDImageRotationTransformer(0.785398,0)",
-                      @"SDImageRoundCornerTransformer(50.000000,18446744073709551615,1.000000,#ff000000)",
-                      @"SDImageFlippingTransformer(1,1)",
-                      @"SDImageCroppingTransformer({0.000000,0.000000,50.000000,50.000000})",
-                      @"SDImageTintTransformer(#00000000)",
-                      @"SDImageBlurTransformer(5.000000)",
-                      @"SDImageFilterTransformer(CIColorInvert)"
+                      @"TXImageResizingTransformer({100.000000,100.000000},2)",
+                      @"TXImageRotationTransformer(0.785398,0)",
+                      @"TXImageRoundCornerTransformer(50.000000,18446744073709551615,1.000000,#ff000000)",
+                      @"TXImageFlippingTransformer(1,1)",
+                      @"TXImageCroppingTransformer({0.000000,0.000000,50.000000,50.000000})",
+                      @"TXImageTintTransformer(#00000000)",
+                      @"TXImageBlurTransformer(5.000000)",
+                      @"TXImageFilterTransformer(CIColorInvert)"
                       ];
     NSString *transformerKey = [transformerKeys componentsJoinedByString:@"-"]; // TXImageTransformerKeySeparator
     expect([pipelineTransformer.transformerKey isEqualToString:transformerKey]).beTruthy();
@@ -279,39 +279,39 @@
 }
 
 - (void)test10TransformerKeyForCacheKey {
-    NSString *transformerKey = @"SDImageFlippingTransformer(1,0)";
+    NSString *transformerKey = @"TXImageFlippingTransformer(1,0)";
     
     // File path representation test cases
     NSString *key = @"image.png";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@"image-SDImageFlippingTransformer(1,0).png");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@"image-TXImageFlippingTransformer(1,0).png");
     
     key = @"image";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@"image-SDImageFlippingTransformer(1,0)");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@"image-TXImageFlippingTransformer(1,0)");
     
     key = @".image";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@".image-SDImageFlippingTransformer(1,0)");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@".image-TXImageFlippingTransformer(1,0)");
     
     key = @"image.";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@"image.-SDImageFlippingTransformer(1,0)");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@"image.-TXImageFlippingTransformer(1,0)");
     
     key = @"Test/image.png";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@"Test/image-SDImageFlippingTransformer(1,0).png");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@"Test/image-TXImageFlippingTransformer(1,0).png");
     
     // URL representation test cases
     key = @"http://foo/image.png";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@"http://foo/image-SDImageFlippingTransformer(1,0).png");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@"http://foo/image-TXImageFlippingTransformer(1,0).png");
     
     key = @"http://foo/image";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@"http://foo/image-SDImageFlippingTransformer(1,0)");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@"http://foo/image-TXImageFlippingTransformer(1,0)");
     
     key = @"http://foo/.image";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@"http://foo/.image-SDImageFlippingTransformer(1,0)");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@"http://foo/.image-TXImageFlippingTransformer(1,0)");
     
     key = @"http://foo/image.png?foo=bar#mark";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@"http://foo/image-SDImageFlippingTransformer(1,0).png?foo=bar#mark");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@"http://foo/image-TXImageFlippingTransformer(1,0).png?foo=bar#mark");
     
     key = @"ftp://root:password@foo.com/image.png";
-    expect(SDTransformedKeyForKey(key, transformerKey)).equal(@"ftp://root:password@foo.com/image-SDImageFlippingTransformer(1,0).png");
+    expect(TXTransformedKeyForKey(key, transformerKey)).equal(@"ftp://root:password@foo.com/image-TXImageFlippingTransformer(1,0).png");
 }
 
 #pragma mark - Coder Helper

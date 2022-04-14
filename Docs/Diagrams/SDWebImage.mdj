@@ -8129,7 +8129,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloadToken",
+											"text": "TXWebImageDownloadToken",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -29782,7 +29782,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImagePipelineTransformer",
+											"text": "TXImagePipelineTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -30275,7 +30275,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageRoundCornerTransformer",
+											"text": "TXImageRoundCornerTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -30563,7 +30563,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageResizingTransformer",
+											"text": "TXImageResizingTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -30851,7 +30851,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageCroppingTransformer",
+											"text": "TXImageCroppingTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -31139,7 +31139,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageFlippingTransformer",
+											"text": "TXImageFlippingTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -31427,7 +31427,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageRotationTransformer",
+											"text": "TXImageRotationTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -31715,7 +31715,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageTintTransformer",
+											"text": "TXImageTintTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -32003,7 +32003,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageBlurTransformer",
+											"text": "TXImageBlurTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -32291,7 +32291,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImageFilterTransformer",
+											"text": "TXImageFilterTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -38252,7 +38252,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageActivityIndicator",
+											"text": "TXWebImageActivityIndicator",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -38801,7 +38801,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageProgressIndicator",
+											"text": "TXWebImageProgressIndicator",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -46138,7 +46138,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImagePipelineTransformer",
+									"name": "TXImagePipelineTransformer",
 									"visibility": "public",
 									"attributes": [
 										{
@@ -46205,7 +46205,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImageRoundCornerTransformer",
+									"name": "TXImageRoundCornerTransformer",
 									"visibility": "public",
 									"isAbstract": false,
 									"isFinalSpecialization": false,
@@ -46218,7 +46218,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImageResizingTransformer",
+									"name": "TXImageResizingTransformer",
 									"visibility": "public",
 									"isAbstract": false,
 									"isFinalSpecialization": false,
@@ -46231,7 +46231,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImageCroppingTransformer",
+									"name": "TXImageCroppingTransformer",
 									"visibility": "public",
 									"isAbstract": false,
 									"isFinalSpecialization": false,
@@ -46527,7 +46527,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImageFlippingTransformer",
+									"name": "TXImageFlippingTransformer",
 									"visibility": "public",
 									"isAbstract": false,
 									"isFinalSpecialization": false,
@@ -46540,7 +46540,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImageRotationTransformer",
+									"name": "TXImageRotationTransformer",
 									"visibility": "public",
 									"isAbstract": false,
 									"isFinalSpecialization": false,
@@ -46553,7 +46553,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImageTintTransformer",
+									"name": "TXImageTintTransformer",
 									"visibility": "public",
 									"isAbstract": false,
 									"isFinalSpecialization": false,
@@ -46566,7 +46566,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImageBlurTransformer",
+									"name": "TXImageBlurTransformer",
 									"visibility": "public",
 									"isAbstract": false,
 									"isFinalSpecialization": false,
@@ -46579,7 +46579,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk7BauIRix5Go="
 									},
-									"name": "SDImageFilterTransformer",
+									"name": "TXImageFilterTransformer",
 									"visibility": "public",
 									"isAbstract": false,
 									"isFinalSpecialization": false,
@@ -49587,7 +49587,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageActivityIndicator",
+							"name": "TXWebImageActivityIndicator",
 							"visibility": "public",
 							"attributes": [
 								{
@@ -50644,7 +50644,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageDownloadToken",
+							"name": "TXWebImageDownloadToken",
 							"ownedElements": [
 								{
 									"_type": "UMLDependency",
@@ -51525,7 +51525,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkhbx4ozg49g="
 							},
-							"name": "SDWebImageProgressIndicator",
+							"name": "TXWebImageProgressIndicator",
 							"visibility": "public",
 							"attributes": [
 								{
@@ -65830,7 +65830,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDImagePipelineTransformer",
+											"text": "TXImagePipelineTransformer",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -88806,7 +88806,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SDWebImageDownloadToken",
+											"text": "TXWebImageDownloadToken",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false

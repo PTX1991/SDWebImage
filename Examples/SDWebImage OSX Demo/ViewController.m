@@ -29,11 +29,11 @@
     self.imageView4.animates = YES;
     
     // NSImageView + Static Image
-    self.imageView1.sd_imageIndicator = SDWebImageProgressIndicator.defaultIndicator;
+    self.imageView1.sd_imageIndicator = TXWebImageProgressIndicator.defaultIndicator;
     [self.imageView1 sd_setImageWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/recurser/exif-orientation-examples/master/Landscape_2.jpg"] placeholderImage:nil options:SDWebImageProgressiveLoad];
     
     // NSImageView + Animated Image
-    self.imageView2.sd_imageIndicator = SDWebImageActivityIndicator.largeIndicator;
+    self.imageView2.sd_imageIndicator = TXWebImageActivityIndicator.largeIndicator;
     [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/onevcat/APNGKit/2.2.0/Tests/APNGKitTests/Resources/General/APNG-cube.apng"]];
     NSMenu *menu1 = [[NSMenu alloc] initWithTitle:@"Toggle Animation"];
     NSMenuItem *item1 = [menu1 addItemWithTitle:@"Toggle Animation" action:@selector(toggleAnimation:) keyEquivalent:@""];

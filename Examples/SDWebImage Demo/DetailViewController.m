@@ -19,7 +19,7 @@
 
 - (void)configureView {
     if (!self.imageView.sd_imageIndicator) {
-        self.imageView.sd_imageIndicator = SDWebImageProgressIndicator.defaultIndicator;
+        self.imageView.sd_imageIndicator = TXWebImageProgressIndicator.defaultIndicator;
     }
     [self.imageView sd_setImageWithURL:self.imageURL
                       placeholderImage:nil

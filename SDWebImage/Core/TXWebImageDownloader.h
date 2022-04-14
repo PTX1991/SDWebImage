@@ -95,9 +95,9 @@ typedef NS_OPTIONS(NSUInteger, TXWebImageDownloaderOptions) {
     TXWebImageDownloaderMatchAnimatedImageClass = 1 << 12,
 };
 
-FOUNDATION_EXPORT NSNotificationName _Nonnull const SDWebImageDownloadStartNotification;
-FOUNDATION_EXPORT NSNotificationName _Nonnull const SDWebImageDownloadReceiveResponseNotification;
-FOUNDATION_EXPORT NSNotificationName _Nonnull const SDWebImageDownloadStopNotification;
+FOUNDATION_EXPORT NSNotificationName _Nonnull const TXWebImageDownloadStartNotification;
+FOUNDATION_EXPORT NSNotificationName _Nonnull const TXWebImageDownloadReceiveResponseNotification;
+FOUNDATION_EXPORT NSNotificationName _Nonnull const TXWebImageDownloadStopNotification;
 FOUNDATION_EXPORT NSNotificationName _Nonnull const SDWebImageDownloadFinishNotification;
 
 typedef TXImageLoaderProgressBlock TXWebImageDownloaderProgressBlock;
@@ -106,7 +106,7 @@ typedef TXImageLoaderCompletedBlock TXWebImageDownloaderCompletedBlock;
 /**
  *  A token associated with each download. Can be used to cancel a download
  */
-@interface SDWebImageDownloadToken : NSObject <TXWebImageOperation>
+@interface TXWebImageDownloadToken : NSObject <TXWebImageOperation>
 
 /**
  Cancel the current download.
@@ -234,9 +234,9 @@ typedef TXImageLoaderCompletedBlock TXWebImageDownloaderCompletedBlock;
  *                       before to be called a last time with the full image and finished argument
  *                       set to YES. In case of error, the finished argument is always YES.
  *
- * @return A token (SDWebImageDownloadToken) that can be used to cancel this operation
+ * @return A token (TXWebImageDownloadToken) that can be used to cancel this operation
  */
-- (nullable SDWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
+- (nullable TXWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
                                                  completed:(nullable TXWebImageDownloaderCompletedBlock)completedBlock;
 
 /**
@@ -259,9 +259,9 @@ typedef TXImageLoaderCompletedBlock TXWebImageDownloaderCompletedBlock;
  *                       before to be called a last time with the full image and finished argument
  *                       set to YES. In case of error, the finished argument is always YES.
  *
- * @return A token (SDWebImageDownloadToken) that can be used to cancel this operation
+ * @return A token (TXWebImageDownloadToken) that can be used to cancel this operation
  */
-- (nullable SDWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
+- (nullable TXWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
                                                    options:(TXWebImageDownloaderOptions)options
                                                   progress:(nullable TXWebImageDownloaderProgressBlock)progressBlock
                                                  completed:(nullable TXWebImageDownloaderCompletedBlock)completedBlock;
@@ -280,9 +280,9 @@ typedef TXImageLoaderCompletedBlock TXWebImageDownloaderCompletedBlock;
  *                       @note the progress block is executed on a background queue
  * @param completedBlock A block called once the download is completed.
  *
- * @return A token (SDWebImageDownloadToken) that can be used to cancel this operation
+ * @return A token (TXWebImageDownloadToken) that can be used to cancel this operation
  */
-- (nullable SDWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
+- (nullable TXWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
                                                    options:(TXWebImageDownloaderOptions)options
                                                    context:(nullable SDWebImageContext *)context
                                                   progress:(nullable TXWebImageDownloaderProgressBlock)progressBlock
